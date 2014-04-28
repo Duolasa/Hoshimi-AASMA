@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<LessonDescription xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Mode>0</Mode>
+  <Title>4-Attack!</Title>
+  <School>c2i.fr</School>
+  <Summary>Learn how to destroy the enemy.</Summary>
+  <Author>Richard Clark - RaptorXP</Author>
+  <Level>2</Level>
+  <DateCreation>2006-11-19T10:08:44.8326+01:00</DateCreation>
+  <Country>1033</Country>
+  <ID>21defdea-0581-4e29-bdde-24be5b2bf018</ID>
+  <Files>
+    <FileDescription>
+      <FileName>infos</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>L4.brief</FileName>
+      <Value>mission</Value>
+    </FileDescription>
+    <FileDescription>
+      <FileName>L4.tsu</FileName>
+      <Value>tissue</Value>
+    </FileDescription>
+    <FileDescription>
+      <FileName>MSDN.css</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>PierreLesson4.dll</FileName>
+      <Value>pierre</Value>
+    </FileDescription>
+    <FileDescription>
+      <FileName>pro18.jpg</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>pro19.jpg</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>test.jpg</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>test2.jpg</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>tree1.jpg</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>tree2.jpg</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>tree3.jpg</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>tree4.jpg</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>tutorial4.htm</FileName>
+      <Value>htm</Value>
+    </FileDescription>
+  </Files>
+</LessonDescription>

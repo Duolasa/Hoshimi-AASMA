@@ -1,0 +1,435 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<head>
+<meta http-equiv="Content-Language" content="fr" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Welcome to the Hoshimi Lab</title>
+<link rel="stylesheet" type="text/css" href="..\css\MSDN.css" />
+</head>
+
+<body>
+
+<h1 style="text-align: center;">
+Nanobots</h1>
+<p>
+Here is the different kinds of Nanobots you can find in Project Hoshimi. You can 
+see the maximum value of each characteristics for each Nanobot with possible 
+actions:</p>
+<table style="border: 1px solid #000000;" cellspacing="0" cellpadding="5">
+	<tr>
+		<td style="border: 1px solid #000000;" valign="top" colspan="2">
+		<h3 style="text-align: center">Nanobots</h3>
+		</td>
+		<td valign="top" style="border: 1px solid #000000">
+		<h3 style="text-align: center">Characteristics</h3>
+		</td>
+		<td valign="top" style="border: 1px solid #000000">
+		<h3>Actions</h3>
+		</td>
+		<td valign="top" style="border: 1px solid #000000">
+		<h3>Remarks</h3>
+		</td>
+	</tr>
+	<tr>
+		<td style="border: 1px solid #000000; width: 32px" valign="top">
+		<img alt="NanoAI" src="../img/AI1.png" width="16" height="16" align="top" /></td>
+		<td style="border: 1px solid #000000; width: 121px" valign="top">NanoAI</td>
+		<td valign="top" style="border: 1px solid #000000">
+		<table cellspacing="0" cellpadding="5">
+			<tr>
+				<td>ContainerCapacity</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>CollectTransfertSpeed</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>Scan</td>
+				<td>5</td>
+			</tr>
+			<tr>
+				<td>MaxDamage</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>DefenseDistance</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>Constitution</td>
+				<td>20</td>
+			</tr>
+			<tr>
+				<td>Total</td>
+				<td>NA</td>
+			</tr>
+		</table>
+		</td>
+		<td valign="top" style="border: 1px solid #000000">ForceAutoDestruction()<br />
+		MoveTo(Point)<br />
+		MoveTo(Point[])<br />
+		StopMoving()<br />
+		Build(Type)<br />
+		Build(Type, String)<br />
+		Build(Type, NanoIPCreator)</td>
+		<td valign="top" style="border: 1px solid #000000">You can&#39;t change 
+		NanoAI&#39;s characteristics.<br />
+		You can&#39;t create a NanoAI.<br />
+		If your NanoAI is destroyed, all others Nanobots don&#39;t execute actions.</td>
+	</tr>
+	<tr>
+		<td style="border: 1px solid #000000; width: 32px" valign="top">
+		<img alt="NanoCollector" src="../img/Collector1.png" width="16" height="16" align="top" /></td>
+		<td style="border: 1px solid #000000; width: 121px" valign="top">
+		NanoCollector</td>
+		<td valign="top" style="border: 1px solid #000000">
+		<table cellspacing="0" cellpadding="5">
+			<tr>
+				<td>ContainerCapacity</td>
+				<td>20</td>
+			</tr>
+			<tr>
+				<td>CollectTransfertSpeed</td>
+				<td>5</td>
+			</tr>
+			<tr>
+				<td>Scan</td>
+				<td>5</td>
+			</tr>
+			<tr>
+				<td>MaxDamage</td>
+				<td>5</td>
+			</tr>
+			<tr>
+				<td>DefenseDistance</td>
+				<td>12</td>
+			</tr>
+			<tr>
+				<td>Constitution</td>
+				<td>50</td>
+			</tr>
+			<tr>
+				<td>Total</td>
+				<td>50</td>
+			</tr>
+		</table>
+		</td>
+		<td valign="top" style="border: 1px solid #000000">ForceAutoDestruction()<br />
+		MoveTo(Point)<br />
+		MoveTo(Point[])<br />
+		StopMoving()<br />
+		DefendTo(Point, Int32)<br />
+		CollectFrom(Point, Int32)<br />
+		TransferTo(Point, Int32)<br />
+		</td>
+		<td valign="top" style="border: 1px solid #000000">&nbsp;</td>
+	</tr>
+	<tr>
+		<td style="border: 1px solid #000000; width: 32px" valign="top">
+		<img alt="NanoContainer" src="../img/Container1.png" width="16" height="16" align="top" /></td>
+		<td style="border: 1px solid #000000; width: 121px" valign="top">NanoContainer</td>
+		<td valign="top" style="border: 1px solid #000000">
+		<table cellspacing="0" cellpadding="5">
+			<tr>
+				<td>ContainerCapacity</td>
+				<td>60</td>
+			</tr>
+			<tr>
+				<td>CollectTransfertSpeed</td>
+				<td>5</td>
+			</tr>
+			<tr>
+				<td>Scan</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>MaxDamage</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>DefenseDistance</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>Constitution</td>
+				<td>60</td>
+			</tr>
+			<tr>
+				<td>Total</td>
+				<td>70</td>
+			</tr>
+		</table>
+		</td>
+		<td valign="top" style="border: 1px solid #000000">ForceAutoDestruction()<br />
+		MoveTo(Point)<br />
+		MoveTo(Point[])<br />
+		StopMoving()<br />
+		CollectFrom(Point, Int32)<br />
+		TransferTo(Point, Int32)</td>
+		<td valign="top" style="border: 1px solid #000000">&nbsp;</td>
+	</tr>
+	<tr>
+		<td style="border: 1px solid #000000; width: 32px" valign="top">
+		<img alt="NanoIPCreator" src="../img/IPCreator1.png" width="16" height="16" /></td>
+		<td style="border: 1px solid #000000; width: 121px" valign="top">NanoIPCreator</td>
+		<td valign="top" style="border: 1px solid #000000">
+		<table cellspacing="0" cellpadding="5">
+			<tr>
+				<td>ContainerCapacity</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>CollectTransfertSpeed</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>Scan</td>
+				<td>30</td>
+			</tr>
+			<tr>
+				<td>MaxDamage</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>DefenseDistance</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>Constitution</td>
+				<td>20</td>
+			</tr>
+			<tr>
+				<td>Total</td>
+				<td>40</td>
+			</tr>
+		</table>
+		</td>
+		<td valign="top" style="border: 1px solid #000000">ForceAutoDestruction()<br />
+		MoveTo(Point)<br />
+		MoveTo(Point[])<br />
+		StopMoving()<br />
+		OpenIP()<br />
+		CloseIP()</td>
+		<td valign="top" style="border: 1px solid #000000">You can create only 
+		one NanoIPCreator in a game.<br />
+		Once your NanoIPCreator use OpenIP, it will be destroyed after 500 turns.</td>
+	</tr>
+	<tr>
+		<td style="border: 1px solid #000000; width: 32px" valign="top">
+		<img alt="NanoExplorer" src="../img/Explorer1.png" width="16" height="16" align="top" /></td>
+		<td style="border: 1px solid #000000; width: 121px" valign="top">NanoExplorer</td>
+		<td valign="top" style="border: 1px solid #000000">
+		<table cellspacing="0" cellpadding="5">
+			<tr>
+				<td>ContainerCapacity</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>CollectTransfertSpeed</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>Scan</td>
+				<td>30</td>
+			</tr>
+			<tr>
+				<td>MaxDamage</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>DefenseDistance</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>Constitution</td>
+				<td>20</td>
+			</tr>
+			<tr>
+				<td>Total</td>
+				<td>40</td>
+			</tr>
+		</table>
+		</td>
+		<td valign="top" style="border: 1px solid #000000">ForceAutoDestruction()<br />
+		MoveTo(Point)<br />
+		MoveTo(Point[])<br />
+		StopMoving()</td>
+		<td valign="top" style="border: 1px solid #000000">NanoExplorer are not 
+		affected by density of blood.</td>
+	</tr>
+	<tr>
+		<td style="border: 1px solid #000000; width: 32px" valign="top">
+		<img alt="NanoNeedle" src="../img/Needle1.png" width="16" height="16" align="top" /></td>
+		<td style="border: 1px solid #000000; width: 121px" valign="top">NanoNeedle</td>
+		<td valign="top" style="border: 1px solid #000000">
+		<table cellspacing="0" cellpadding="5">
+			<tr>
+				<td>ContainerCapacity</td>
+				<td>100</td>
+			</tr>
+			<tr>
+				<td>CollectTransfertSpeed</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>Scan</td>
+				<td>10</td>
+			</tr>
+			<tr>
+				<td>MaxDamage</td>
+				<td>5</td>
+			</tr>
+			<tr>
+				<td>DefenseDistance</td>
+				<td>10</td>
+			</tr>
+			<tr>
+				<td>Constitution</td>
+				<td>150</td>
+			</tr>
+			<tr>
+				<td>Total</td>
+				<td>150</td>
+			</tr>
+		</table>
+		</td>
+		<td valign="top" style="border: 1px solid #000000">ForceAutoDestruction()<br />
+		DefendTo(Point, Int32)</td>
+		<td valign="top" style="border: 1px solid #000000">If located on a 
+		Hoshimi Point, you gain 5 points (NeedleScore in Config file).<br />
+		If located on a Hoshimi Point with AZN molecules, you gain 20 points (ValidNeedleScore 
+		in Config file) and 2 points/AZN molecules (AZNScore in Config file).</td>
+	</tr>
+	<tr>
+		<td style="border: 1px solid #000000; width: 32px" valign="top">
+		<img alt="NanoBlocker" src="../img/Blocker1.png" width="16" height="16" /></td>
+		<td style="border: 1px solid #000000; width: 121px" valign="top">NanoBlocker</td>
+		<td valign="top" style="border: 1px solid #000000">
+		<table cellspacing="0" cellpadding="5">
+			<tr>
+				<td>ContainerCapacity</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>CollectTransfertSpeed</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>Scan</td>
+				<td>10</td>
+			</tr>
+			<tr>
+				<td>MaxDamage</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>DefenseDistance</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>Constitution</td>
+				<td>100</td>
+			</tr>
+			<tr>
+				<td>Total</td>
+				<td>90</td>
+			</tr>
+		</table>
+		</td>
+		<td valign="top" style="border: 1px solid #000000">ForceAutoDestruction()</td>
+		<td valign="top" style="border: 1px solid #000000">Slow bots from others 
+		teams including Pierre Team. They take 6 more turns to go through a cell 
+		(BlockerStrengh in Config file).<br />
+		Distance of effect is 6 (BlockerLength in Config file).</td>
+	</tr>
+	<tr>
+		<td style="border: 1px solid #000000; width: 32px" valign="top">
+		<img alt="NanoWall" src="../img/Wall1.png" width="16" height="16" /></td>
+		<td style="border: 1px solid #000000; width: 121px" valign="top">
+		NanoWall</td>
+		<td valign="top" style="border: 1px solid #000000">
+		<table cellspacing="0" cellpadding="5">
+			<tr>
+				<td>ContainerCapacity</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>CollectTransfertSpeed</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>Scan</td>
+				<td>10</td>
+			</tr>
+			<tr>
+				<td>MaxDamage</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>DefenseDistance</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>Constitution</td>
+				<td>100</td>
+			</tr>
+			<tr>
+				<td>Total</td>
+				<td>90</td>
+			</tr>
+		</table>
+		</td>
+		<td valign="top" style="border: 1px solid #000000">ForceAutoDestruction()</td>
+		<td valign="top" style="border: 1px solid #000000">Stop bots from others 
+		teams including Pierre Team.<br />
+		NanoWall is destroyed 50 turns after been created.</td>
+	</tr>
+	<tr>
+		<td style="border: 1px solid #000000; width: 32px" valign="top">
+		<img alt="NeuroController" src="../img/NeuroController0.png" width="16" height="16" /></td>
+		<td style="border: 1px solid #000000; width: 121px" valign="top">
+		NeuroController</td>
+		<td valign="top" style="border: 1px solid #000000">
+		<table cellspacing="0" cellpadding="5">
+			<tr>
+				<td>ContainerCapacity</td>
+				<td>100</td>
+			</tr>
+			<tr>
+				<td>CollectTransfertSpeed</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>Scan</td>
+				<td>10</td>
+			</tr>
+			<tr>
+				<td>MaxDamage</td>
+				<td>5</td>
+			</tr>
+			<tr>
+				<td>DefenseDistance</td>
+				<td>10</td>
+			</tr>
+			<tr>
+				<td>Constitution</td>
+				<td>150</td>
+			</tr>
+			<tr>
+				<td>Total</td>
+				<td>150</td>
+			</tr>
+		</table>
+		</td>
+		<td valign="top" style="border: 1px solid #000000">ForceAutoDestruction()<br />
+		DefendTo(Point, Int32)</td>
+		<td valign="top" style="border: 1px solid #000000">Can only be created 
+		by Pierre.</td>
+	</tr>
+	</table>
+
+</body>
+
+</html>

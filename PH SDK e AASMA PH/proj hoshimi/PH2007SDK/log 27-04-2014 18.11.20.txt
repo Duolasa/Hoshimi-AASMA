@@ -1,0 +1,11 @@
+System.ArgumentException: Destination array was not long enough. Check destIndex and length, and the array's lower bounds.
+   at System.Array.Copy(Array sourceArray, Int32 sourceIndex, Array destinationArray, Int32 destinationIndex, Int32 length, Boolean reliable)
+   at System.Array.Copy(Array sourceArray, Int32 sourceIndex, Array destinationArray, Int32 destinationIndex, Int32 length)
+   at System.Collections.Generic.List`1.CopyTo(T[] array, Int32 arrayIndex)
+   at System.Collections.Generic.List`1.InsertRange(Int32 index, IEnumerable`1 collection)
+   at System.Collections.Generic.List`1.AddRange(IEnumerable`1 collection)
+   at PHServer.GameLauncher.GetBots()
+   at PHServer.frmServer.WriteGameData(BinaryWriter writer)
+   at PHServer.frmServer.server_ClientSendGameData(Object sender, MessageReceivedEventArgs e)
+   at PH.Network.Server.OnClientSendGameData(MessageReceivedEventArgs e)
+   at PH.Network.ClientConnection.Listen()

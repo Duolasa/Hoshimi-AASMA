@@ -1,0 +1,59 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Debugging AASMA PH Agents in MS Visual Studio</title>
+</head>
+
+<body>
+
+<h1>Debugging in MS Visual Studio</h1>
+<table border="0" width="100%" id="table1" style="border-collapse: collapse" bgcolor="#C0C0C0">
+	<tr>
+		<td><b>NOTE</b><p>
+		<span style="font-size: 12.0pt; font-family: Times New Roman">In this 
+		text </span><font size="2"><span style="font-family: Courier New">{PROJECT_HOSHIMI_HOME}</span></font><span style="font-size: 12.0pt; font-family: Times New Roman"> 
+		refers to the directory where you installed (unziped) Project Hoshimi SDK.</span></p>
+		</td>
+	</tr>
+</table>
+<h2><font size="3"><span style="font-family: Times New Roman">1. Setup the 
+Debugger</span></font></h2>
+<ol>
+	<li><span style="font-size: 12.0pt; font-family: Times New Roman">In the <b>
+	Solution Explorer</b> window, right-click on the </span> <font size="2"><span style="font-family: Courier New">
+	AASMAHoshimi</span></font><span style="font-size: 12.0pt; font-family: Times New Roman"> 
+	project (the one in bold) and choose <b>Properties</b></span></li>
+	<li><span style="font-size: 12.0pt; font-family: Times New Roman">In the <b>
+	Property Pages</b> dialog that appears, choose the <b>Debug</b> item on 
+	the left-hand section</span></li>
+	<li><span style="font-size: 12.0pt; font-family: Times New Roman">On the 
+	right-hand section, select <b>Start external program</b> and enter </span>
+	<code style="font-family: Courier New"><span style="font-size: 10.0pt">
+	{PROJECT_HOSHIMI_HOME}\ProjectHoshimi.exe</span></code><span style="font-size: 12.0pt; font-family: Times New Roman"></span></li>
+	<li><span style="font-size: 12.0pt; font-family: Times New Roman">Next to <b>
+	Command Arguments</b>, enter </span><code style="font-family: Courier New">
+	<span style="font-size: 10.0pt">-game cstrike</span></code></li>
+	<li><span style="font-size: 12.0pt; font-family: Times New Roman">Next to <b>
+	Working Directory</b>, enter </span><code style="font-family: Courier New">
+	<span style="font-size: 10.0pt">{PROJECT_HOSHIMI_HOME}\
+	</span></code><span style="font-size: 12.0pt; font-family: Times New Roman">
+</ol>
+<p align="center">
+<img border="0" src="Debugging.jpg"></p>
+<p align="center"><i>Fig.1 - Setup the Debugger.</i> </p>
+<h2><font size="3"><span style="font-family: Times New Roman">2. Running in 
+Debug Mode</span></font></h2>
+<ol>
+	<li><span style="font-size: 12.0pt; font-family: Times New Roman">In the VS 
+	solution, right-click on the </span> <font size="2"><span style="font-family: Courier New">
+	AASMAHoshimi</span></font><span style="font-size: 12.0pt; font-family: Times New Roman"> 
+	project and choose <b>Debug-&gt;Start New Instance</b></span></li>
+	<li><span style="font-size: 12.0pt; font-family: Times New Roman">Once ProjectHoshimi starts, select 
+	expert mode, select the AASMAHoshimi Player and start any mission</span></li>
+</ol>
+
+</body>
+
+</html>

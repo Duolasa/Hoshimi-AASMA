@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<LessonDescription xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Mode>0</Mode>
+  <Title>Small Competition 3</Title>
+  <School>c2i.fr</School>
+  <Summary>Lesson for Small Competition 3 on Project-Hoshimi.com</Summary>
+  <Author>Richard Clark</Author>
+  <Level>3</Level>
+  <DateCreation>2007-02-12T13:37:47.5769856+01:00</DateCreation>
+  <Country>1033</Country>
+  <ID>4133ec68-e860-4117-a3e0-887a423d46c4</ID>
+  <Files>
+    <FileDescription>
+      <FileName>MSDN.css</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>sc3.brief</FileName>
+      <Value>mission</Value>
+    </FileDescription>
+    <FileDescription>
+      <FileName>sc3.htm</FileName>
+      <Value>htm</Value>
+    </FileDescription>
+    <FileDescription>
+      <FileName>sc3.tsu</FileName>
+      <Value>tissue</Value>
+    </FileDescription>
+    <FileDescription>
+      <FileName>SC3Defender.dll</FileName>
+      <Value>pierre</Value>
+    </FileDescription>
+  </Files>
+</LessonDescription>

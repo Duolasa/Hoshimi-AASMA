@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Language" content="fr" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Lesson 1</title>
+<link rel="stylesheet" type="text/css" href="MSDN.css" />
+<META name="PHAuthor" content="Richard Clark" /><META name="PHCountry" content="1036" /><META name="PHDate" content="05/09/2006" /><META name="PHLevel" content="1" /><META name="PHSummary" content="Prise en main de l'interface et choix du point d'injection" /><META name="PHSchool" content="Mines de Nacy" /><META name="PHID" content="8a1fff54-2f91-4c1c-9b00-6be58f5bff31" /><META name="PHPierreDll" content="PierreLesson1.dll" /><META name="PHMode" content="Beginner" /><META name="PHDevSolution" content="" /><META name="PHTissue" content="A2.tsu" /><META name="PHTitle" content="Leçon 1" /></HEAD>
+<body>
+<h1>Lesson 1</h1>
+<h2>Welcome Nanoguy into the Project Hoshimi:</h2>
+
+<p>I'm the Professor Hoshimi and I have a lot of things to teach you in order to be efficient and save lifes !</p>
+<p>Project Hoshimi lets you control a team of Nanobots inside a human body to save it. You will be given a mission, with different kinds of objectives, and a map representing a part of the human body.</p>
+<p>But you first need to know that Pierre, my previous boss, stealed my research and created bad nanobots (as for example : <i>NeuroControllers</i>) that can fight and kill yours ! So you have to take care of Pierre when you will be designing your strategy.</p>
+
+<p>Your strategy will represent the behaviour of a team made of different nanobots, but the must important one is : <b>the NanoAI</b>.</p>
+
+<p>The NanoAI is the <u>first nanobot injected in the body</u> ! It's also the only one that <u>can build</u> other nanobot and it's the central part of your team because it's the one that communicate orders to the whole team.</p>
+
+<p>When I say that the NanoAI can build a nanobot, in fact it's wrong.<br />
+It only ask the bot you want to build to be injected at your Injection Point !<br />
+Choosing your Injection Point is really important, because it's the place where all your nanobot team will be injected.</p>
+<p><u><b>Beware :</b></u> If you don't choose a valid Injection Point, it will be choosen randomly on the center of the map near Pierre's bot, and it's a really bad idea to start there !</p>
+
+<p>Before you start this lesson, I have one more thing to tell you. The strategy you will define will control nanobots in the body, and you have no direct control on your nanobots !<br />
+That's why we created 2 viewers, a 2D and a 3D Viewer, to help you watching your team inside the body. You can choose the viewer you want in the Options.</p>
+
+
+<h2>Let's start this lesson by choosing your Injection Point:</h2>
+
+<p>Select the "Mission/Injection Point" tab to be able to choose your Injection Point.<br />
+You'll see a picture representing the head you have to cure, and you can also access some information about the mission (what objectives you have to do) by clicking on the "Show Mission Summary" button.</p>
+
+<p>For this mission, there is only one objectif which consists of going to 2 destinations:
+<ul>
+	<li>(150; 50)</li>
+	<li>(160; 100)</li>
+</ul>
+</p>
+<p>So it's natural to choose your Injection Point near those points. You can select a point either by clicking on the tissue or by typing in its coordinates. You can choose for example the point located at (155, 100).</p>
+
+<p>Once you've choosen your Injection Point, you can save your strategy using the "Save Strategy" button or you can test it by clicking on the "Test Strategy" button.</p>
+
+<p>It will load the viewer you choose, and you will have to click on "Start Game" to launch the game. After a while (initialization of the game), you will see your NanoAI appearing at the Injection Point you selected.</p>
+
+
+<h2>Navigation Objective:</h2>
+<p>In this mission you must accomplish only one objective, a Navigation Objective (<i>You can go to the Hoshimi Lab to learn more about this kind of objective</i>). So you must go with any Nanobot to those two points. <br />
+Here, because we have only one Nanobot (your NanoAI), we will order it to go to those points.</p>
+
+<p><ul>
+ <li>Select the "Actions" tab.</li>
+ <li>Select your NanoAI</li>
+ <li>Click on the "MoveTo" button in the toolbar</li>
+ <li>Click on the tissue on the first point at X = 160, Y = 100 (or enter the values)</li>
+ <li>Click on the "Add" button</li>
+</ul>
+</p>
+<p>Do the same with the other point. Click on the MoveTo button, enter the location (150, 50) and click on the "Add" button.</p>
+
+<p>Your NanoAI have now two Actions to do, moving to the first point then to the second point.</p>
+
+<p>Test your strategy and you will see your nanoAI moving in the tissue to the right locations.</p>
+
+<p>You can also notice that after reaching the second point, you'll see that it will go again to the first point, then the second one, etc.... <b>It's a loop !</b></p>
+
+<p>If you don't want this loop, you can add an "Idle" action with 1500 turns, which will stop your NanoAi until the end of the game.</p>
+
+
+<h2>Streams:</h2>
+
+<p>You can see that when your NanoAI go to the second point, it goes through a stream and go slower because it is moving against the stream.</p>
+
+<p><u>Now a little exercice:</u> Try to change your Injection Point and your actions to accomplish the objective in less than 90 turns.</p>
+<p id="author">Richard Clark</p>
+</body>
+
+</html>

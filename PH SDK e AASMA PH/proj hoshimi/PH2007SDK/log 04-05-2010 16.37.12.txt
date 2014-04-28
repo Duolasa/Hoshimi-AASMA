@@ -1,0 +1,37 @@
+[12] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[28] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[32] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[36] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[40] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[44] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[48] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[52] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[56] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[60] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[64] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[68] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[80] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[84] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[88] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[92] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[96] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[100] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[104] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[108] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[112] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[116] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[120] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[124] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[128] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[132] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[136] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[140] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[144] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[148] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[152] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[156] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[160] AI: received message from E1 : I've found an hoshimi point! Go there man!
+System.IO.EndOfStreamException: Não é possível ler para além do fim da sequência.
+   em System.IO.__Error.EndOfFile()
+   em System.IO.BinaryReader.ReadByte()
+   em PH.Network.ClientConnection.Listen()

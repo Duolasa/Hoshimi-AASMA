@@ -1,0 +1,1112 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<head>
+<meta http-equiv="Content-Language" content="fr" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled 1</title>
+<link rel="stylesheet" type="text/css" href="..\css\msdn.css" />
+</head>
+
+<body>
+
+<h1 style="text-align: left">
+Tutorials for Developpers</h1>
+<h2 style="text-align: left">
+Discover the Tissue, Collect and Transfer AZN Molecules</h2>
+<p style="text-align: left">
+&nbsp;</p>
+<p style="text-align: left">
+&nbsp;</p>
+<p>In this tutorial, you will learn how to learn more about the tissue and collect and transfer AZN molecules.</p>
+<h3>The Tissue: Entities</h3>
+<p>When you play a game, you chosse the tissue you want to use.</p>
+<p>So you know before playing the game where AZN and Hoshimi points are located.</p>
+<p>So you can imagine to create a strategy writing what I call Scripting code.</p>
+<p>For example, if you know that you have a AZN point located at point (120, 
+50), a Hoshimi Point at point (100, 50) you can write directly in your code to 
+be injected at this point, to build a NanoCollector immediatly at this point and 
+to move to the Hoshimi point:</p>
+<div class="lang">
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+<p class="langTitle">C#</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;"><span style="color: blue;">private</span>
+	<span style="color: blue;">void</span> myPlayer_ChooseInjectionPoint()</p>
+	<p style="margin: 0px;">{</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">this</span>.InjectionPointWanted 
+	= <span style="color: blue;">new</span> <span style="color: teal;">Point</span>(120, 
+	50);</p>
+	<p style="margin: 0px;">}</p>
+	<p style="margin: 0px;"><span style="color: blue;">bool</span> 
+	bCollectorBuilded;</p>
+	<p style="margin: 0px;"><span style="color: blue;">private</span>
+	<span style="color: blue;">void</span> myPlayer_WhatToDoNext()</p>
+	<p style="margin: 0px;">{</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">if</span> 
+	(<span style="color: blue;">this</span>.AI.State ==
+	<span style="color: teal;">NanoBotState</span>.WaitingOrders)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; {</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">if</span> (!bCollectorBuilded)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">if</span> (<span style="color: blue;">this</span>.AI.Build(<span style="color: blue;">typeof</span>(<span style="color: teal;">Collector</span>)))</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	bCollectorBuilded = <span style="color: blue;">true</span>;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">else</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">this</span>.AI.MoveTo(<span style="color: blue;">new</span>
+	<span style="color: teal;">Point</span>(1<span>0</span>0,
+	<span>
+	5</span>0));</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; }</p>
+	<p style="margin: 0px;">}</p>
+</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+<p class="langTitle">Visual Basic</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<div style="font-family: Courier New; font-size: 10pt; color: black; ">
+	<div style="font-family: Courier New; font-size: 10pt; color: black;">
+		<p style="margin: 0px;"><span style="color: blue;">Private</span>
+		<span style="color: blue;">Sub</span> myPlayer_ChooseInjectionPointEvent()
+		<span style="color: blue;">Handles</span> <span style="color: blue;">Me</span>.ChooseInjectionPoint</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">Me</span>.InjectionPointWanted 
+		= <span style="color: blue;">New</span> Point(120, 50)</p>
+		<p style="margin: 0px;"><span style="color: blue;">End</span>
+		<span style="color: blue;">Sub</span></p>
+		<p style="margin: 0px;"><span style="color: blue;">Dim</span> 
+		bCollectorBuilded <span style="color: blue;">As</span>
+		<span style="color: blue;">Boolean</span></p>
+		<p style="margin: 0px;"><span style="color: blue;">Private</span>
+		<span style="color: blue;">Sub</span> myPlayer_WhatToDoNextEvent()
+		<span style="color: blue;">Handles</span> <span style="color: blue;">Me</span>.WhatToDoNext</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">If</span>
+		<span style="color: blue;">Me</span>.AI.State = 
+		NanoBotState.WaitingOrders <span style="color: blue;">Then</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">If</span> <span style="color: blue;">Not</span> 
+		bCollectorBuilded <span style="color: blue;">Then</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">If</span> <span style="color: blue;">Me</span>.AI.Build(<span style="color: blue;">GetType</span>(Collector))
+		<span style="color: blue;">Then</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		bCollectorBuilded = <span style="color: blue;">True</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">End</span> <span style="color: blue;">If</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">Else</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">Me</span>.AI.MoveTo(<span style="color: blue;">New</span> 
+		Point(100, 50))</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">End</span> <span style="color: blue;">If</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		End</span> <span style="color: blue;">If</span></p>
+		<p style="margin: 0px;"><span style="color: blue;">End</span>
+		<span style="color: blue;">Sub</span></p>
+		<p style="margin: 0px;">&nbsp;</p>
+	</div>
+</div>
+</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+</div>
+
+<p>But this is not a good approach because in the Imagine Cup competition, you 
+don&#39;t know the tissue before playing the game. So you must discover at runtime 
+the tissue and adapt your strategy.</p>
+<p>You can obtain informations about the tissue by using the Tissue property of 
+your player class. The tissue class have a collection property Entities of 
+Entity. An entity can be a AZN point where you can collect AZN molecules and a 
+Hoshimi point where you must build NanoNeedle.</p>
+<p>AZN points and Hoshimi points 
+never move during the game, so a good idea is to stock this information in your 
+ChooseInjectionPoint event. That is what I do in the following code, and I 
+decide to be injected in the first AZN point of the tissue (this is my strategy, 
+this is not of course the best strategy ;-)):</p>
+<div class="lang">
+<p class="langTitle">C#</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;"><span style="color: blue;">private</span>
+	<span style="color: teal;">List</span>&lt;<span style="color: teal;">Entity</span>&gt; 
+	m_AznEntities = <span style="color: blue;">new</span>
+	<span style="color: teal;">List</span>&lt;<span style="color: teal;">Entity</span>&gt;();</p>
+	<p style="margin: 0px;"><span style="color: blue;">private</span>
+	<span style="color: teal;">List</span>&lt;<span style="color: teal;">Entity</span>&gt; 
+	m_HoshimiEntities = <span style="color: blue;">new</span>
+	<span style="color: teal;">List</span>&lt;<span style="color: teal;">Entity</span>&gt;();</p>
+	<p style="margin: 0px;">&nbsp;</p>
+	<p style="margin: 0px;"><span style="color: blue;">public</span>
+	<span style="color: teal;">List</span>&lt;<span style="color: teal;">Entity</span>&gt; 
+	AznEntities{ <span style="color: blue;">get</span> {
+	<span style="color: blue;">return</span> m_AznEntities; } }</p>
+	<p style="margin: 0px;"><span style="color: blue;">public</span>
+	<span style="color: teal;">List</span>&lt;<span style="color: teal;">Entity</span>&gt; 
+	HoshimiEntities{ <span style="color: blue;">get</span> {
+	<span style="color: blue;">return</span> m_HoshimiEntities; } }</p>
+	<p style="margin: 0px;">&nbsp;</p>
+	<p style="margin: 0px;"><span style="color: blue;">private</span>
+	<span style="color: blue;">void</span> myPlayer_ChooseInjectionPoint()</p>
+	<p style="margin: 0px;">{</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: green;">//storing 
+	AZN and Hoshimi Points</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+	foreach</span> (<span style="color: teal;">Entity</span> ent
+	<span style="color: blue;">in</span> <span style="color: blue;">this</span>.Tissue.Entities)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; {</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">switch</span> (ent.EntityType)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">case</span> <span style="color: teal;">EntityEnum</span>.AZN:</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	m_AznEntities.Add(ent);</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">break</span>;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">case</span> <span style="color: teal;">EntityEnum</span>.HoshimiPoint:</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	m_HoshimiEntities.Add(ent);</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">break</span>;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; }</p>
+	<p style="margin: 0px;">&nbsp;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: green;">//I 
+	want to be injected at the first AZN point</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: teal;">Entity</span> 
+	entAZN = AznEntities[0];</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">this</span>.InjectionPointWanted 
+	= <span style="color: blue;">new</span> <span style="color: teal;">Point</span>(entAZN.X, 
+	entAZN.Y);</p>
+	<p style="margin: 0px;">}</p>
+</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+<p class="langTitle">Visual Basic</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<div style="font-family: Courier New; font-size: 10pt; color: black; ">
+	<div style="font-family: Courier New; font-size: 10pt; color: black;">
+		<p style="margin: 0px;"><span style="color: blue;">Private</span> 
+		m_AZNEntities <span style="color: blue;">As</span>
+		<span style="color: blue;">New</span> List(<span style="color: blue;">Of</span> 
+		Entity)</p>
+		<p style="margin: 0px;"><span style="color: blue;">Private</span> 
+		m_HoshimiEntities <span style="color: blue;">As</span>
+		<span style="color: blue;">New</span> List(<span style="color: blue;">Of</span> 
+		Entity)</p>
+		<p style="margin: 0px;">&nbsp;</p>
+		<p style="margin: 0px;"><span style="color: blue;">Public</span>
+		<span style="color: blue;">ReadOnly</span> <span style="color: blue;">
+		Property</span> AZNEntities() <span style="color: blue;">As</span> List(<span style="color: blue;">Of</span> 
+		Entity)</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		Get</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">Return</span> m_AZNEntities</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		End</span> <span style="color: blue;">Get</span></p>
+		<p style="margin: 0px;"><span style="color: blue;">End</span>
+		<span style="color: blue;">Property</span></p>
+		<p style="margin: 0px;"><span style="color: blue;">Public</span>
+		<span style="color: blue;">ReadOnly</span> <span style="color: blue;">
+		Property</span> HoshimiEntities() <span style="color: blue;">As</span> 
+		List(<span style="color: blue;">Of</span> Entity)</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		Get</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">Return</span> m_HoshimiEntities</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		End</span> <span style="color: blue;">Get</span></p>
+		<p style="margin: 0px;"><span style="color: blue;">End</span>
+		<span style="color: blue;">Property</span></p>
+		<p style="margin: 0px;">&nbsp;</p>
+		<p style="margin: 0px;"><span style="color: blue;">Private</span>
+		<span style="color: blue;">Sub</span> myPlayer_ChooseInjectionPointEvent()
+		<span style="color: blue;">Handles</span> <span style="color: blue;">Me</span>.ChooseInjectionPoint</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: green;">&#39;storing 
+		AZN and Hoshimi Points</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		For</span> <span style="color: blue;">Each</span> ent
+		<span style="color: blue;">As</span> Entity <span style="color: blue;">
+		In</span> <span style="color: blue;">Me</span>.Tissue.Entities</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">Select</span> <span style="color: blue;">Case</span> 
+		ent.EntityType</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">Case</span> EntityEnum.AZN</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		m_AZNEntities.Add(ent)</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">Case</span> EntityEnum.HoshimiPoint</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		m_HoshimiEntities.Add(ent)</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">End</span> <span style="color: blue;">Select</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		Next</span></p>
+		<p style="margin: 0px;">&nbsp;</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: green;">
+		&#39;I want to be injected at the first AZN point</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		Dim</span> entAZN <span style="color: blue;">As</span> Entity = 
+		AZNEntities(0)</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">Me</span>.InjectionPointWanted 
+		= <span style="color: blue;">New</span> Point(entAZN.X, entAZN.Y)</p>
+		<p style="margin: 0px;"><span style="color: blue;">End</span>
+		<span style="color: blue;">Sub</span></p>
+	</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+</div>
+
+<p>This code works on any tissue. On any tissue, my injection point is valid and 
+is on a AZN point.</p>
+<h3>The Tissue: blood density, streams</h3>
+<p>There is also informations which are important: the density of blood. A 
+tissue contains 200 * 200 cells. Each cells have a density of blood which can 
+slow your Nanobot. A cell can be a High, Medium, Low density cell or a Bone cell 
+(black area). To get this information, use the Tissue property of your player:</p>
+<div class="lang">
+<p class="langTitle">C#</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<div style="font-family: Courier New; font-size: 10pt; color: black;">
+		<p style="margin: 0px;"><span style="color: blue;">if</span> (<span style="color: blue;">this</span>.Tissue[100, 
+		50].AreaType == <span style="color: teal;">AreaEnum</span>.HighDensity)</p>
+		<p style="margin: 0px;">{</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: green;">
+		//do something</span></p>
+		<p style="margin: 0px;">}</p>
+	</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+<p class="langTitle">Visual Basic</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<div style="font-family: Courier New; font-size: 10pt; color: black; ">
+	<div style="font-family: Courier New; font-size: 10pt; color: black;">
+		<p style="margin: 0px;"><span style="color: blue;">If</span> (<span style="color: blue;">Me</span>.Tissue(100, 
+		50).AreaType = AreaEnum.HighDensity) <span style="color: blue;">Then</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: green;">
+		&#39;do something</span></p>
+		<p style="margin: 0px;"><span style="color: blue;">End</span>
+		<span style="color: blue;">If</span></p>
+	</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+</div>
+
+<p>This code test the density of blood at point (100, 50).</p>
+<p>If you want to create your own Pathfinding algorithm, you must take in 
+consideration the density of blood you will go through.</p>
+<p>Another important information is the location of the streams in the tissue. 
+Tissue have a collection BloodStreams of BloodStream. BloodStream class have all 
+informations needed to know about where is the bloodstream, what is its size and 
+its direction. But you can also use a method of the Tissue class, IsInStream. 
+This method return a reference to a BloodStream if the point tested is in a 
+bloodStream, otherwise it return null (Nothing in Visual Basic). For example:</p>
+<div class="lang">
+<p class="langTitle">C#</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;">PH.Map.<span style="color: teal;">BloodStream</span> 
+	stream = <span style="color: blue;">this</span>.Tissue.IsInStream(100, 50);</p>
+	<p style="margin: 0px;"><span style="color: blue;">if</span> (stream !=
+	<span style="color: blue;">null</span>)</p>
+	<p style="margin: 0px;">{</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">switch</span> 
+	(stream.Direction)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; {</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">case</span> <span style="color: teal;">
+	BloodStreamDirection</span>.EstWest:</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: green;">//do something</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">break</span>;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: green;">//...</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; }</p>
+	<p style="margin: 0px;">}</p>
+</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+<p class="langTitle">Visual Basic</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<div style="font-family: Courier New; font-size: 10pt; color: black; ">
+	<div style="font-family: Courier New; font-size: 10pt; color: black;">
+		<p style="margin: 0px;"><span style="color: blue;">Dim</span> stream
+		<span style="color: blue;">As</span> PH.Map.BloodStream =
+		<span style="color: blue;">Me</span>.Tissue.IsInStream(100, 50)</p>
+		<p style="margin: 0px;"><span style="color: blue;">If</span> stream
+		<span style="color: blue;">IsNot</span> <span style="color: blue;">
+		Nothing</span> <span style="color: blue;">Then</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		Select</span> <span style="color: blue;">Case</span> stream.Direction</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">Case</span> BloodStreamDirection.EstWest</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: green;">&#39;do something</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: green;">&#39;...</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		End</span> <span style="color: blue;">Select</span></p>
+		<p style="margin: 0px;"><span style="color: blue;">End</span>
+		<span style="color: blue;">If</span></p>
+	</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+</div>
+
+<p>Now, its time to start collecting AZN molecules.</p>
+<h3>Collect and Transfer AZN Molecules</h3>
+<p>It&#39;s very easy ;-) Some Nanobots can collect and transfer AZN molecules: 
+NanoCollector and NanoContainer. NanoContainer can store more AZN than 
+NanoCollector but can&#39;t defend.</p>
+<p>So let&#39;s explain my strategy:</p>
+<ul>
+	<li>I want to be injected in the first AZN point.</li>
+	<li>I want to create a NanoCollector which will collect AZN molecules at 
+	this AZN point.</li>
+	<li>I want to create a NanoNeedle on a Hoshimi Point.</li>
+	<li>I want to transfer AZN molecules from the NanoCollector to the 
+	NanoNeedle.</li>
+	<li>Then, my collector must collect again AZN molecules and so on.</li>
+</ul>
+<p>Quite easy isn&#39;t it?</p>
+<p>For the Injection Point, I use the code explained above. I now must give 
+orders to my NAnoAI. Those orders are:</p>
+<ul>
+	<li>Create a Collector</li>
+	<li>MoveTo nearest Hoshimi Point,</li>
+	<li>Build a NanoNeedle.</li>
+</ul>
+<p>For creating the NanoCollector, it&#39;s exactly the same than in the previous 
+tutorial. But for the second one, I need to know where is the nearest Hoshimi 
+Point from the existing position of my NanoAI. So I created a little utility 
+class which calculate this for me:</p>
+<div class="lang">
+<p class="langTitle">C#</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;"><span style="color: blue;">public</span>
+	<span style="color: blue;">class</span> <span style="color: teal;">Utils</span></p>
+	<p style="margin: 0px;">{</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">public</span>
+	<span style="color: blue;">static</span> <span style="color: blue;">int</span> 
+	Distance(<span style="color: teal;">Point</span> ptA,
+	<span style="color: teal;">Point</span> ptB)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; {</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">return</span> (ptA.X - ptB.X) * (ptA.X - ptB.X) + 
+	(ptA.Y - ptB.Y) * (ptA.Y - ptB.Y);</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; }</p>
+	<p style="margin: 0px;">&nbsp;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">public</span>
+	<span style="color: blue;">static</span> <span style="color: teal;">Point</span> 
+	getNearestPoint(<span style="color: teal;">Point</span> currentLocation,
+	<span style="color: teal;">List</span>&lt;<span style="color: teal;">Entity</span>&gt; 
+	entities)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; {</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: teal;">Point</span> pReturn = <span style="color: teal;">
+	Point</span>.Empty;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">int</span> dist = 200 * 200;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">foreach</span> (<span style="color: teal;">Entity</span> 
+	ent <span style="color: blue;">in</span> entities)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: teal;">Point</span> entPoint =
+	<span style="color: blue;">new</span> <span style="color: teal;">Point</span>(ent.X, 
+	ent.Y);</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">int</span> entDistance = Distance(entPoint, 
+	currentLocation);</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">if</span> (entDistance &lt; dist)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	{</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	dist = entDistance;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	pReturn = entPoint;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	}</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">return</span> pReturn;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; }</p>
+	<p style="margin: 0px;">}</p>
+</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+<p class="langTitle">Visual Basic</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<div style="font-family: Courier New; font-size: 10pt; color: black; ">
+	<div style="font-family: Courier New; font-size: 10pt; color: black;">
+		<p style="margin: 0px;"><span style="color: blue;">Public</span>
+		<span style="color: blue;">Class</span> Utils</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		Public</span> <span style="color: blue;">Shared</span>
+		<span style="color: blue;">Function</span> MDistance(<span style="color: blue;">ByVal</span> 
+		p1 <span style="color: blue;">As</span> Point,
+		<span style="color: blue;">ByVal</span> p2 <span style="color: blue;">As</span> 
+		Point) <span style="color: blue;">As</span> <span style="color: blue;">
+		Integer</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">Return</span> Math.Abs(p1.X - p2.X) + 
+		Math.Abs(p1.Y - p2.Y)</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		End</span> <span style="color: blue;">Function</span></p>
+		<p style="margin: 0px;">&nbsp;</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		Public</span> <span style="color: blue;">Shared</span>
+		<span style="color: blue;">Function</span> Distance(<span style="color: blue;">ByVal</span> 
+		ptA <span style="color: blue;">As</span> Point,
+		<span style="color: blue;">ByVal</span> ptB <span style="color: blue;">
+		As</span> Point) <span style="color: blue;">As</span>
+		<span style="color: blue;">Integer</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">Return</span> (ptA.X - ptB.X) * (ptA.X - 
+		ptB.X) + (ptA.Y - ptB.Y) * (ptA.Y - ptB.Y)</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		End</span> <span style="color: blue;">Function</span></p>
+		<p style="margin: 0px;">&nbsp;</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		Public</span> <span style="color: blue;">Shared</span>
+		<span style="color: blue;">Function</span> getNearestPoint(<span style="color: blue;"> 
+		_</span></p>
+		<p style="margin: 0px 0px 0px 320px;"><span style="color: blue;">ByVal</span> 
+		currentLocation <span style="color: blue;">As</span> Point,
+		<span style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 70%">
+		_</span></p>
+		<p style="margin: 0px 0px 0px 320px;"><span style="color: blue;">ByVal</span> entities
+		<span style="color: blue;">As</span> List(<span style="color: blue;">Of</span> 
+		Entity)) <span style="color: blue;">As</span> Point</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">Dim</span> pReturn <span style="color: blue;">
+		As</span> Point = Point.Empty</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">Dim</span> dist <span style="color: blue;">As</span>
+		<span style="color: blue;">Integer</span> = 200 * 200</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">For</span> <span style="color: blue;">Each</span> 
+		ent <span style="color: blue;">As</span> Entity
+		<span style="color: blue;">In</span> entities</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">Dim</span> entPoint
+		<span style="color: blue;">As</span> <span style="color: blue;">New</span> 
+		Point(ent.X, ent.Y)</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">Dim</span> entDistance
+		<span style="color: blue;">As</span> <span style="color: blue;">Integer</span> 
+		= Distance(entPoint, currentLocation)</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">If</span> entDistance &lt; dist
+		<span style="color: blue;">Then</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		dist = entDistance</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		pReturn = entPoint</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">End</span> <span style="color: blue;">If</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">Return</span> pReturn</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">Next</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		End</span> <span style="color: blue;">Function</span></p>
+		<p style="margin: 0px;"><span style="color: blue;">End</span>
+		<span style="color: blue;">Class</span></p>
+	</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+</div>
+
+<p>I give to this method a list of entities (so I can use it for searching the 
+nearest Hoshimi Point or the nearest AZN Point) with a start location. It 
+returns the nearest point in the list of entities. So for my NanoAI, I can use 
+it with the AZNEntities list I filled in the ChooseInjectionPoint event. So here 
+is my code for giving orders to my AI:</p>
+<div class="lang">
+<p class="langTitle">C#</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;"><span style="color: blue;">bool</span> 
+	bCollectorBuilded;</p>
+	<p style="margin: 0px;"><span style="color: blue;">bool</span> 
+	bMoveToHoshimiPoint;</p>
+	<p style="margin: 0px;"><span style="color: blue;">bool</span> 
+	bNeedleBuilded;</p>
+	<p style="margin: 0px;"><span style="color: blue;">private</span>
+	<span style="color: blue;">void</span> AI_DoActions()</p>
+	<p style="margin: 0px;">{</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">if</span> 
+	(<span style="color: blue;">this</span>.AI.State ==
+	<span style="color: teal;">NanoBotState</span>.WaitingOrders)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; {</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">if</span> (!bCollectorBuilded)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	bCollectorBuilded = <span style="color: blue;">this</span>.AI.Build(<span style="color: blue;">typeof</span>(<span style="color: teal;">Collector</span>));</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">else</span> <span style="color: blue;">if</span> 
+	(!bMoveToHoshimiPoint)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">this</span>.AI.MoveTo(<span style="color: teal;">Utils</span>.getNearestPoint(<span style="color: blue;">this</span>.AI.Location,
+	<span style="color: blue;">this</span>.HoshimiEntities));</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	bMoveToHoshimiPoint = <span style="color: blue;">true</span>;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">else</span> <span style="color: blue;">if</span> 
+	(!bNeedleBuilded)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	bNeedleBuilded = <span style="color: blue;">this</span>.AI.Build(<span style="color: blue;">typeof</span>(<span style="color: teal;">Needle</span>));</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; }</p>
+	<p style="margin: 0px;">}</p>
+	<p style="margin: 0px;">&nbsp;</p>
+	<p style="margin: 0px;"><span style="color: blue;">private</span>
+	<span style="color: blue;">void</span> myPlayer_WhatToDoNext()</p>
+	<p style="margin: 0px;">{</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; AI_DoAction();</p>
+	<p style="margin: 0px;">}</p>
+</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+<p class="langTitle">Visual Basic</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<div style="font-family: Courier New; font-size: 10pt; color: black; ">
+	<div style="font-family: Courier New; font-size: 10pt; color: black;">
+		<p style="margin: 0px;"><span style="color: blue;">Dim</span> 
+		bCollectorBuilded <span style="color: blue;">As</span>
+		<span style="color: blue;">Boolean</span></p>
+		<p style="margin: 0px;"><span style="color: blue;">Dim</span> 
+		bMoveToHoshimiPoint <span style="color: blue;">As</span>
+		<span style="color: blue;">Boolean</span></p>
+		<p style="margin: 0px;"><span style="color: blue;">Dim</span> 
+		bNeedleBuilded <span style="color: blue;">As</span>
+		<span style="color: blue;">Boolean</span></p>
+		<p style="margin: 0px;"><span style="color: blue;">Private</span>
+		<span style="color: blue;">Sub</span> AI_DoActions()</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">If</span>
+		<span style="color: blue;">Me</span>.AI.State = 
+		NanoBotState.WaitingOrders <span style="color: blue;">Then</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">If</span> <span style="color: blue;">Not</span> 
+		bCollectorBuilded <span style="color: blue;">Then</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		bCollectorBuilded = <span style="color: blue;">Me</span>.AI.Build(<span style="color: blue;">GetType</span>(Collector))</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">ElseIf</span> <span style="color: blue;">Not</span> 
+		bMoveToHoshimiPoint <span style="color: blue;">Then</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">Me</span>.AI.MoveTo(Utils.getNearestPoint(<span style="color: blue;">Me</span>.AI.Location,
+		<span style="color: blue;">Me</span>.HoshimiEntities))</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		bMoveToHoshimiPoint = <span style="color: blue;">True</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">ElseIf</span> <span style="color: blue;">Not</span> 
+		bNeedleBuilded <span style="color: blue;">Then</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		bNeedleBuilded = <span style="color: blue;">Me</span>.AI.Build(<span style="color: blue;">GetType</span>(Needle))</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">End</span> <span style="color: blue;">If</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		End</span> <span style="color: blue;">If</span></p>
+		<p style="margin: 0px;"><span style="color: blue;">End</span>
+		<span style="color: blue;">Sub</span></p>
+		<p style="margin: 0px;">&nbsp;</p>
+		<p style="margin: 0px;"><span style="color: blue;">Private</span>
+		<span style="color: blue;">Sub</span> myPlayer_WhatToDoNextEvent()
+		<span style="color: blue;">Handles</span> <span style="color: blue;">Me</span>.WhatToDoNext</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; AI_DoActions()</p>
+		<p style="margin: 0px;"><span style="color: blue;">End</span>
+		<span style="color: blue;">Sub</span></p>
+	</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+</div>
+
+<p>As you can see, I have organize my code to make it more readable. Actions for 
+my NanoAI are decided in AI_DoActions method and I do exactly what I exposed in 
+my strategy : build a collector, move to Hoshimi point, build a Needle. Of 
+course, for a more efficient strategy, this will be more complex.</p>
+<p>If I run the game, on any tissue, I&#39;ll see my NanoAI doing the right things. 
+But the NanoCollector don&#39;t do anything, so I must also give it orders.</p>
+<p>&nbsp;</p>
+<p>In myPlayer class, I have a direct access to NanoAI reference through the AI 
+property. For the other nanobots, I have access with the collection NanoBots 
+property of NanoBot. To give them orders, I must so iterate each of my Nanobot 
+and depending of its type, do something different. My code could be like this:</p>
+<div class="lang">
+<p class="langTitle">C#</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;"><span style="color: blue;">private</span>
+	<span style="color: blue;">void</span> myPlayer_WhatToDoNext()</p>
+	<p style="margin: 0px;">{</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; AI_DoActions();</p>
+	<p style="margin: 0px;">&nbsp;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+	foreach</span> (<span style="color: teal;">NanoBot</span> bot
+	<span style="color: blue;">in</span> <span style="color: blue;">this</span>.NanoBots)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">if</span> (bot <span style="color: blue;">is</span>
+	<span style="color: teal;">Collector</span>)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: green;">//do something with Collector</span></p>
+	<p style="margin: 0px;">}</p>
+</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+<p class="langTitle">Visual Basic</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<div style="font-family: Courier New; font-size: 10pt; color: black; ">
+	<div style="font-family: Courier New; font-size: 10pt; color: black;">
+		<p style="margin: 0px;"><span style="color: blue;">Private</span>
+		<span style="color: blue;">Sub</span> myPlayer_WhatToDoNextEvent()
+		<span style="color: blue;">Handles</span> <span style="color: blue;">Me</span>.WhatToDoNext</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; AI_DoActions()</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		For</span> <span style="color: blue;">Each</span> bot
+		<span style="color: blue;">As</span> NanoBot <span style="color: blue;">
+		In</span> <span style="color: blue;">Me</span>.NanoBots</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">If</span> <span style="color: blue;">TypeOf</span> 
+		(bot) <span style="color: blue;">Is</span> Collector
+		<span style="color: blue;">Then</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: green;">&#39;do something with Collector</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">End</span> <span style="color: blue;">If</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		Next</span></p>
+		<p style="margin: 0px;"><span style="color: blue;">End</span>
+		<span style="color: blue;">Sub</span></p>
+	</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+</div>
+
+<p>So if you have 10 different kinds of Nanobot, you must test 10 times its 
+type: no very efficient. Here is my tip: create an Interface IActionable with 
+one method, DoActions:</p>
+<div class="lang">
+<p class="langTitle">C#</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;"><span style="color: blue;">interface</span>
+	<span style="color: teal;">IActionable</span></p>
+	<p style="margin: 0px;">{</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">void</span> 
+	DoActions();</p>
+	<p style="margin: 0px;">}</p>
+</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+<p class="langTitle">Visual Basic</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<div style="font-family: Courier New; font-size: 10pt; color: black; ">
+	<div style="font-family: Courier New; font-size: 10pt; color: black;">
+		<p style="margin: 0px;"><span style="color: blue;">Public</span>
+		<span style="color: blue;">Interface</span> IActionable</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		Sub</span> DoActions()</p>
+		<p style="margin: 0px;"><span style="color: blue;">End</span>
+		<span style="color: blue;">Interface</span></p>
+	</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+</div>
+
+<p>So now, in my WhatToDoNext event, it&#39;s very simple:</p>
+<div class="lang">
+<p class="langTitle">C#</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;"><span style="color: blue;">private</span>
+	<span style="color: blue;">void</span> myPlayer_WhatToDoNext()</p>
+	<p style="margin: 0px;">{</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; AI_DoActions();</p>
+	<p style="margin: 0px;">&nbsp;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+	foreach</span> (<span style="color: teal;">NanoBot</span> bot
+	<span style="color: blue;">in</span> <span style="color: blue;">this</span>.NanoBots)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">if</span> (bot <span style="color: blue;">is</span>
+	<span style="color: teal;">IActionable</span> &amp;&amp; bot.State ==
+	<span style="color: teal;">NanoBotState</span>.WaitingOrders)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	((<span style="color: teal;">IActionable</span>)bot).DoActions();</p>
+	<p style="margin: 0px;">}</p>
+</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+<p class="langTitle">Visual Basic</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<div style="font-family: Courier New; font-size: 10pt; color: black; ">
+	<div style="font-family: Courier New; font-size: 10pt; color: black;">
+		<p style="margin: 0px;"><span style="color: blue;">Private</span>
+		<span style="color: blue;">Sub</span> myPlayer_WhatToDoNextEvent()
+		<span style="color: blue;">Handles</span> <span style="color: blue;">Me</span>.WhatToDoNext</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; AI_DoActions()</p>
+		<p style="margin: 0px;">&nbsp;</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		For</span> <span style="color: blue;">Each</span> bot
+		<span style="color: blue;">As</span> NanoBot <span style="color: blue;">
+		In</span> <span style="color: blue;">Me</span>.NanoBots</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">If</span> <span style="color: blue;">TypeOf</span> 
+		(bot) <span style="color: blue;">Is</span> IActionable
+		<span style="color: blue;">AndAlso</span> bot.State = 
+		NanoBotState.WaitingOrders <span style="color: blue;">Then</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">CType</span>(bot, IActionable).DoActions()</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">End</span> <span style="color: blue;">If</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		Next</span></p>
+		<p style="margin: 0px;"><span style="color: blue;">End</span>
+		<span style="color: blue;">Sub</span></p>
+	</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+</div>
+
+<p>Very simple. I must now implement this interface in my Collector class:</p>
+<div class="lang">
+<p class="langTitle">C#</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;">[<span style="color: teal;">Characteristics</span>(ContainerCapacity 
+	= 20,</p>
+	<p style="margin: 0px;">&nbsp;CollectTransfertSpeed = 5,</p>
+	<p style="margin: 0px;">&nbsp;Scan = 5,</p>
+	<p style="margin: 0px;">&nbsp;MaxDamage = 0,</p>
+	<p style="margin: 0px;">&nbsp;DefenseDistance = 0,</p>
+	<p style="margin: 0px;">&nbsp;Constitution = 20)]</p>
+	<p style="margin: 0px;"><span style="color: blue;">public</span>
+	<span style="color: blue;">class</span> <span style="color: teal;">Collector</span> 
+	: PH.Common.<span style="color: teal;">NanoCollector</span>,
+	<span style="color: teal;">IActionable</span></p>
+	<p style="margin: 0px;">{</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">public</span>
+	<span style="color: blue;">void</span> DoActions()</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; {</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; }</p>
+	<p style="margin: 0px;">}</p>
+</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+<p class="langTitle">Visual Basic</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<div style="font-family: Courier New; font-size: 10pt; color: black; ">
+	<div style="font-family: Courier New; font-size: 10pt; color: black;">
+		<p style="margin: 0px;">&lt;Characteristics(ContainerCapacity:=20, _</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; CollectTransfertSpeed:=5, _</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; Scan:=5, _</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; MaxDamage:=0, _</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; DefenseDistance:=0, _</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; Constitution:=20)&gt; _</p>
+		<p style="margin: 0px;">&nbsp; <span style="color: blue;">Public</span>
+		<span style="color: blue;">Class</span> Collector</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		Inherits</span> PH.Common.NanoCollector</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		Implements</span> IActionable</p>
+		<p style="margin: 0px;">&nbsp;</p>
+		<p style="margin: 0px;">&nbsp;</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		Public</span> <span style="color: blue;">Sub</span> DoActions()
+		<span style="color: blue;">Implements</span> IActionable.DoActions</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		End</span> <span style="color: blue;">Sub</span></p>
+		<p style="margin: 0px;"><span style="color: blue;">End</span>
+		<span style="color: blue;">Class</span></p>
+	</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+</div>
+
+<p>Let&#39;s now resume what Collector must do:</p>
+<ul>
+	<li>Collect AZN molecule,</li>
+	<li>Go to nearest Hoshimi Point,</li>
+	<li>Transfer AZN molecules in the NanoNeedle,</li>
+	<li>Go back to AZN Point,</li>
+	<li>etc.</li>
+</ul>
+<p>So I can write the same kind of code than the one in myPlayer class for the 
+NanoAI using booleans to test the state of my work. But again, because I want to 
+write clear code, I will use a new enumeration that will reflect the state of my 
+Collector:</p>
+<div class="lang">
+<p class="langTitle">C#</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;"><span style="color: blue;">public</span>
+	<span style="color: blue;">enum</span> <span style="color: teal;">
+	WhatToDoNextAction</span></p>
+	<p style="margin: 0px;">{</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; MoveToAZN = 0,</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; CollectAZN = 1,</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; MoveToHoshimi = 2,</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; TransfertToNeedle = 3,</p>
+	<p style="margin: 0px;">}</p>
+</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+<p class="langTitle">Visual Basic</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<div style="font-family: Courier New; font-size: 10pt; color: black; ">
+	<div style="font-family: Courier New; font-size: 10pt; color: black;">
+		<p style="margin: 0px;"><span style="color: blue;">Public</span>
+		<span style="color: blue;">Enum</span> WhatToDoNextAction</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; MoveToAZN = 0</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; CollectAZN = 1</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; MoveToHoshimi = 2</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; TransfertToNeedle = 3</p>
+		<p style="margin: 0px;"><span style="color: blue;">End</span>
+		<span style="color: blue;">Enum</span></p>
+	</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+</div>
+
+<p>And in the DoActions of my Collector class, I&#39;ll update this state and give 
+the correct orders:</p>
+<div class="lang">
+<p class="langTitle">C#</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;"><span style="color: blue;">private</span>
+	<span style="color: teal;">WhatToDoNextAction</span> m_WhatToDoNext =
+	<span style="color: teal;">WhatToDoNextAction</span>.CollectAZN;</p>
+	<p style="margin: 0px;"><span style="color: blue;">public</span>
+	<span style="color: teal;">WhatToDoNextAction</span> WhatToDoNext</p>
+	<p style="margin: 0px;">{</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">get</span> 
+	{ <span style="color: blue;">return</span> m_WhatToDoNext; }</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">set</span> 
+	{ m_WhatToDoNext = <span style="color: blue;">value</span>; }</p>
+	<p style="margin: 0px;">}&nbsp; </p>
+	<p style="margin: 0px;"><span style="color: blue;">public</span>
+	<span style="color: blue;">void</span> DoActions()</p>
+	<p style="margin: 0px;">{</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">switch</span> 
+	(<span style="color: blue;">this</span>.WhatToDoNext)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; {</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">case</span> <span style="color: teal;">
+	WhatToDoNextAction</span>.CollectAZN:</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">this</span>.CollectFrom(<span style="color: blue;">this</span>.Location, 
+	4);</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">this</span>.WhatToDoNext =
+	<span style="color: teal;">WhatToDoNextAction</span>.MoveToHoshimi;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">break</span>;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">case</span> <span style="color: teal;">
+	WhatToDoNextAction</span>.MoveToHoshimi:</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">this</span>.MoveTo(<span style="color: teal;">Utils</span>.getNearestPoint(<span style="color: blue;">this</span>.Location, 
+	((<span style="color: teal;">myPlayer</span>)<span style="color: blue;">this</span>.PlayerOwner).HoshimiEntities));</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">this</span>.WhatToDoNext =
+	<span style="color: teal;">WhatToDoNextAction</span>.TransfertToNeedle;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">break</span>;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">case</span> <span style="color: teal;">
+	WhatToDoNextAction</span>.TransfertToNeedle:</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">this</span>.TransferTo(<span style="color: blue;">this</span>.Location, 
+	4);</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">this</span>.WhatToDoNext =
+	<span style="color: teal;">WhatToDoNextAction</span>.MoveToAZN;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">break</span>;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">case</span> <span style="color: teal;">
+	WhatToDoNextAction</span>.MoveToAZN:</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">this</span>.MoveTo(<span style="color: teal;">Utils</span>.getNearestPoint(<span style="color: blue;">this</span>.Location, 
+	((<span style="color: teal;">myPlayer</span>)<span style="color: blue;">this</span>.PlayerOwner).AznEntities));</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">this</span>.WhatToDoNext =
+	<span style="color: teal;">WhatToDoNextAction</span>.CollectAZN;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">break</span>;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; }</p>
+	<p style="margin: 0px;">}</p>
+</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+<p class="langTitle">Visual Basic</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<div style="font-family: Courier New; font-size: 10pt; color: black; ">
+	<div style="font-family: Courier New; font-size: 10pt; color: black;">
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		Private</span> m_WhatToDoNext <span style="color: blue;">As</span> 
+		WhatToDoNextAction = WhatToDoNextAction.CollectAZN</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		Public</span> <span style="color: blue;">Property</span> WhatToDoNext()
+		<span style="color: blue;">As</span> WhatToDoNextAction</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">Get</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">Return</span> <span style="color: blue;">Me</span>.m_WhatToDoNext</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">End</span> <span style="color: blue;">Get</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">Set</span>(<span style="color: blue;">ByVal</span> 
+		value <span style="color: blue;">As</span> WhatToDoNextAction)</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		m_WhatToDoNext = value</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">End</span> <span style="color: blue;">Set</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		End</span> <span style="color: blue;">Property</span></p>
+		<p style="margin: 0px;">&nbsp;</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		Public</span> <span style="color: blue;">Sub</span> DoActions()
+		<span style="color: blue;">Implements</span> IActionable.DoActions</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">Select</span> <span style="color: blue;">Case</span>
+		<span style="color: blue;">Me</span>.WhatToDoNext</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">Case</span> WhatToDoNextAction.CollectAZN</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">Me</span>.CollectFrom(<span style="color: blue;">Me</span>.Location, 
+		4)</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">Me</span>.WhatToDoNext = 
+		WhatToDoNextAction.MoveToHoshimi</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">Case</span> WhatToDoNextAction.MoveToHoshimi</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">Me</span>.MoveTo(Utils.getNearestPoint(<span style="color: blue;">Me</span>.Location,
+		<span style="color: blue;">CType</span>(<span style="color: blue;">Me</span>.PlayerOwner, 
+		myPlayer).HoshimiEntities))</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">Me</span>.WhatToDoNext = 
+		WhatToDoNextAction.TransfertToNeedle</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">Case</span> 
+		WhatToDoNextAction.TransfertToNeedle</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">Me</span>.TransferTo(<span style="color: blue;">Me</span>.Location, 
+		4)</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">Me</span>.WhatToDoNext = 
+		WhatToDoNextAction.MoveToAZN</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">Case</span> WhatToDoNextAction.MoveToAZN</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">Me</span>.MoveTo(Utils.getNearestPoint(<span style="color: blue;">Me</span>.Location,
+		<span style="color: blue;">CType</span>(<span style="color: blue;">Me</span>.PlayerOwner, 
+		myPlayer).AZNEntities))</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">Me</span>.WhatToDoNext = 
+		WhatToDoNextAction.CollectAZN</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">End</span> <span style="color: blue;">Select</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		End</span> <span style="color: blue;">Sub</span></p>
+		<p style="margin: 0px;"><span style="color: blue;">End</span>
+		<span style="color: blue;">Class</span></p>
+	</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+</div>
+
+<p>So this code needs some explainations:</p>
+<p>When I must collect AZN molecules, you see I use the CollectFrom method of 
+the PH.Common.NanoCollector class. This method require the point where you want 
+to extract AZN molecules. Because you are on this point, you can pass your 
+location. The second argument is the number of turn you want to extract 
+molecules. You extract x molecules per turn corresponding to the 
+CollectTransferSpeed of your Nanobot. So if your CollecttransferSpeed 
+characteristic is set to 5 and you collect during 4 turns, you&#39;ll try to fill 
+your stock with 20 AZN molecules.</p>
+<p>It is exactly the same for the TransferTo method, the first argument 
+corresponding to the location of the NanoNeedle in which you want to transfer 
+molecules.</p>
+<p>For the MoveTo actions (to the AZN point and to the Hoshimi Point) you see 
+that I use the PlayerOwner property of the NanoBot. Each Nanobot have this 
+property and I must cast it to my own myPlayer class to use propertis I 
+implemented in myPlayer class.</p>
+<h2>CONGRATULATIONS!</h2>
+<p>You can see that this code is Tissue independant and allow you to collect and 
+transfer AZN molecules to a NanoNeedle. This is a &quot;powerfull&quot; code and can be a 
+good start for you own strategy.</p>
+<p>In the next tutorial, we will learn more about Mission and Objectives.</p>
+<p><strong>You can find the code of this tutorial in %Project Hoshimi Folder%/Developpers.</strong></p>
+<p style="text-align: right">Richard Clark</p>
+
+</body>
+
+</html>

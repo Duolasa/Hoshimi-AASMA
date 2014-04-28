@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<Mission xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Description />
+  <Objectives>
+    <BaseObjective xsi:type="ScoreObjective">
+      <Bonus>100</Bonus>
+      <Status>ToBeDone</Status>
+      <Value>0</Value>
+      <ScoreTurn>1400</ScoreTurn>
+      <Score>300</Score>
+    </BaseObjective>
+    <BaseObjective xsi:type="NavigationObjective">
+      <Bonus>200</Bonus>
+      <Status>ToBeDone</Status>
+      <Value>0</Value>
+      <NanoBotType>Unknown</NanoBotType>
+      <NavPoints>
+        <NavPoint>
+          <Location>
+            <X>80</X>
+            <Y>115</Y>
+          </Location>
+          <Stock>-1</Stock>
+          <StartTurn>0</StartTurn>
+          <EndTurn>1500</EndTurn>
+        </NavPoint>
+        <NavPoint>
+          <Location>
+            <X>109</X>
+            <Y>133</Y>
+          </Location>
+          <Stock>-1</Stock>
+          <StartTurn>0</StartTurn>
+          <EndTurn>1500</EndTurn>
+        </NavPoint>
+        <NavPoint>
+          <Location>
+            <X>126</X>
+            <Y>118</Y>
+          </Location>
+          <Stock>-1</Stock>
+          <StartTurn>0</StartTurn>
+          <EndTurn>1500</EndTurn>
+        </NavPoint>
+      </NavPoints>
+    </BaseObjective>
+  </Objectives>
+</Mission>

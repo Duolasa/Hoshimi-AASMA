@@ -1,0 +1,36 @@
+
+time critical missons - sighseeing
+- injection point shoud be put in a central poin
+- explorers should be created in the following order:
+longest path to take to shortest.
+
+BUT What to do: this event is fired only if you are not executing your code. If your code take a long time, you can miss turns.
+BUT: your Nanobots can react to only one order, one action at the same time. If the GameEngine detects that your NanoAI was doing another thing while you ask to move it, it will not take in consideration your new action. In this case, the MoveTo method will return false.
+On any tissue, my injection point is valid and is on a AZN point.
+
+If you want to create your own Pathfinding algorithm, you must take in consideration the density of blood you will go through.
+
+There is another reasons why the GameEngine would refuse a MoveTo action:
+
+You ask it to move to a bone area, 
+The path calculated by the GameEngine is too big (more than 400 cells), 
+
+
+
+- container could be used in safe paths
+
+Intermidiate
+- Não será possível verificar quantas agulhas estão livres?
+-> sim se tivessemos o número de agulhas num mapa (+agulhas construídas)
+
+- Procura de pontos válidos é em cruz e não radial pior não expande >> TODO
+- Pontos e excepções - intersecção >> TODO
+- É bom criar nanoBlockers ao pé de seringas - adversários lentos
+- NanoWall - bom para canal onde se tem de passar
+	- agrupar zonas, verificar caminhos de ligação
+	- se eu passo muito por aqui o meu adversário também pode querer o mesmo -> pôr Wall
+	- se ele passa muito por aqui -> pôr Wall
+		- mais difícil de obter a informação
+		- possível
+		- mais interessante
+- NanoWall - mais importantes no início, perto do adversário?

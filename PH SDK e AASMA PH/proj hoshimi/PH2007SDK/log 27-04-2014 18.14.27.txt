@@ -1,0 +1,3 @@
+System.IO.EndOfStreamException: Unable to read beyond the end of the stream.
+   at System.IO.BinaryReader.ReadByte()
+   at PH.Network.ClientConnection.Listen()

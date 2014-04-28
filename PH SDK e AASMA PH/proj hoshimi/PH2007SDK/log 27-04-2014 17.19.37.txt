@@ -1,0 +1,294 @@
+[12] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[12] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[16] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[16] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[20] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[20] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[24] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[24] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[28] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[28] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[32] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[32] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[36] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[36] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[40] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[40] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[44] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[44] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[48] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[48] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[52] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[52] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[56] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[56] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[60] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[60] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[64] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[64] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[68] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[68] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[72] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[72] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[76] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[76] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[80] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[80] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[84] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[84] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[88] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[88] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[92] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[92] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[96] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[96] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[100] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[100] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[104] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[104] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[108] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[108] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[112] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[112] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[116] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[116] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[120] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[120] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[124] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[124] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[128] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[128] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[132] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[132] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[136] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[136] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[140] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[140] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[144] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[144] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[148] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[148] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[152] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[152] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[156] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[156] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[160] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[160] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[164] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[164] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[168] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[168] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[172] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[172] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[176] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[176] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[180] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[180] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[184] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[184] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[188] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[188] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[192] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[192] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[196] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[196] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[200] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[200] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[204] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[204] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[208] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[208] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[212] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[212] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[216] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[216] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[220] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[220] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[224] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[224] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[228] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[228] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[232] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[232] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[236] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[236] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[240] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[240] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[244] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[244] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[248] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[248] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[252] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[252] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[256] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[256] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[260] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[260] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[264] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[264] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[268] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[268] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[272] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[272] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[276] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[276] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[280] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[280] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[284] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[284] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[288] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[288] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[292] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[292] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[296] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[296] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[300] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[300] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[304] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[304] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[308] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[308] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[312] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[312] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[316] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[316] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[320] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[320] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[324] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[324] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[328] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[328] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[332] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[332] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[336] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[336] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[340] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[340] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[344] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[344] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[348] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[348] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[352] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[352] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[356] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[356] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[360] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[360] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[364] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[364] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[368] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[368] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[372] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[372] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[376] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[376] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[380] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[380] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[384] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[384] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[388] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[388] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[392] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[392] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[396] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[396] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[400] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[400] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[404] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[404] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[408] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[408] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[412] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[412] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[416] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[416] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[420] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[420] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[424] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[424] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[428] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[428] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[432] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[432] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[436] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[436] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[440] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[440] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[444] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[444] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[448] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[448] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[452] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[452] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[456] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[456] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[460] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[460] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[464] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[464] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[468] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[468] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[472] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[472] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[476] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[476] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[480] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[480] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[484] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[484] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[488] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[488] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[492] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[492] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[496] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[496] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[500] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[500] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[504] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[504] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[508] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[508] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[512] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[512] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[516] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[516] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[520] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[520] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[524] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[524] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[528] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[528] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[532] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[532] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[536] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[536] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[540] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[540] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[544] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[544] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[548] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[548] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[552] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[552] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[556] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[556] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[560] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[560] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[564] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[564] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[568] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[568] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[572] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[572] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[576] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[576] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[580] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[580] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[584] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[584] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[588] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[588] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[592] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[592] AI: received message from E1 : I've found an hoshimi point! Go there man!
+[596] AI: received message from E1 : Hi guys, I'm bored with nothing to do, any good jokes?
+[596] AI: received message from E1 : I've found an hoshimi point! Go there man!

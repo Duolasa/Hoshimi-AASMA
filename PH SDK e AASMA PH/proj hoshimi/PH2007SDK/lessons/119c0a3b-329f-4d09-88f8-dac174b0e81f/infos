@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<LessonDescription xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Mode>0</Mode>
+  <Title>2-Learn squads and moving</Title>
+  <School>c2i.fr</School>
+  <Summary>This show you how to create squad and optimize your moves.</Summary>
+  <Author>Richard Clark</Author>
+  <Level>1</Level>
+  <DateCreation>2006-11-19T09:59:15.664176+01:00</DateCreation>
+  <Country>1033</Country>
+  <ID>119c0a3b-329f-4d09-88f8-dac174b0e81f</ID>
+  <Files>
+    <FileDescription>
+      <FileName>infos</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>L2.brief</FileName>
+      <Value>mission</Value>
+    </FileDescription>
+    <FileDescription>
+      <FileName>L2.tsu</FileName>
+      <Value>tissue</Value>
+    </FileDescription>
+    <FileDescription>
+      <FileName>lesson2.htm</FileName>
+      <Value>htm</Value>
+    </FileDescription>
+    <FileDescription>
+      <FileName>MSDN.css</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>phlogo32.png</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>PierreLesson1.dll</FileName>
+      <Value>pierre</Value>
+    </FileDescription>
+  </Files>
+</LessonDescription>

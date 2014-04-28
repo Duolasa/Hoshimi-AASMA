@@ -1,0 +1,492 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<head>
+<meta http-equiv="Content-Language" content="fr" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled 1</title>
+<link rel="stylesheet" type="text/css" href="..\css\msdn.css" />
+</head>
+
+<body>
+
+<h1 style="text-align: left">
+Tutorials for Developpers</h1>
+<h2 style="text-align: left">
+Imagine Cup Round 1</h2>
+<p style="text-align: left">
+&nbsp;</p>
+<p style="text-align: left">
+&nbsp;</p>
+<p>In this tutorial, you will take a look at the Complex Mission: Imagine Cup 
+2007 Round1.</p>
+<p>If you want to participate to Imagine Cup 2007, you must write an assembly 
+for this Mission. It&#39;s also a good start for creating a good player.</p>
+<p>We will start first by creating some utilities methods.</p>
+<h2>Utils class</h2>
+<p>In the Utils class, I have created the following methods which can be very 
+usefull:</p>
+<table cellspacing="0" cellpadding="5">
+	<tr>
+		<td valign="top"><strong>SquareDistance</strong></td>
+		<td valign="top">Return the square distance of two points</td>
+	</tr>
+	<tr>
+		<td valign="top"><strong>MDistance</strong></td>
+		<td valign="top">Return the Manathan distance between 2 points</td>
+	</tr>
+	<tr>
+		<td valign="top"><strong>getNearestPoint</strong></td>
+		<td valign="top">This method return the point nearest to a point among :
+		<ul>
+			<li>a list of Entities (AZN or Hoshimi Points),</li>
+			<li>a list of Points,</li>
+			<li>a list of Entites with a list of not accepted points,</li>
+			<li>a list of Points with a list of not accepted point.</li>
+		</ul>
+		<p>For example you search the nearest Hoshimi point and not accepted points is 
+		the list of Hoshimi points where you builded NanoNeedle.</p>
+		</td>
+	</tr>
+	<tr>
+		<td valign="top"><strong>getMiddlePoint</strong></td>
+		<td valign="top">Return the center point from a list of Point.</td>
+	</tr>
+	<tr>
+		<td valign="top"><strong>getValidPoint</strong></td>
+		<td valign="top">Return the nearest point from a point which is not in a 
+		bone area in the tissue</td>
+	</tr>
+</table>
+
+<p>You can take a look at the code of this class, it is not really difficult and 
+I&#39;m sure you can improve it.</p>
+<h2>Injection Point</h2>
+<p>So now, you have to choose the Injection Point.</p>
+<p>For this mission, I decide that Navigation Objectives are very important. So 
+my strategy is to choose an Injection Point near the middle of the all 
+Navigation Points. </p>
+<p>So in the ChooseInjectionPoint event, as usual, I first store the locations 
+of Hoshimi and AZN points. But this time, I store too all the Navigation Points 
+from NavigationObjective and UniqueNavigationObjective:</p>
+<div class="lang">
+<p class="langTitle">C#</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;"><span style="color: blue;">foreach</span> (PH.Mission.<span style="color: teal;">BaseObjective</span> 
+	obj <span style="color: blue;">in</span> <span style="color: blue;">this</span>.Mission.Objectives)</p>
+	<p style="margin: 0px;">{</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">if</span> 
+	(obj <span style="color: blue;">is</span> PH.Mission.<span style="color: teal;">NavigationObjective</span> 
+	&amp;&amp; obj.Bonus &gt; 0)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; {</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	PH.Mission.<span style="color: teal;">NavigationObjective</span> navObj = (PH.Mission.<span style="color: teal;">NavigationObjective</span>)obj;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">foreach</span> (PH.Mission.<span style="color: teal;">NavPoint</span> 
+	np <span style="color: blue;">in</span> navObj.NavPoints)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	NavigationPoints.Add(np.Location);</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; }</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">else</span>
+	<span style="color: blue;">if</span> (obj <span style="color: blue;">is</span> 
+	PH.Mission.<span style="color: teal;">UniqueNavigationObjective</span> &amp;&amp; 
+	obj.Bonus &gt; 0)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; {</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	PH.Mission.<span style="color: teal;">UniqueNavigationObjective</span> 
+	uniqueNavObj = (PH.Mission.<span style="color: teal;">UniqueNavigationObjective</span>)obj;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">foreach</span> (PH.Mission.<span style="color: teal;">NavPoint</span> 
+	np <span style="color: blue;">in</span> uniqueNavObj.NavPoints)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	NavigationPoints.Add(np.Location);</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; }</p>
+	<p style="margin: 0px;">}</p>
+</div>
+<!--EndFragment-->
+<p class="langTitle">Visual Basic</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;"><span style="color: blue;">For</span>
+	<span style="color: blue;">Each</span> obj <span style="color: blue;">As</span> 
+	PH.Mission.BaseObjective <span style="color: blue;">In</span>
+	<span style="color: blue;">Me</span>.Mission.Objectives</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">If</span>
+	<span style="color: blue;">TypeOf</span> (obj) <span style="color: blue;">Is</span> 
+	PH.Mission.NavigationObjective <span style="color: blue;">AndAlso</span> 
+	obj.Bonus &gt; 0 <span style="color: blue;">Then</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">Dim</span> navObj <span style="color: blue;">As</span> 
+	PH.Mission.NavigationObjective = <span style="color: blue;">CType</span>(obj, 
+	PH.Mission.NavigationObjective)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">For</span> <span style="color: blue;">Each</span> 
+	np <span style="color: blue;">As</span> PH.Mission.NavPoint
+	<span style="color: blue;">In</span> navObj.NavPoints</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	NavigationPoints.Add(np.Location)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">Next</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">End</span>
+	<span style="color: blue;">If</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">If</span>
+	<span style="color: blue;">TypeOf</span> (obj) <span style="color: blue;">Is</span> 
+	PH.Mission.UniqueNavigationObjective <span style="color: blue;">AndAlso</span> 
+	obj.Bonus &gt; 0 <span style="color: blue;">Then</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">Dim</span> uniqueNavObj
+	<span style="color: blue;">As</span> PH.Mission.UniqueNavigationObjective =
+	<span style="color: blue;">CType</span>(obj, PH.Mission.UniqueNavigationObjective)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">For</span> <span style="color: blue;">Each</span> 
+	np <span style="color: blue;">As</span> PH.Mission.NavPoint
+	<span style="color: blue;">In</span> uniqueNavObj.NavPoints</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	NavigationPoints.Add(np.Location)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">Next</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">End</span>
+	<span style="color: blue;">If</span></p>
+	<p style="margin: 0px;"><span style="color: blue;">Next</span></p>
+</div>
+<!--EndFragment-->
+</div>
+
+<p>As you can see, I also check if the objective has a bonus.</p>
+<p>Now, using the getMiddlePoint method and the getValidPoint, I can set my 
+Injection Point in the middle of all NavigationObjective Points:</p>
+<div class="lang">
+<p class="langTitle">C#</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;">NavigationMiddle = <span style="color: teal;">Utils</span>.getMiddlePoint(NavigationPoints.ToArray());</p>
+	<p style="margin: 0px;"><span style="color: blue;">this</span>.InjectionPointWanted 
+	= <span style="color: teal;">Utils</span>.getValidPoint(<span style="color: blue;">this</span>.Tissue, 
+	NavigationMiddle);</p>
+</div>
+<!--EndFragment-->
+<p class="langTitle">Visual Basic</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;">NavigationMiddle = Utils.getMiddlePoint(NavigationPoints.ToArray())</p>
+	<p style="margin: 0px;"><span style="color: blue;">Me</span>.InjectionPointWanted 
+	= Utils.getValidPoint(<span style="color: blue;">Me</span>.Tissue, 
+	NavigationMiddle)</p>
+</div>
+<!--EndFragment-->
+</div>
+
+<p>GREAT! I have my valid Injection Point. So I can start now to organize my 
+strategy for the other Nanobots.</p>
+<h2>My Strategy</h2>
+<p>First, I want to create a NanoExplorer for the Navigation Objective. So as in 
+the last tutorial, I must build an Explorer and fill its navigation points.</p>
+<p>Then I want to build NanoCollectors to collect and transfer AZN. As you will 
+see, I don&#39;t want to build only one collector.</p>
+<p>At least, I want to go to Hoshimi points and build NanoNeedles there.</p>
+<p>So my list of actions for my NanoAI is:</p>
+<div class="lang">
+<p class="langTitle">C#</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;"><span style="color: blue;">public</span>
+	<span style="color: blue;">enum</span> <span style="color: teal;">
+	WhatToDoNextAction</span></p>
+	<p style="margin: 0px;">{</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; BuildExplorer = 0,</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; FillNavPoints = 1,</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; BuildCollector = 2,</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; MoveToHoshimiPoint = 4,</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; BuildNeedle = 5,</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; NothingToDo = 6,</p>
+	<p style="margin: 0px;">}</p>
+</div>
+<!--EndFragment-->
+<p class="langTitle">Visual Basic</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;"><span style="color: blue;">Public</span>
+	<span style="color: blue;">Enum</span> WhatToDoNextAction</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; BuildExplorer = 0</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; FillNavPoints = 1</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; BuildCollector = 2</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; MoveToHoshimiPoint = 4</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; BuildNeedle = 5</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; NothingToDo = 6</p>
+	<p style="margin: 0px;"><span style="color: blue;">End</span>
+	<span style="color: blue;">Enum</span></p>
+</div>
+<!--EndFragment-->
+</div>
+
+<h3>Update Informations</h3>
+<p>Each turn, the state of all your Nanobots can change. For example, one of 
+your Explorer can be destroyed by Pierre&#39;s neurocontroller. So you must check 
+each turn informations you need.</p>
+<p>Here, for my strategy, I need to know:</p>
+<ul>
+	<li>Where are my NanoNeedles,</li>
+	<li>Where are NanoNeedles without AZN molecules,</li>
+	<li>Where are NanoNeedles with a full stock of AZN molecules (I don&#39;t need 
+	anymore to fill it),</li>
+	<li>How many Collector I have. </li>
+</ul>
+<p>So I must change a little the method called by the WhatToDoNext event:</p>
+<div class="lang">
+<p class="langTitle">C#</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;"><span style="color: blue;">private</span>
+	<span style="color: blue;">void</span> myPlayer_WhatToDoNext()</p>
+	<p style="margin: 0px;">{</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; UpdateInformations();</p>
+	<p style="margin: 0px;">&nbsp;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; AI_DoActions();</p>
+	<p style="margin: 0px;">&nbsp;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+	foreach</span> (<span style="color: teal;">NanoBot</span> bot
+	<span style="color: blue;">in</span> <span style="color: blue;">this</span>.NanoBots)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">if</span> (bot <span style="color: blue;">is</span>
+	<span style="color: teal;">IActionable</span> &amp;&amp; bot.State ==
+	<span style="color: teal;">NanoBotState</span>.WaitingOrders)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	((<span style="color: teal;">IActionable</span>)bot).DoActions();</p>
+	<p style="margin: 0px;">}</p>
+</div>
+<!--EndFragment-->
+<p class="langTitle">Visual Basic</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;"><span style="color: blue;">Private</span>
+	<span style="color: blue;">Sub</span> myPlayer_WhatToDoNextEvent()
+	<span style="color: blue;">Handles</span> <span style="color: blue;">Me</span>.WhatToDoNext</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; UpdateInformations()</p>
+	<p style="margin: 0px;">&nbsp;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; AI_DoActions()</p>
+	<p style="margin: 0px;">&nbsp;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">For</span>
+	<span style="color: blue;">Each</span> bot <span style="color: blue;">As</span> 
+	NanoBot <span style="color: blue;">In</span> <span style="color: blue;">Me</span>.NanoBots</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">If</span> <span style="color: blue;">TypeOf</span> 
+	(bot) <span style="color: blue;">Is</span> IActionable
+	<span style="color: blue;">AndAlso</span> bot.State = 
+	NanoBotState.WaitingOrders <span style="color: blue;">Then</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">CType</span>(bot, IActionable).DoActions()</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">End</span> <span style="color: blue;">If</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">Next</span></p>
+	<p style="margin: 0px;"><span style="color: blue;">End</span>
+	<span style="color: blue;">Sub</span></p>
+</div>
+<!--EndFragment-->
+</div>
+
+<p>And it is in the UpdateInformations that I search for all informations I need:</p>
+<div class="lang">
+<p class="langTitle">C#</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;"><span style="color: blue;">private</span>
+	<span style="color: blue;">int</span> CollectorBuilded = 0;</p>
+	<p style="margin: 0px;"><span style="color: blue;">private</span>
+	<span style="color: blue;">void</span> UpdateInformations()</p>
+	<p style="margin: 0px;">{</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; NeedlePoints.Clear();</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; EmptyNeedlePoints.Clear();</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; FullNeedlePoints.Clear();</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; CollectorBuilded = 0;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+	foreach</span> (<span style="color: teal;">NanoBot</span> bot
+	<span style="color: blue;">in</span> <span style="color: blue;">this</span>.NanoBots)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; {</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">if</span> (bot <span style="color: blue;">is</span>
+	<span style="color: teal;">Needle</span>)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	NeedlePoints.Add(bot.Location);</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">if</span> (bot.Stock == 100)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	FullNeedlePoints.Add(bot.Location);</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">else</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	EmptyNeedlePoints.Add(bot.Location);</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">else</span> <span style="color: blue;">if</span> 
+	(bot <span style="color: blue;">is</span> <span style="color: teal;">
+	Collector</span>)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	CollectorBuilded++;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; }</p>
+	<p style="margin: 0px;">}</p>
+</div>
+<!--EndFragment-->
+<p class="langTitle">Visual Basic</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;"><span style="color: blue;">Private</span> 
+	CollectorBuilded <span style="color: blue;">As</span>
+	<span style="color: blue;">Integer</span> = 0</p>
+	<p style="margin: 0px;"><span style="color: blue;">Private</span>
+	<span style="color: blue;">Sub</span> UpdateInformations()</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; NeedlePoints.Clear()</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; EmptyNeedlePoints.Clear()</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; FullNeedlePoints.Clear()</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; CollectorBuilded = 0</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">For</span>
+	<span style="color: blue;">Each</span> bot <span style="color: blue;">As</span> 
+	NanoBot <span style="color: blue;">In</span> <span style="color: blue;">Me</span>.NanoBots</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">If</span> <span style="color: blue;">TypeOf</span> 
+	(bot) <span style="color: blue;">Is</span> Needle <span style="color: blue;">
+	Then</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	NeedlePoints.Add(bot.Location)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">If</span> bot.Stock = 100
+	<span style="color: blue;">Then</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	FullNeedlePoints.Add(bot.Location)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">Else</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	EmptyNeedlePoints.Add(bot.Location)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">End</span> <span style="color: blue;">If</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">ElseIf</span> <span style="color: blue;">TypeOf</span> 
+	(bot) <span style="color: blue;">Is</span> Collector
+	<span style="color: blue;">Then</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	CollectorBuilded += 1</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">End</span> <span style="color: blue;">If</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">Next</span></p>
+	<p style="margin: 0px;"><span style="color: blue;">End</span>
+	<span style="color: blue;">Sub</span></p>
+</div>
+<!--EndFragment-->
+</div>
+
+<p>I just store those informations. Easy.</p>
+<h3>Building Squad</h3>
+<p>As I said, I want to create more than one Collector, I want to create a squad 
+of Collector as in Project Hoshimi for Beginners. So in the Collector class, I 
+add a constant, SquadNumber, that define the number of collector in a Squad of 
+collectors. For example here I set it to 2.</p>
+<p>Now, when the next action for my AI is to build collector, here is what I do:</p>
+<div class="lang">
+<p class="langTitle">C#</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;"><span style="color: blue;">switch</span> (<span style="color: blue;">this</span>.AI_WhatToDoNext)</p>
+	<p style="margin: 0px;">{</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">case</span>
+	<span style="color: teal;">WhatToDoNextAction</span>.BuildCollector:</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">if</span> (<span style="color: blue;">this</span>.AI.Build(<span style="color: blue;">typeof</span>(<span style="color: teal;">Collector</span>)))</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">if</span> (CollectorBuilded &gt;=
+	<span style="color: teal;">Collector</span>.SquadNumber - 1)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">this</span>.AI_WhatToDoNext =
+	<span style="color: teal;">WhatToDoNextAction</span>.MoveToHoshimiPoint;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">break</span>; <br />
+	}</p>
+</div>
+<!--EndFragment-->
+<p class="langTitle">Visual Basic</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;"><span style="color: blue;">Select</span>
+	<span style="color: blue;">Case</span> <span style="color: blue;">Me</span>.AI_WhatToDoNext</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">Case</span> 
+	WhatToDoNextAction.BuildCollector</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">If</span> <span style="color: blue;">Me</span>.AI.Build(<span style="color: blue;">GetType</span>(Collector))
+	<span style="color: blue;">Then</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">If</span> (CollectorBuilded &gt;= 
+	Collector.SquadNumber - 1) <span style="color: blue;">Then</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">Me</span>.AI_WhatToDoNext = 
+	WhatToDoNextAction.MoveToHoshimiPoint</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">End</span> <span style="color: blue;">If</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">End</span> <span style="color: blue;">If</span></p>
+	<p style="margin: 0px;"><span style="color: blue;">End</span>
+	<span style="color: blue;">Select</span></p>
+</div>
+<!--EndFragment-->
+</div>
+
+<p>I compare the number of effective Collectors I have with the number I want.</p>
+<p>Look at the code provided and you&#39;ll see I do the same for NanoNeedles: I 
+declare a constant for the number of NanoNeedle I want to create.</p>
+<h3>Moving to the right location</h3>
+<p>My NanoAI must build NanoNeedle on Hoshimi points, but I can build only one 
+NanoNeedle at the same location. So I must check this, I must move my NanoAI to 
+an empty Hoshimi Points. This is why I created the getNearestPoints method:</p>
+<div class="lang">
+<p class="langTitle">C#</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;"><span style="color: blue;">case</span>
+	<span style="color: teal;">WhatToDoNextAction</span>.MoveToHoshimiPoint:</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">this</span>.AI.MoveTo(<span style="color: teal;">Utils</span>.getNearestPoint(<span style="color: blue;">this</span>.AI.Location, 
+	HoshimiEntities, NeedlePoints));</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">this</span>.AI_WhatToDoNext 
+	= <span style="color: teal;">WhatToDoNextAction</span>.BuildNeedle;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">break</span>;</p>
+</div>
+<!--EndFragment-->
+<p class="langTitle">Visual Basic</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;"><span style="color: blue;">Case</span> 
+	WhatToDoNextAction.MoveToHoshimiPoint</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">Me</span>.AI.MoveTo(Utils.getNearestPoint(<span style="color: blue;">Me</span>.AI.Location, 
+	HoshimiEntities, NeedlePoints))</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">Me</span>.AI_WhatToDoNext 
+	= WhatToDoNextAction.BuildNeedle</p>
+</div>
+<!--EndFragment-->
+</div>
+
+<p>I want a Hoshimi point near my AI, but an empty Hoshimi point (ie not in my 
+NeedlePoints collection).</p>
+<p>It&#39;s also the same for my collector: it must go to a Hoshimi point where ther 
+is a NanoNeedle but not a full NanoNeedle:</p>
+<div class="lang">
+<p class="langTitle">C#</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;"><span style="color: blue;">case</span>
+	<span style="color: teal;">WhatToDoNextAction</span>.MoveToHoshimi:</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">this</span>.MoveTo(<span style="color: teal;">Utils</span>.getNearestPoint(<span style="color: blue;">this</span>.Location, 
+	player.EmptyNeedlePoints));</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">this</span>.WhatToDoNext 
+	= <span style="color: teal;">WhatToDoNextAction</span>.TransfertToNeedle;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">break</span>;</p>
+</div>
+<!--EndFragment-->
+<p class="langTitle">Visual Basic</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;"><span style="color: blue;">Case</span> 
+	WhatToDoNextAction.MoveToHoshimi</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">Me</span>.MoveTo(Utils.getNearestPoint(<span style="color: blue;">Me</span>.Location,
+	<span>p</span>layer.EmptyNeedlePoints))</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">Me</span>.WhatToDoNext 
+	= WhatToDoNextAction.TransfertToNeedle</p>
+</div>
+<!--EndFragment-->
+</div>
+
+<p>That&#39;s it! With little modifications (perhaps modifying the SquadNumbers ? 
+;-))) you can accomplish this simple mission.</p>
+<h2>CONGRATULATIONS?</h2>
+<p>If it&#39;s OK for you, don&#39;t forget to upload your assembly to the Imagine Cup 
+web site, and be prepared for the next round.</p>
+<p>I hope you&#39;ll enjoy this competition.</p>
+<p><strong>You can find the code of this tutorial in %Project Hoshimi Folder%/Developpers.</strong></p>
+<p style="text-align: right">Richard Clark</p>
+
+</body>
+
+</html>

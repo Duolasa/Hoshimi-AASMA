@@ -1,0 +1,1640 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PH.Common</name>
+    </assembly>
+    <members>
+        <member name="T:PH.Common.PlayerValidator">
+            <summary>
+            Validate a player
+            </summary>
+        </member>
+        <member name="M:PH.Common.PlayerValidator.ValidatePlayer(System.String,System.Int32)">
+            <summary>
+            Analyse your assembly.
+            </summary>
+            <param name="sFileName">file name of the assembly containing the player and Nanobots</param>
+            <param name="ID">not used</param>
+            <returns>a reference to the player object created if valid. Either, return Nothing (null in C#)</returns>
+            <remarks>Assembly must contain one and no more type of player type. All Nanobots inside the assembly must be valid too (even if they are not used)</remarks>
+        </member>
+        <member name="T:PH.Common.NanoBlocker">
+            <summary>
+            <img src="blocker.jpg"/>
+            <para>Class for the NanoBlocker.NanoBlocker slow entities that are not in his team.</para>
+            For example, if a Nanobot from Pierre Team come near a NanoBlocker, it goes very slowly. 
+            Length of its effect is in configuration file (BlockerLength). 
+            Use Utils in VG.Common namespace to access this information. 
+            Strength of the NanoBlocker is too in configuration file (BlockerStrength). 
+            If a nanobot is in a blocker area and that BlockerStrength equal 6, it take 6 turns more than usual to go through a cell.
+            NanoBlocker can't move nor defend.
+            </summary>
+        </member>
+        <member name="T:PH.Common.NanoBot">
+            <summary>
+            Base class (abstract) for all Nanobots.
+            </summary>
+        </member>
+        <member name="M:PH.Common.NanoBot.#ctor">
+            <summary>
+            Constructor. In the constructor, Game Engine read and validate characteristics of the Nanobot. 
+            It create too a unique Guid for it.
+            </summary>
+        </member>
+        <member name="M:PH.Common.NanoBot.ForceAutoDestruction">
+            <summary>
+            Allow you to destroy your Nanobot directly
+            </summary>
+            <returns>Always true</returns>
+        </member>
+        <member name="P:PH.Common.NanoBot.InternalName">
+            <summary>
+            Name used by the Viewer to show the name of the bot
+            </summary>
+            <remarks>Length must not be greater than 8 chars</remarks>
+        </member>
+        <member name="P:PH.Common.NanoBot.NanoBotType">
+            <summary>
+            return the type of the Nanobot.
+            </summary>
+        </member>
+        <member name="P:PH.Common.NanoBot.ID">
+            <summary>
+            Unique ID for this Nanobot (you can identify it with this Guid)
+            </summary>
+        </member>
+        <member name="P:PH.Common.NanoBot.PlayerID">
+            <summary>
+            ID of the Player
+            </summary>
+        </member>
+        <member name="P:PH.Common.NanoBot.Location">
+            <summary>
+            Point on the map where is located the Nanobot
+            </summary>
+        </member>
+        <member name="P:PH.Common.NanoBot.PointInfo">
+            <summary>
+            Point used for different operation. While moving, it is the point at the end of the movement. 
+            While defending, it is the point where it shoot. 
+            While Transfering, it must be the location of the NanoNeedle where it want to tranfer AZN. 
+            While Collecting, it must be the point where AZN Injection point is.
+            </summary>
+        </member>
+        <member name="P:PH.Common.NanoBot.Stock">
+            <summary>
+            Number of AZN in its container.
+            </summary>
+        </member>
+        <member name="P:PH.Common.NanoBot.State">
+            <summary>
+            State of the Nanobot
+            </summary>
+        </member>
+        <member name="P:PH.Common.NanoBot.HitPoint">
+            <summary>
+            Number of hit points of the Nanobot. If equal or less than 0, it is destroyed.
+            </summary>
+        </member>
+        <member name="P:PH.Common.NanoBot.PlayerOwner">
+            <summary>
+            Reference to the Player instance owner of this Nanobot
+            </summary>
+        </member>
+        <member name="P:PH.Common.NanoBot.ContainerCapacity">
+            <summary>
+            Maximum number of AZN this Nanobot can carry
+            </summary>
+        </member>
+        <member name="P:PH.Common.NanoBot.CollectTransfertSpeed">
+            <summary>
+            Number of AZN transfered while collecting or transfering in one turn.
+            </summary>
+        </member>
+        <member name="P:PH.Common.NanoBot.Scan">
+            <summary>
+            Scan distance. If an enemie is nearer than this value, it is seen by this Nanobot (and added to the OtherNanobotsInfo property of the Player)
+            </summary>
+        </member>
+        <member name="P:PH.Common.NanoBot.MaxDamage">
+            <summary>
+            Maximum numbers of damage of defense in one turn. Number of damage is determined randomly by the Game Engine at each turn of a defense. This number is between 0 and MaxDamage.
+            </summary>
+        </member>
+        <member name="P:PH.Common.NanoBot.DefenseDistance">
+            <summary>
+            Maximum distance of a defense. If Nanobot try to defend greater than this value, defense is not valid (and canceled)
+            </summary>
+        </member>
+        <member name="P:PH.Common.NanoBot.Constitution">
+            <summary>
+            Number of hit points of the Nanobot when it is created.
+            </summary>
+        </member>
+        <member name="P:PH.Common.NanoBot.NanoBotInfo">
+            <summary>
+            Informations about the Nanobot.
+            </summary>
+            <remarks>This is the informations you have of other entities in the game you can access in OtherNanobotsInfo property of the Player</remarks>
+        </member>
+        <member name="P:PH.Common.NanoBlocker.NanoBotType">
+            <summary>
+            Return NanoBotTypeEnum.NanoBlocker
+            </summary>
+        </member>
+        <member name="T:PH.Common.Utils">
+            <summary>
+            Utils giving access to different parameters
+            </summary>
+        </member>
+        <member name="M:PH.Common.Utils.IsPlayerDefender(PH.Common.Player)">
+            <summary>
+            Return true for White Cells team player
+            </summary>
+            <param name="player">reference to the player object</param>
+            <returns></returns>
+        </member>
+        <member name="P:PH.Common.Utils.TransferingStockDistance">
+            <summary>
+            Maximal distance between AZNInjectionPoint and location of the NanoBotCollector.
+            </summary>
+            <remarks>TransferingStockDistance in config file</remarks>
+        </member>
+        <member name="P:PH.Common.Utils.ScanLength">
+            <summary>
+            Minimal distance of a scan of a Nanobot. Lenght of vision of a Nanobot is ScanLength + its Scan characteristic
+            </summary>
+            <remarks>ScanLength in config file</remarks>
+        </member>
+        <member name="P:PH.Common.Utils.DefenseLength">
+            <summary>
+            Distance between Nanobot and point to defend
+            </summary>
+            <remarks>DefenseLength in config file</remarks>
+        </member>
+        <member name="P:PH.Common.Utils.MaxPlayers">
+            <summary>
+            Maximal number of players
+            </summary>
+            <remarks>MaxPlayers in config file. Not used</remarks>
+        </member>
+        <member name="P:PH.Common.Utils.NumberOfTurnBetweenScan">
+            <summary>
+            Number of turn between each Scan.
+            </summary>
+            <remarks>NumberOfTurnBetweenScan in config file. Scan don't occur every turn so you must predict movement of other bots.</remarks>
+        </member>
+        <member name="P:PH.Common.Utils.NumberOfTurnBySecond">
+            <summary>
+            Number of turn in a second
+            </summary>
+            <remarks>NumberOfTurnBySecond in config file</remarks>
+        </member>
+        <member name="P:PH.Common.Utils.NbrMaxBots">
+            <summary>
+            Maximum number of Nanobots (including NanoAI) for your team
+            </summary>
+            <remarks>NbrMaxBots in config file</remarks>
+        </member>
+        <member name="P:PH.Common.Utils.NbrMaxWhiteCells">
+            <summary>
+            Maximum number of White cells in the game
+            </summary>
+            <remarks>NbrMaxWhiteCells in config file</remarks>
+        </member>
+        <member name="P:PH.Common.Utils.PartyLength">
+            <summary>
+            Length of a game in minute (5mn)
+            </summary>
+            <remarks>PartyLength in config file</remarks>
+        </member>
+        <member name="P:PH.Common.Utils.NumberOfTurnBetweenEvent">
+            <summary>
+            Number of turn between each WhatDoYouWantToDo events
+            </summary>
+            <remarks>NumberOfTurnBetweenEvent in config file</remarks>
+        </member>
+        <member name="P:PH.Common.Utils.DefenderName">
+            <summary>
+            Name of the assembly used for White Cells
+            </summary>
+            <remarks>DefenderName in config file</remarks>
+        </member>
+        <member name="P:PH.Common.Utils.NeedleScore">
+            <summary>
+            Score of a NanoNeedle which is not on a Hoshimi Point or that does not contain any AZN
+            </summary>
+            <remarks>NeedleScore in config file</remarks>
+        </member>
+        <member name="P:PH.Common.Utils.ValidNeedleScore">
+            <summary>
+            Score of a NanoNeedle on a HoshimiPoint and that contain one or more AZN
+            </summary>
+            <remarks>ValidNeedleScore in config file</remarks>
+        </member>
+        <member name="P:PH.Common.Utils.AZNScore">
+            <summary>
+            Score for each AZN in a valid NanoNeedle (ie on a HoshimiPoint)
+            </summary>
+            <remarks>AZNScore in config file</remarks>
+        </member>
+        <member name="P:PH.Common.Utils.Round0MinimalScore">
+            <summary>
+            Score needed to be qualified in first round
+            </summary>
+            <remarks>Round0MinimalScore in config file</remarks>
+        </member>
+        <member name="P:PH.Common.Utils.BlockerLength">
+            <summary>
+            Distance of field force of a NanoBlocker
+            </summary>
+            <remarks>BlockerLength in config file</remarks>
+        </member>
+        <member name="P:PH.Common.Utils.BlockerStrength">
+            <summary>
+            Number of turn added to AreaType speed when a White Cell is near a NanoBlocker
+            </summary>
+            <remarks>BlockerStrength in config file</remarks>
+        </member>
+        <member name="P:PH.Common.Utils.MaxPointsPath">
+            <summary>
+            Maximum number of cell for the path of a movement of a Nanobot.
+            </summary>
+            <remarks>MaxPointsPath in config file. If the GameEngine calculate a path that have more point than MaxPointsPath, NanoBot remain still</remarks>
+            
+        </member>
+        <member name="T:PH.Common.NanoDefender">
+            <summary>
+            Abstract class representing a Nanobot that can defend itself (NanoCollector, NanoNeedle)
+            </summary>
+        </member>
+        <member name="M:PH.Common.NanoDefender.DefendTo(System.Drawing.Point,System.Int32)">
+            <summary>
+            Use this method to defend a location
+            </summary>
+            <param name="to">Point you want to defend</param>
+            <param name="NTurn">Number of turn you defend</param>
+            <returns>Return always true if state is equal to WaitingOrders AND distance is lower than DefenseDistance</returns>
+            <remarks>Next turn, Game Engine will 
+            check for each entities near the NanobotDefender. If distance is lower than DefenseDistance, </remarks>
+        </member>
+        <member name="P:PH.Common.NanoDefender.NbrTourAttaque">
+            <summary>
+            Nombre de tour restant durant lesquels le joueur pilonne un point
+            </summary>
+        </member>
+        <member name="T:PH.Common.CharacteristicsAttribute">
+            <summary>
+            Attribute used to choose characteristic of each type of bot
+            </summary>
+        </member>
+        <member name="P:PH.Common.CharacteristicsAttribute.ContainerCapacity">
+            <summary>
+            Maximum number of AZN the Nanobot can hold
+            </summary>
+        </member>
+        <member name="P:PH.Common.CharacteristicsAttribute.CollectTransfertSpeed">
+            <summary>
+            How many AZN can be transfer from a NanoCollector to a NanoNeedle or from AZN Injection Point to a NanoCollector
+            </summary>
+        </member>
+        <member name="P:PH.Common.CharacteristicsAttribute.Scan">
+            <summary>
+            Bonus distance for seeing other entities (Scan +  PH.Common.Utils.ScanLength).
+            </summary>
+        </member>
+        <member name="P:PH.Common.CharacteristicsAttribute.MaxDamage">
+            <summary>
+            Maximum damage of a defense
+            </summary>
+            <remarks>Number of Hit Point retrieved to other entities equal 1 to MaxDamage.</remarks>
+        </member>
+        <member name="P:PH.Common.CharacteristicsAttribute.DefenseDistance">
+            <summary>
+            Maximal distance to defend
+            </summary>
+        </member>
+        <member name="P:PH.Common.CharacteristicsAttribute.Constitution">
+            <summary>
+            Number of hit points of the Nanobot when it is build
+            </summary>
+        </member>
+        <member name="T:PH.Mission.ObjectiveStatus">
+            <summary>
+            Status of an objective
+            </summary>
+        </member>
+        <member name="F:PH.Mission.ObjectiveStatus.ToBeDone">
+            <summary>
+            Not yet reached, but can be reached
+            </summary>
+        </member>
+        <member name="F:PH.Mission.ObjectiveStatus.Failed">
+            <summary>
+            Not reached.
+            </summary>
+        </member>
+        <member name="F:PH.Mission.ObjectiveStatus.Done">
+            <summary>
+            Objective accomplished
+            </summary>
+        </member>
+        <member name="T:PH.Mission.BaseObjective">
+            <summary>
+            Base class for all Objective classes
+            </summary>
+        </member>
+        <member name="M:PH.Mission.BaseObjective.UpdateStatus(System.Int32,System.Int32,System.Int32,PH.Common.NanoBotInfo[])">
+            <summary>
+            Update the status of the objective. Used by the Game engine
+            </summary>
+            <param name="playerID">ID of the player</param>
+            <param name="playerScore">Current score of the player</param>
+            <param name="turn">current turn</param>
+            <param name="bots">Array of NanobotInfo in the game</param>
+        </member>
+        <member name="M:PH.Mission.BaseObjective.GetObjectiveLocations">
+            <summary>
+            Collection of points representing he differents locations of the objective
+            </summary>
+            <returns>List of System.Drawing.Point</returns>
+        </member>
+        <member name="P:PH.Mission.BaseObjective.Description">
+            <summary>
+            Description of the objective
+            </summary>
+        </member>
+        <member name="P:PH.Mission.BaseObjective.TurnObjectiveDone">
+            <summary>
+            Turn when the objective must be reached
+            </summary>
+        </member>
+        <member name="P:PH.Mission.BaseObjective.Bonus">
+            <summary>
+            Number of points added to score if objective is reached before BonusStartTurn
+            </summary>
+        </member>
+        <member name="P:PH.Mission.BaseObjective.Status">
+            <summary>
+            Statut of the objective at the current turn
+            </summary>
+        </member>
+        <member name="P:PH.Mission.BaseObjective.Value">
+            <summary>
+            Percentage. When objective is fully accomplished, set to 100.
+            </summary>
+            <example>For a navigation objective, percentage of Navigation Points reached</example>
+        </member>
+        <member name="T:PH.Network.ClientConnection">
+            <exclude/>
+        </member>
+        <member name="T:PH.Network.BinaryHelper">
+            <exclude/>
+        </member>
+        <member name="T:PH.Common.NanoBotInfoCollection">
+            <summary>
+            Typed collection of NanobotInfo. Used by OtherNanobotsInfo property of the player
+            </summary>
+        </member>
+        <member name="M:PH.Common.NanoBotInfoCollection.Add(PH.Common.NanoBotInfo)">
+            <summary>
+            Add a NanobotInfo in the collection
+            </summary>
+            <param name="info">NanobotInfo to add</param>
+        </member>
+        <member name="P:PH.Common.NanoBotInfoCollection.Item(System.Int32)">
+            <summary>
+            Get a NanobotInfo in the collection with its index
+            </summary>
+        </member>
+        <member name="T:PH.Mission.UniqueNavigationObjective">
+            <summary>
+            Like a navigationobjective, you must reach a collection of point in the tissue. But all those points must be reached by the same Nanobot
+            </summary>
+        </member>
+        <member name="M:PH.Mission.UniqueNavigationObjective.IsNavPointVisited(PH.Common.NanoBotInfo,System.Drawing.Point)">
+            <summary>
+            Indicate if a point have been reached by the bot.
+            </summary>
+            <param name="bot">Bot to check</param>
+            <param name="p">Point to check</param>
+            <returns></returns>
+        </member>
+        <member name="M:PH.Mission.UniqueNavigationObjective.UpdateStatus(System.Int32,System.Int32,System.Int32,PH.Common.NanoBotInfo[])">
+            <summary>
+            Update the status of the objective. Used by the Game engine
+            </summary>
+            <param name="playerID">ID of the player</param>
+            <param name="playerScore">Current score of the player</param>
+            <param name="turn">current turn</param>
+            <param name="bots">Array of NanobotInfo in the game</param>
+        </member>
+        <member name="M:PH.Mission.UniqueNavigationObjective.GetObjectiveLocations">
+            <summary>
+            Contains all points that must be reached
+            </summary>
+            <returns>Collection of System.Drawing.Point</returns>
+        </member>
+        <member name="P:PH.Mission.UniqueNavigationObjective.NanoBotType">
+            <summary>
+            Type of the bot that must accomplish the different goals
+            </summary>
+            <remarks>If set to Unknown, any bot can accomplish the goals</remarks>
+        </member>
+        <member name="P:PH.Mission.UniqueNavigationObjective.NavPoints">
+            <summary>
+            Collection of goals to be accomplished by the bot
+            </summary>
+        </member>
+        <member name="P:PH.Mission.UniqueNavigationObjective.Description">
+            <summary>
+            Full description of the mission. Appear in 3D Viewer also.
+            </summary>
+        </member>
+        <member name="T:PH.Network.ClientMessage">
+            <exclude/>
+        </member>
+        <member name="T:PH.Common.NanoCollector">
+            <summary>
+            <img src="collector.jpg"/>
+            <para>Class representing a NanobotCollector</para>
+            </summary>
+            <remarks>A NanoCollector can move, defend, transfer and collect AZN</remarks>
+        </member>
+        <member name="T:PH.Common.NanoMoveable">
+            <summary>
+            Abstract class representing a NanoMoveable
+            </summary>
+        </member>
+        <member name="M:PH.Common.NanoMoveable.MoveTo(System.Drawing.Point)">
+            <summary>
+            Use this method to move your NanoMoveable
+            </summary>
+            <param name="to">POint where you want to go</param>
+            <returns>If movement is possible, return true.</returns>
+            <remarks>When you call this method, Game Engine calculate of points of the path to go to 'to' Point. 
+            If it is impossible (not in a vessel), it set state to WaitingOrders and return false. 
+            If path is too long (ie greater than PH.Common.Utils.MaxPointsPath, see config file), , it set state to WaitingOrders and return false. 
+            Either, movement start next turn.</remarks>
+        </member>
+        <member name="M:PH.Common.NanoMoveable.MoveTo(System.Drawing.Point[])">
+            <summary>
+            Allow you to directly set the path of the bots
+            </summary>
+            <param name="path">Array of points</param>
+            <returns>false if state is not WaitingOrders or path null or path empty</returns>
+        </member>
+        <member name="M:PH.Common.NanoMoveable.StopMoving">
+            <summary>
+            Stop immediatly the NanoMoveable and set its state to WaitingOrders.
+            </summary>
+            <returns>Return true if the state of the Nanobot was Moving.</returns>
+        </member>
+        <member name="M:PH.Common.NanoMoveable.PathPoint(System.Int32)">
+            <summary>
+            Obtain a point of the path
+            </summary>
+            <param name="index">Index of the point in the path</param>
+            <returns>Point of the path</returns>
+            <remarks>If index is not valid (less than 0 or more or equal than PathCount), return Point.Empty.</remarks>
+        </member>
+        <member name="P:PH.Common.NanoMoveable.PathCount">
+            <summary>
+            Number of points to arrive to 'to' point.
+            </summary>
+        </member>
+        <member name="M:PH.Common.NanoCollector.TransferTo(System.Drawing.Point,System.Int32)">
+            <summary>
+            Use this method to transfer AZN from your NanobotCollector to a NanoNeedle
+            </summary>
+            <param name="to">Point where must be located the NanoNeedle</param>
+            <param name="NTurn">Number of turn of the transfer</param>
+            <returns>Return always true if NanobotCollector is WaitingOrders</returns>
+            <remarks>Next turn, the Game Engine will know that you want to transfer AZN from your NanoCollector to a NanoNeedle. 
+            Game Engine will check if a NanoNeedle is in the location wanted and if so, if there is enought place in its container. 
+            Game Engine will also check if you are nearer than DistanceTransferDistance.  
+            If no, next turn, no transfer will occur and state of the NanobotCollector will be set to WaitingOrders</remarks>
+        </member>
+        <member name="M:PH.Common.NanoCollector.CollectFrom(System.Drawing.Point,System.Int32)">
+            <summary>
+            Use this method to collect AZN from a AZN Injection Point to your NanoCollector. 
+            </summary>
+            <param name="to">Point where must be located the AZN Injection point</param>
+            <param name="NTurn">Number of turn of the collecting process</param>
+            <returns>Next turn, the Game Engine will know that you want to collect AZN.
+            Game Engine will check if there is a AZN Injection point in the location wanted and if you have enough place in the container of the NanobotCollector.
+            Game Engine will also check if you are nearer than DistanceTransferDistance. 
+            If no, next turn, no collect process will occur and state of the NanobotCollector will be set to WaitingOrders.
+            </returns>
+        </member>
+        <member name="P:PH.Common.NanoCollector.NanoBotType">
+            <summary>
+            Return  NanoBotTypeEnum.NanoCollector
+            </summary>
+        </member>
+        <member name="T:PH.Mission.NeuroControllerObjective">
+            <summary>
+            Objective is to destroy NeuroController and at EndTurn, Number of Neurocontrollers that must remains.
+            </summary>
+        </member>
+        <member name="M:PH.Mission.NeuroControllerObjective.UpdateStatus(System.Int32,System.Int32,System.Int32,PH.Common.NanoBotInfo[])">
+            <summary>
+            Update the status of the objective. Used by the Game engine
+            </summary>
+            <param name="playerID">ID of the player</param>
+            <param name="playerScore">Current score of the player</param>
+            <param name="turn">current turn</param>
+            <param name="bots">Array of NanobotInfo in the game</param>
+        </member>
+        <member name="P:PH.Mission.NeuroControllerObjective.StartTurn">
+            <summary>
+            First turn when NumberOfNeuroControler neurocontrollers must remained
+            </summary>
+        </member>
+        <member name="P:PH.Mission.NeuroControllerObjective.EndTurn">
+            <summary>
+            Last turn when NumberOfNeuroControler neurocontrollers must remained
+            </summary>
+        </member>
+        <member name="P:PH.Mission.NeuroControllerObjective.NumberOfNeuroControler">
+            <summary>
+            Number of NeuroController that must remain after turn AfterTurn 
+            </summary>
+        </member>
+        <member name="T:PH.Common.IDefender">
+            <summary>
+            Interface for Defender (Pierre's Team)
+            </summary>
+        </member>
+        <member name="P:PH.Common.IDefender.ExistingNeuroControllers">
+            <summary>
+            Array of Points where NanoNeuroControllers must be build at the beginning of the Game
+            </summary>
+        </member>
+        <member name="P:PH.Common.IDefender.ExistingNeuroControllerType">
+            <summary>
+            Type of NanoNeuroControllers that will be build at the beginning of the Game by the Defender
+            </summary>
+        </member>
+        <member name="T:PH.Common.WhatToDoNextHandler">
+            <summary>
+            Delegate used each turn in the game.
+            </summary>
+        </member>
+        <member name="T:PH.Common.ChooseInjectionPointHandler">
+            <summary>
+            Delegate used at the beginning of the game to let player choose his Injection Point.
+            </summary>
+        </member>
+        <member name="T:PH.Common.Player">
+            <summary>
+            Class representing a player
+            </summary>
+            <remarks>
+            Every player must create a (and only one) class that inherits Player.
+            At the begining of the game, InjectionPoint event is fired to allow player to choose its injection point
+            Each turn of a party, WhatToDoNextEvent event is fired. 
+            </remarks>
+        </member>
+        <member name="M:PH.Common.Player.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:PH.Common.Player.#ctor(System.String,System.Int32)">
+            <summary>
+            Constructor you must create
+            </summary>
+            <param name="name">name of the player</param>
+            <param name="ID">ID of the player</param>
+        </member>
+        <member name="M:PH.Common.Player.ChooseInjectionPointForDefender">
+            <summary>
+            Only used for Defender
+            </summary>
+        </member>
+        <member name="M:PH.Common.Player.ToString">
+            <summary>
+            Overloads of ToString method
+            </summary>
+            <returns>Name followed by ID</returns>
+        </member>
+        <member name="E:PH.Common.Player.WhatToDoNext">
+            <summary>
+            Event generated each turn
+            </summary>
+        </member>
+        <member name="E:PH.Common.Player.ChooseInjectionPoint">
+            <summary>
+            Event generated at the beginning of the game to choose where you want to be injected
+            </summary>
+        </member>
+        <member name="P:PH.Common.Player.Mission">
+            <summary>
+            Reference to the Mission that contains objectives that must be reached to gain points
+            </summary>
+        </member>
+        <member name="P:PH.Common.Player.Flag">
+            <summary>
+            Bitmap used in Viewers.
+            </summary>
+            <remarks>Must be a 64*64 bmp file</remarks>
+        </member>
+        <member name="P:PH.Common.Player.IsAIDead">
+            <summary>
+            Indicate if your AI have been destroyed
+            </summary>
+        </member>
+        <member name="P:PH.Common.Player.Winner">
+            <summary>
+            Indicate if you are a winner at the end of the game
+            </summary>
+        </member>
+        <member name="P:PH.Common.Player.InjectionPointWanted">
+            <summary>
+            <img src="injection.jpg"/><br/>
+            Point where you want to be injected.
+            </summary>
+            <remarks>This property is used only in the ChooseInjectionPoint event</remarks>
+        </member>
+        <member name="P:PH.Common.Player.PlayerID">
+            <summary>
+            ID of the player
+            </summary>
+            <remarks>Not used</remarks>
+        </member>
+        <member name="P:PH.Common.Player.Name">
+            <summary>
+            Name of the player
+            </summary>
+        </member>
+        <member name="P:PH.Common.Player.NanoBots">
+            <summary>
+            Typed collection of Nanobots of the player
+            </summary>
+        </member>
+        <member name="P:PH.Common.Player.OtherNanoBotsInfo">
+            <summary>
+            Typed collection of other entities visible by your Nanobots
+            </summary>
+        </member>
+        <member name="P:PH.Common.Player.Thinking">
+            <summary>
+            Used by GameEngine
+            </summary>
+        </member>
+        <member name="P:PH.Common.Player.InjectionPoint">
+            <summary>
+            Point where you are injected.
+            </summary>
+            <remarks>In ChooseInjectionPoint Event, you set InjectionPointWanted to choose where you want to go. If it is an invalid point, GameEngine choose a point for you (and near to White cells!!!)</remarks>
+        </member>
+        <member name="P:PH.Common.Player.Tissue">
+            <summary>
+            Reference to the Tissue
+            </summary>
+        </member>
+        <member name="P:PH.Common.Player.NanoBotTypes">
+            <summary>
+            Collection of types of Nanobots in your assembly. Used by GameEngine
+            </summary>
+        </member>
+        <member name="P:PH.Common.Player.Score">
+            <summary>
+            Score of your player. See Score property of NanoNeedle to know how it is calculated
+            </summary>
+        </member>
+        <member name="P:PH.Common.Player.CurrentTurn">
+            <summary>
+            Current Turn in the Game
+            </summary>
+        </member>
+        <member name="P:PH.Common.Player.OtherInjectionPointsInfo">
+            <summary>
+            Collection of other Injection Point you discovered in the tissue (ie Injection Point that your bots can see)
+            </summary>
+        </member>
+        <member name="P:PH.Common.Player.LogText">
+            <summary>
+            Text that appear in Log window in viewer (if log enabled)
+            </summary>
+        </member>
+        <member name="P:PH.Common.Player.PierreTeamInjectionPoint">
+            <summary>
+            Injection Point of Pierre Team. Known at the beginning of the game
+            </summary>
+        </member>
+        <member name="P:PH.Common.Player.IsIPCreatorCreated">
+            <summary>
+            Indicate if a NanoIPCreator have already been created. You can create only one IPCreator in a game
+            </summary>
+        </member>
+        <member name="P:PH.Common.Player.PierreExistingNeuroControllersCount">
+            <summary>
+            Numbers of NeuroControllers of Pierre's Team at the beginig of the game
+            </summary>
+        </member>
+        <member name="P:PH.Common.Player.PierreExistingNeuroControllers">
+            <summary>
+            List of Points where Pierre NeuroControllers are at the beginning of the Game.
+            </summary>
+            <remarks>You have this information at the beginning of the Game, ie in the ChooseInjectionPoint Event</remarks>
+        </member>
+        <member name="P:PH.Common.Player.AI">
+            <summary>
+            NanoAI of your team
+            </summary>
+            <remarks>There is only one NanoAI in the team. If it is destroyed, you loose the game</remarks>
+        </member>
+        <member name="T:PH.Common.NanoBotType">
+            <summary>
+            Different types of Nanobots
+            </summary>
+        </member>
+        <member name="F:PH.Common.NanoBotType.NanoNeedle">
+            <summary>
+            Can defend and stock AZN
+            </summary>
+        </member>
+        <member name="F:PH.Common.NanoBotType.NanoExplorer">
+            <summary>
+            can move (faster than other nanobots)
+            </summary>
+        </member>
+        <member name="F:PH.Common.NanoBotType.NanoCollector">
+            <summary>
+            Can move, collect, transfer and defend
+            </summary>
+        </member>
+        <member name="F:PH.Common.NanoBotType.NanoAI">
+            <summary>
+            The main Nanobot of your team. Can build other Nanobot
+            </summary>
+        </member>
+        <member name="F:PH.Common.NanoBotType.NanoContainer">
+            <summary>
+            like a collector but with a greater container for AZN
+            </summary>
+        </member>
+        <member name="F:PH.Common.NanoBotType.NanoNeuroControler">
+            <summary>
+            bot used only by Pierre team
+            </summary>
+        </member>
+        <member name="F:PH.Common.NanoBotType.NanoBlocker">
+            <summary>
+            slow other entities near it
+            </summary>
+        </member>
+        <member name="F:PH.Common.NanoBotType.Unknown">
+            <summary>
+            Not used
+            </summary>
+        </member>
+        <member name="F:PH.Common.NanoBotType.NanoWall">
+            <summary>
+            Stop other entites near it
+            </summary>
+        </member>
+        <member name="F:PH.Common.NanoBotType.NanoIPCreator">
+            <summary>
+            Bot that can create a new Injection Point. Only 1 bot of this kind at the same time can exist in a team
+            </summary>
+        </member>
+        <member name="T:PH.Common.VGException">
+            <summary>
+            Exceptions used by GameEngine
+            </summary>
+        </member>
+        <member name="M:PH.Common.VGException.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="Message">Error message</param>
+        </member>
+        <member name="T:PH.Network.GameData">
+            <exclude/>
+        </member>
+        <member name="T:PH.Common.PathFinder">
+            <exclude />
+        </member>
+        <member name="T:PH.Common.NanoBotInfo">
+            <summary>
+            This structure reflect the state of a Nanobot
+            </summary>
+        </member>
+        <member name="M:PH.Common.NanoBotInfo.IsVisibleFromPlayer(System.Int32)">
+            <summary>
+            Indicate if PlayerID see this bot
+            </summary>
+            <param name="playerID"></param>
+            <returns>true if visible</returns>
+        </member>
+        <member name="P:PH.Common.NanoBotInfo.InternalName">
+            <summary>
+            Name used for displaying name of the bot in the viewer
+            </summary>
+        </member>
+        <member name="P:PH.Common.NanoBotInfo.ID">
+            <summary>
+            Unique ID
+            </summary>
+        </member>
+        <member name="P:PH.Common.NanoBotInfo.PlayerID">
+            <summary>
+            ID of the player of the Nanobot associated to the NanobotInfo (not currently used)
+            </summary>
+        </member>
+        <member name="P:PH.Common.NanoBotInfo.Location">
+            <summary>
+            Location of the associated Nanobot
+            </summary>
+        </member>
+        <member name="P:PH.Common.NanoBotInfo.PointInfo">
+            <summary>
+            If a Nanobot move, defend , transfer or collect, this is the target point
+            </summary>
+        </member>
+        <member name="P:PH.Common.NanoBotInfo.Stock">
+            <summary>
+            Number of AZN inside the container of the associated Nanobot
+            </summary>
+        </member>
+        <member name="P:PH.Common.NanoBotInfo.State">
+            <summary>
+            Current state of the associated Nanobot
+            </summary>
+        </member>
+        <member name="P:PH.Common.NanoBotInfo.HitPoint">
+            <summary>
+            Current hit points of the associated Nanobot
+            </summary>
+        </member>
+        <member name="P:PH.Common.NanoBotInfo.NanoBotType">
+            <summary>
+            Base Type of the associated Nanobot
+            </summary>
+        </member>
+        <member name="T:PH.Network.MessageReceivedEventHandler">
+            <exclude/>
+        </member>
+        <member name="T:PH.Network.MessageReceivedEventArgs">
+            <exclude/>
+        </member>
+        <member name="T:PH.Mission.MissionValidator">
+            <summary>
+            Helper class to verify if a mission is well formed. Used for creating missions
+            </summary>
+        </member>
+        <member name="M:PH.Mission.MissionValidator.Validate(PH.Mission.Mission,PH.Map.Tissue,System.String@)">
+            <summary>
+            Validate a mission
+            </summary>
+            <param name="briefing">The mission to validate</param>
+            <param name="tissue">The tissue used by the mission</param>
+            <param name="errMessage">Error message that will be return containing messages</param>
+            <returns>True if no errors. If false, errMessage contain what is wrong</returns>
+        </member>
+        <member name="T:PH.Mission.Mission">
+            <summary>
+            Represent all objectives that must be reached in the game
+            </summary>
+        </member>
+        <member name="M:PH.Mission.Mission.Load(System.String)">
+            <summary>
+            Load a mission from a file.
+            </summary>
+            <param name="fileName">Name of the file</param>
+            <returns>Instance of the Mission</returns>
+        </member>
+        <member name="M:PH.Mission.Mission.Save(System.String)">
+            <summary>
+            Save of mission in a file
+            </summary>
+            <param name="fileName">Name of the file</param>
+            <returns>True if file is saves.</returns>
+        </member>
+        <member name="M:PH.Mission.Mission.GetObjectivesDoneCount">
+            <summary>
+            Number of objectives reached at the current turn
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PH.Mission.Mission.IsAllObjectivesDone">
+            <summary>
+            Indicate if all objectives are  reached
+            </summary>
+            <returns>true if all objectives reached</returns>
+        </member>
+        <member name="M:PH.Mission.Mission.Clone">
+            <summary>
+            Clone a mission
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:PH.Mission.Mission.Description">
+            <summary>
+            Summary of the briefing (compilation of all descriptions of objectives)
+            </summary>
+        </member>
+        <member name="P:PH.Mission.Mission.CommonVersion">
+            <summary>
+            Version of VG.Common needed to this briefing
+            </summary>
+            <remarks>If null, no check is done</remarks>
+        </member>
+        <member name="P:PH.Mission.Mission.Objectives">
+            <summary>
+            Collection of missions of the briefing
+            </summary>
+        </member>
+        <member name="T:PH.Common.NanoNeedle">
+            <summary>
+            <img src="needle.jpg"/>
+            <para>Class representing a NanoNeedle</para>
+            </summary>
+            <remarks>Nanoneedles can't move. They can defend and Stock AZN. You gain points when a NanoNeedle contains AZN and is located on a Hoshimi Point</remarks>
+        </member>
+        <member name="P:PH.Common.NanoNeedle.NanoBotType">
+            <summary>
+            return NanoBotTypeEnum.NanoNeedle
+            </summary>
+        </member>
+        <member name="P:PH.Common.NanoNeedle.Score">
+            <summary>
+            Score of this NanoNeedle.
+            </summary>
+            <remarks>Calculation of the score is: 
+            If NanoNeedle is on a HoshimiPoint and contain AZN, equal PH.Common.Utils.ValidNeedleScore + Stock * PH.Common.Utils.AZNScore (see config files for values) 
+            If not on a HoshimiPoint, return PH.Common.Utils.NeedleScore</remarks>
+        </member>
+        <member name="P:PH.Common.NanoNeedle.BuildOnHoshimiPoint">
+            <summary>
+            Return true if the NanoNeedle is on a HoshimiPoint
+            </summary>
+        </member>
+        <member name="T:PH.Common.NanoBotCollection">
+            <summary>
+            Typed collection of Nanobot
+            </summary>
+            <remarks>Used by Player (Nanobots property)</remarks>
+        </member>
+        <member name="P:PH.Common.NanoBotCollection.Item(System.Int32)">
+            <summary>
+            get a Nanobot from the collection with it index
+            </summary>
+        </member>
+        <member name="T:PH.Common.NanoAI">
+            <summary>
+            <img src="AI.jpg"/>
+            <para>Class for the NanoAI. </para>
+            This class can't be inherited. The NanoAI is the main bot of your team. It is the only bot that can build other bot. It can move but can't defend.
+            </summary>
+        </member>
+        <member name="M:PH.Common.NanoAI.Build(System.Type)">
+            <summary>
+            Use this method if you want your NanoAI build another Nanobot
+            </summary>
+            <param name="NanoType">Type of the Nanobot to build. Must be in your assembly and inherit Nanobot</param>
+            <returns>True if NanoAI is WaitingOrders. Nanobot will be build next turn</returns>
+            <remarks>If in the next turn, there is too many Nanobots in the game, the bot will not be added (and you'll loose one turn thinking for nothing).
+            If you build a bot that inherit NanoNeddle or NanoBlocker, bot will be created at the position of your NanoAI. 
+            Otherwise, it will becreated in the InjectionPoint.</remarks>
+        </member>
+        <member name="M:PH.Common.NanoAI.Build(System.Type,System.String)">
+            <summary>
+            Use this method if you want your NanoAI build another Nanobot
+            </summary>
+            <param name="NanoType">Type of the Nanobot to build. Must be in your assembly and inherit Nanobot. You set also the InternalName of the nanobot that will be created.</param>
+            <param name="internalName"></param>
+            <returns>True if NanoAI is WaitingOrders. Nanobot will be build next turn</returns>
+            <remarks>If in the next turn, there is too many Nanobots in the game, the bot will not be added (and you'll loose one turn thinking for nothing).
+            If you build a bot that inherit NanoNeddle or NanoBlocker, bot will be created at the position of your NanoAI. 
+            Otherwise, it will becreated in the InjectionPoint.</remarks>
+        </member>
+        <member name="P:PH.Common.NanoAI.NanoBotType">
+            <summary>
+            Return  NanoBotTypeEnum.NanoAI
+            </summary>
+        </member>
+        <member name="P:PH.Common.NanoAI.BuildingType">
+            <summary>
+            Type of the Nanobot you want to create next turn
+            </summary>
+        </member>
+        <member name="T:PH.Common.NanoWall">
+            <summary>
+            <img src="wall.jpg"/>
+            <para>Class for the NanoWall. NanoWall stop entities that are not in his team.</para> 
+            <para>
+            NanoWall can't move nor defend.
+            After 50 turns, NanoWall dies
+            </para>
+            </summary>
+        </member>
+        <member name="P:PH.Common.NanoWall.NanoBotType">
+            <summary>
+            Return NanoBotTypeEnum.NanoBlocker
+            </summary>
+        </member>
+        <member name="P:PH.Common.NanoWall.NbrTurnBeforeDeath">
+            <summary>
+            Number of turn before this bot will be destroyed
+            </summary>
+        </member>
+        <member name="T:PH.Mission.ScoreObjective">
+            <summary>
+            With this objective, you must reach a score at a turn
+            </summary>
+        </member>
+        <member name="M:PH.Mission.ScoreObjective.UpdateStatus(System.Int32,System.Int32,System.Int32,PH.Common.NanoBotInfo[])">
+            <summary>
+            Update the status of the objective. Used by the Game engine
+            </summary>
+            <param name="playerID">ID of the player</param>
+            <param name="playerScore">Current score of the player</param>
+            <param name="turn">current turn</param>
+            <param name="bots">Array of NanobotInfo in the game</param>
+        </member>
+        <member name="P:PH.Mission.ScoreObjective.ScoreTurn">
+            <summary>
+            Turn when the score must be reached
+            </summary>
+        </member>
+        <member name="P:PH.Mission.ScoreObjective.Score">
+            <summary>
+            Score to reach
+            </summary>
+        </member>
+        <member name="T:PH.Mission.NavigationObjective">
+            <summary>
+            With this objective, you must reach a collection of points in the tissue. This can be done by different Nanobot
+            </summary>
+        </member>
+        <member name="M:PH.Mission.NavigationObjective.UpdateStatus(System.Int32,System.Int32,System.Int32,PH.Common.NanoBotInfo[])">
+            <summary>
+            Update the status of the objective. Used by the Game engine
+            </summary>
+            <param name="playerID">ID of the player</param>
+            <param name="playerScore">Current score of the player</param>
+            <param name="turn">current turn</param>
+            <param name="bots">Array of NanobotInfo in the game</param>
+        </member>
+        <member name="M:PH.Mission.NavigationObjective.GetObjectiveLocations">
+            <summary>
+            Contains all points that must be reached
+            </summary>
+            <returns>Collection of System.Drawing.Point</returns>
+        </member>
+        <member name="P:PH.Mission.NavigationObjective.NanoBotType">
+            <summary>
+            Type of the bot that must accomplish the different goals
+            </summary>
+            <remarks>If set to UNknown, any bot can accomplish the goals</remarks>
+        </member>
+        <member name="P:PH.Mission.NavigationObjective.NavPoints">
+            <summary>
+            Collection of goals to be accomplished by the bot
+            </summary>
+        </member>
+        <member name="P:PH.Mission.NavigationObjective.Description">
+            <summary>
+            Full description of the mission. Appear in 3D Viewer also.
+            </summary>
+        </member>
+        <member name="T:PH.Core.Log">
+            <summary>
+            Class representing the log system in the GameEngine.
+            </summary>
+            <remarks>Viewers can used events from the log system to show informations</remarks>
+        </member>
+        <member name="M:PH.Core.Log.#ctor">
+            <summary>
+            Constructor
+            </summary>
+            <remarks>In the constructor, StartDate is set to DateTime.Now</remarks>
+        </member>
+        <member name="M:PH.Core.Log.ToString">
+            <summary>
+            Return a line for each LogItem with LogItem.ToString()
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PH.Core.Log.OnItemInserted(PH.Core.LogItemInsertedEventArgs)">
+            <exclude/>
+        </member>
+        <member name="P:PH.Core.Log.Items">
+            <summary>
+            Collection of LogItem in the log
+            </summary>
+        </member>
+        <member name="P:PH.Core.Log.Separator">
+            <summary>
+            Separator used for separation between fields in the logItem
+            </summary>
+            <remarks>Default is ';'</remarks>
+        </member>
+        <member name="P:PH.Core.Log.StartDate">
+            <summary>
+            Initial date for stamp of all logItems
+            </summary>
+        </member>
+        <member name="E:PH.Core.Log.LogItemInserted">
+            <exclude/>
+        </member>
+        <member name="T:PH.Core.LogItemInsertedEventHandler">
+            <summary>
+            Delegate used by LogItemInserted Event
+            </summary>
+        </member>
+        <member name="T:PH.Core.LogItemInsertedEventArgs">
+            <summary>
+            EventArgs containing informations about the LogItem added in the LogItemInserted Event
+            </summary>
+        </member>
+        <member name="M:PH.Core.LogItemInsertedEventArgs.#ctor(PH.Core.LogItem)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="item">LogItem added</param>
+        </member>
+        <member name="P:PH.Core.LogItemInsertedEventArgs.Item">
+            <summary>
+            LogItem added
+            </summary>
+        </member>
+        <member name="T:PH.Core.LogItem">
+            <summary>
+            Class representing informations added to the log system
+            </summary>
+        </member>
+        <member name="M:PH.Core.LogItem.#ctor">
+            <summary>
+            Default constructor. TimeStamp of the LogItem is DateTime.Now
+            </summary>
+        </member>
+        <member name="M:PH.Core.LogItem.#ctor(PH.Core.LogItemCategory,System.String,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="category">Category of your choice of the LogItem</param>
+            <param name="sender">Name of the sender that add this LogItem</param>
+            <param name="description">More informations about the LogItem</param>
+        </member>
+        <member name="M:PH.Core.LogItem.#ctor(System.String,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="sender">Name of the sender that add this LogItem</param>
+            <param name="description">More informations about the LogItem</param>
+            <remarks>Category is set to Information</remarks>
+        </member>
+        <member name="M:PH.Core.LogItem.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="description">More informations about the LogItem</param>
+            <remarks>Category is set to Information and sender is set to String.Empty</remarks>
+        </member>
+        <member name="M:PH.Core.LogItem.ToString">
+            <summary>
+            Return a string representing the LogItem
+            </summary>
+            <returns>return DateFromStart (in ms) + Category + Sender + Description, all seperated by LogOwner separator (default ';')</returns>
+        </member>
+        <member name="P:PH.Core.LogItem.LogOwner">
+            <summary>
+            reference to the Log object
+            </summary>
+        </member>
+        <member name="P:PH.Core.LogItem.Category">
+            <summary>
+            Category of the LogItem
+            </summary>
+        </member>
+        <member name="P:PH.Core.LogItem.Sender">
+            <summary>
+            Sender of the LogItem
+            </summary>
+        </member>
+        <member name="P:PH.Core.LogItem.Description">
+            <summary>
+            Description of the LogItem
+            </summary>
+        </member>
+        <member name="P:PH.Core.LogItem.InsertDate">
+            <summary>
+            Date when the LogItem is created
+            </summary>
+        </member>
+        <member name="P:PH.Core.LogItem.DateFromStart">
+            <summary>
+            TimeSpan between date when the LogItem is created and StartDate of the LogOwner (type Log)
+            </summary>
+        </member>
+        <member name="T:PH.Core.LogItemCollection">
+            <summary>
+            Typed collection of LogItem
+            </summary>
+        </member>
+        <member name="M:PH.Core.LogItemCollection.#ctor(PH.Core.Log)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="owner">Log object that own this collection</param>
+        </member>
+        <member name="M:PH.Core.LogItemCollection.Add(PH.Core.LogItem)">
+            <summary>
+            Add a logItem to the collection
+            </summary>
+            <param name="item">LogItem</param>
+            <returns>number of LogItem in the collection</returns>
+        </member>
+        <member name="M:PH.Core.LogItemCollection.Add(PH.Core.LogItemCategory,System.String,System.String)">
+            <summary>
+            Add a logItem to the collection
+            </summary>
+            <param name="category">Category of the LogItem</param>
+            <param name="sender">Sender of the LogItem</param>
+            <param name="description">Description of the LogItem</param>
+            <returns>number of LogItem in the collection</returns>
+        </member>
+        <member name="M:PH.Core.LogItemCollection.Add(System.String,System.String)">
+            <summary>
+            Add a logItem to the collection
+            </summary>
+            <param name="sender">Sender of the LogItem</param>
+            <param name="description">Description of the LogItem</param>
+            <returns>number of LogItem in the collection</returns>
+        </member>
+        <member name="M:PH.Core.LogItemCollection.Add(System.String)">
+            <summary>
+            Add a logItem to the collection
+            </summary>
+            <param name="description">Description of the LogItem</param>
+            <returns>number of LogItem in the collection</returns>
+        </member>
+        <member name="P:PH.Core.LogItemCollection.Owner">
+            <summary>
+            Owner (Log type) of the collection
+            </summary>
+        </member>
+        <member name="P:PH.Core.LogItemCollection.Item(System.Int32)">
+            <summary>
+            Return a LogItem from the collection with its index
+            </summary>
+            <remarks>If index is not valid, return null (Nothing in VB .NET)</remarks>
+        </member>
+        <member name="T:PH.Core.LogItemCategory">
+            <summary>
+            Different type of Category
+            </summary>
+        </member>
+        <member name="F:PH.Core.LogItemCategory.Information">
+            <summary>
+            Not important, just information
+            </summary>
+        </member>
+        <member name="F:PH.Core.LogItemCategory.Important">
+            <summary>
+            Important information
+            </summary>
+        </member>
+        <member name="F:PH.Core.LogItemCategory.Critical">
+            <summary>
+            Critical information
+            </summary>
+        </member>
+        <member name="T:PH.Common.Recorder.NewTurnEventArgs">
+            <exclude/>
+        </member>
+        <member name="T:PH.Common.NanoBotTypeCollection">
+            <exclude />
+        </member>
+        <member name="M:PH.Common.NanoBotTypeCollection.Add(System.Type)">
+            <summary>
+            Ajoute le type dérivant de Element dans la collection
+            </summary>
+            <param name="type">Le type ajouté</param>
+            <remarks>Si le type ne dérive pas de Element, il n'est pas ajouté dans la collection. Aucune exception n'est levée</remarks>
+        </member>
+        <member name="P:PH.Common.NanoBotTypeCollection.Item(System.Int32)">
+            <summary>
+            Retourne le type de la collection suivant son index
+            </summary>
+        </member>
+        <member name="T:PH.Common.PlayerState">
+            <exclude/>
+        </member>
+        <member name="P:PH.Common.PlayerState.Mission">
+            <summary>
+            mission of the player
+            </summary>
+        </member>
+        <member name="P:PH.Common.PlayerState.IsAIDead">
+            <summary>
+            Indicate if player AI is dead
+            </summary>
+        </member>
+        <member name="T:PH.Common.PlayerCollection">
+            <exclude />
+        </member>
+        <member name="M:PH.Common.PlayerCollection.Add(PH.Common.Player)">
+            <summary>
+            Used by Game Engine
+            </summary>
+            <param name="player">Player</param>
+        </member>
+        <member name="M:PH.Common.PlayerCollection.getPlayerByID(System.Int32)">
+            <summary>
+            Used by Game Engine
+            </summary>
+            <param name="PlayerID">ID of the player</param>
+            <returns>Player</returns>
+        </member>
+        <member name="M:PH.Common.PlayerCollection.getPlayerID(System.String)">
+            <summary>
+            Used by Game Engine
+            </summary>
+            <param name="name">Player's name</param>
+            <returns>Player</returns>
+        </member>
+        <member name="M:PH.Common.PlayerCollection.RemovePlayerByID(System.Int32)">
+            <summary>
+            Used by Game Engine
+            </summary>
+            <param name="PlayerID">ID of the player</param>
+            <returns>True or False ;-)</returns>
+        </member>
+        <member name="P:PH.Common.PlayerCollection.Item(System.Int32)">
+            <summary>
+            Used by Game Engine
+            </summary>
+        </member>
+        <member name="T:PH.Common.NanoIPCreator">
+            <summary>
+            <img src="IPCreator.jpg"/>
+            <para>NanoIPCreator allow you to create a new Injection Point on another point in the tissue.</para>
+            <para>
+            You can create a new IP by using OpenIP method. This will set its state to CreatingIP. As soon as it start creating a new IP, life of the NanoIPCreator is limited to 500 turns (even if it stop creating IP). After 500 turns, it will die.
+            </para>
+            </summary>
+        </member>
+        <member name="M:PH.Common.NanoIPCreator.OpenIP">
+            <summary>
+            Create a new Injection Point where bots can be introduce in the tissue
+            </summary>
+            <returns>true if it's state is WaitingOrders</returns>
+        </member>
+        <member name="M:PH.Common.NanoIPCreator.CloseIP">
+            <summary>
+            Stop opening Injection Point and set its state to WaitingOrders.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:PH.Common.NanoIPCreator.NbrTurnBeforeDeath">
+            <summary>
+            Number of turn before this bot will be destroyed
+            </summary>
+        </member>
+        <member name="P:PH.Common.NanoIPCreator.IPCreated">
+            <summary>
+            Indicate that the NanoIPCreator havec already opened an Injection Point.
+            </summary>
+        </member>
+        <member name="T:PH.Common.InjectionPointInfo">
+            <summary>
+            <img src="injection.jpg"/><br/>
+            Description of InjectionPoint discovered
+            </summary>
+        </member>
+        <member name="P:PH.Common.InjectionPointInfo.Location">
+            <summary>
+            Location of the Injection Point
+            </summary>
+        </member>
+        <member name="P:PH.Common.InjectionPointInfo.PlayerID">
+            <summary>
+            ID of the owner (if 0, it's Pierre Injection Point)
+            </summary>
+        </member>
+        <member name="T:PH.Mission.AIAliveObjective">
+            <summary>
+            Objective for AI: must be alive at turn x
+            </summary>
+        </member>
+        <member name="M:PH.Mission.AIAliveObjective.UpdateStatus(System.Int32,System.Int32,System.Int32,PH.Common.NanoBotInfo[])">
+            <summary>
+            Return the status of the objective for a player
+            </summary>
+            <param name="playerID">ID of the player</param>
+            <param name="playerScore">Current Score of the player</param>
+            <param name="turn">Current turn</param>
+            <param name="bots">Array of bots in the tissue (including Pierre'Team)</param>
+            <returns>Status of the objective for the player</returns>
+        </member>
+        <member name="P:PH.Mission.AIAliveObjective.AliveTurn">
+            <summary>
+            Which Turn AI must be alive
+            </summary>
+        </member>
+        <member name="P:PH.Mission.AIAliveObjective.Description">
+            <summary>
+            Description
+            </summary>
+        </member>
+        <member name="P:PH.Mission.AIAliveObjective.ID">
+            <summary>
+            Unique ID of the objective
+            </summary>
+        </member>
+        <member name="T:PH.Common.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:PH.Common.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:PH.Common.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:PH.Network.ServerMessage">
+            <exclude/>
+        </member>
+        <member name="T:PH.Network.GameServerState">
+            <exclude/>
+        </member>
+        <member name="T:PH.Common.NanoBotState">
+            <summary>
+            State of the Nanobot
+            </summary>
+        </member>
+        <member name="F:PH.Common.NanoBotState.WaitingOrders">
+            <summary>
+            Nanobot is still. It wait for orders
+            </summary>
+        </member>
+        <member name="F:PH.Common.NanoBotState.Moving">
+            <summary>
+            Nanobot is moving. You can't assign him new orders. Its property PointInfo is the location where it is moving.
+            To know points of its path, use PathPoints(index) methode of the NanoMoveable.
+            </summary>
+        </member>
+        <member name="F:PH.Common.NanoBotState.Defending">
+            <summary>
+            Nanobot is defending. You can't assign him new orders. Its property PointInfo is the location where it is defending.
+            </summary>
+        </member>
+        <member name="F:PH.Common.NanoBotState.Collecting">
+            <summary>
+            Nanobot is collecting AZN. You can't assign him new orders. Its property PointInfo is the location where AZN Injection point must be.
+            </summary>
+        </member>
+        <member name="F:PH.Common.NanoBotState.TransferingStock">
+            <summary>
+            Nanobot is transfering its AZN to a NanoNeedle. You can't assign him new orders. Its property PointInfo is the location where NAnoNeedle must be.
+            </summary>
+        </member>
+        <member name="F:PH.Common.NanoBotState.Building">
+            <summary>
+            Nanobot is building a new Nanobot. You can't assign him new orders.
+            </summary>
+            <remarks>Only NanoAI can build other bots</remarks>
+        </member>
+        <member name="F:PH.Common.NanoBotState.CreatingIP">
+            <summary>
+            The Nanobot have opened and created a new Injection Point. Bots can arrive in the tissue from this new point.
+            </summary>
+            <remarks>Only NanoIPCreator can do that</remarks>
+        </member>
+        <member name="T:PH.Common.NanoNeuroControler">
+            <summary>
+            <img src="controller.jpg"/>
+            <para>Class used only by Pierre team. You can't use it.</para>
+            </summary>
+        </member>
+        <member name="T:PH.Common.Recorder.GameOverEventArgs">
+            <summary>
+            Class used by GameOverEvent.
+            </summary>
+        </member>
+        <member name="T:PH.Network.GameDescription">
+            <exclude/>
+        </member>
+        <member name="T:PH.Common.NanoContainer">
+            <summary>
+            <img src="container.jpg"/>
+            <para>Class representing a NanobotContainer</para>
+            </summary>
+            <remarks>NanobotContainer are like NanoCollector but can contains more AZN but can't defend.</remarks>
+        </member>
+        <member name="T:PH.Mission.NavPoint">
+            <exclude/>
+        </member>
+        <member name="P:PH.Mission.NavPoint.Location">
+            <summary>
+            Where the goal must be accomplish
+            </summary>
+            <remarks>If Point == Point.Empty, no matter where bot is</remarks>
+        </member>
+        <member name="P:PH.Mission.NavPoint.Stock">
+            <summary>
+            Stock of the bot when goal is accomplished
+            </summary>
+            <remarks>If set to -1, no matter the stock of the bot</remarks>
+        </member>
+        <member name="P:PH.Mission.NavPoint.StartTurn">
+            <summary>
+            Which Turn
+            </summary>
+        </member>
+        <member name="T:PH.Core.NewTurnEventHandler">
+            <summary>
+            For internal use only.
+            </summary> 
+        </member>
+        <member name="T:PH.Core.GameOverEventHandler">
+            <summary>
+            For internal use only.
+            </summary> 
+        </member>
+        <member name="T:PH.Core.GameEngine">
+            <exclude />
+        </member>
+        <member name="M:PH.Core.GameEngine.#ctor">
+            <summary>
+            Empty constructor
+            </summary>
+        </member>
+        <member name="M:PH.Core.GameEngine.OnNewTurn(PH.Common.Recorder.NewTurnEventArgs)">
+            <summary>
+            Déclenche l'évènement Nouveau tour
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:PH.Core.GameEngine.StartGame">
+            <summary>
+            Indique si le jeu est démarré ou non
+            </summary>
+        </member>
+        <member name="M:PH.Core.GameEngine.StopGame">
+            <summary>
+            Arrête le jeu
+            </summary>
+        </member>
+        <member name="M:PH.Core.GameEngine.RecorderStart(System.String)">
+            <summary>
+            Initialise le recorder et écrit le Game Description
+            </summary>
+            <param name="recordFileName"></param>
+        </member>
+        <member name="E:PH.Core.GameEngine.NewTurn">
+            <summary>
+            Evènement déclenché à chaque tour
+            </summary>
+        </member>
+        <member name="P:PH.Core.GameEngine.Tissue">
+            <summary>
+            La planète utilisée dans la partie
+            </summary>
+        </member>
+        <member name="P:PH.Core.GameEngine.GeneralLog">
+            <summary>
+            Log for external applications
+            </summary>
+        </member>
+        <member name="T:PH.Network.Server">
+            <exclude/>
+        </member>
+        <member name="T:PH.Common.NanoExplorer">
+            <summary>
+            <img src="explorer.jpg"/>
+            <para>Class representing a NanoExplorer.</para>
+            </summary>
+            <remarks>A NanoExplorer move fast in the tissue. They are not sensitive to blood density</remarks>
+        </member>
+        <member name="P:PH.Common.NanoExplorer.NanoBotType">
+            <summary>
+            return NanoBotTypeEnum.NanoExplorer
+            </summary>
+        </member>
+        <member name="T:PH.Common.NanoBotValidator">
+            <summary>
+            Class helper to validate a player assembly. Used by Game Engine
+            </summary>
+        </member>
+        <member name="M:PH.Common.NanoBotValidator.Valid(System.Type)">
+            <summary>
+            Validate a Nanobot Type in the player assembly
+            </summary>
+            <param name="nanoBotType">Type to validate</param>
+            <returns>If type is valid, return an instance of CharactericticsAttribute. Either, throw an exception</returns>
+        </member>
+    </members>
+</doc>

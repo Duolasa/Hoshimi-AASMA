@@ -1,0 +1,351 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+PH.Map
+</name>
+</assembly>
+<members>
+<member name="P:PH.Map.My.Resources.MyResources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:PH.Map.My.Resources.MyResources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:PH.Map.My.Resources.MyResources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="F:PH.Map.BloodStreamDirection.NorthSouth">
+	<summary>
+ Movements are slower if you move South to North
+ </summary>
+</member><member name="F:PH.Map.BloodStreamDirection.SouthNorth">
+	<summary>
+ Movements are slower if you move North to South
+ </summary>
+</member><member name="F:PH.Map.BloodStreamDirection.WestEst">
+	<summary>
+ Movements are slower if you move Est to West
+ </summary>
+</member><member name="F:PH.Map.BloodStreamDirection.EstWest">
+	<summary>
+ Movements are slower if you move West to Est
+ </summary>
+	<remarks></remarks>
+</member><member name="T:PH.Map.BloodStreamDirection">
+	<summary>
+ Direction of the stream
+ </summary>
+</member><member name="T:PH.Map.Utility">
+	<exclude/>
+</member><member name="P:PH.Map.Entity.EntityType">
+	<summary>
+ Type of the entity
+ </summary>
+	<returns>AZN or Hoshimi</returns>
+</member><member name="P:PH.Map.Entity.X">
+	<summary>
+ X location on the map of the entity
+ </summary>
+</member><member name="P:PH.Map.Entity.Y">
+	<summary>
+ Y location on the map of the entity
+ </summary>
+</member><member name="P:PH.Map.Entity.Location">
+	<summary>
+ Location of the Entity
+ </summary>
+</member><member name="P:PH.Map.Entity.Actif">
+	<summary>
+ Indicate if the entity is active
+ </summary>
+	<remarks>Don't take care about this property. Perhaps for next year competition</remarks>
+</member><member name="T:PH.Map.Entity">
+	<summary>
+Represent an Hoshimi or AZN Point
+</summary>
+</member><member name="P:PH.Map.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:PH.Map.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:PH.Map.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="F:PH.Map.RegionType.Red">
+	<summary>
+ red region
+ </summary>
+</member><member name="F:PH.Map.RegionType.White">
+	<summary>
+ white region
+ </summary>
+</member><member name="F:PH.Map.RegionType.Blue">
+	<summary>
+ blue region
+ </summary>
+</member><member name="T:PH.Map.RegionType">
+	<summary>
+ Different type of region
+ </summary>
+	<remarks>Only used for aspect in viewers. No influence on your code</remarks>
+</member><member name="F:PH.Map.AreaEnum.LowDensity">
+	<summary>
+ Faster move. Red in the 2D viewer
+ </summary>
+</member><member name="F:PH.Map.AreaEnum.MediumDensity">
+	<summary>
+ Medium move. Green in 2D viewer
+ </summary>
+</member><member name="F:PH.Map.AreaEnum.HighDensity">
+	<summary>
+ Slower move. Blue un2D viewer
+ </summary>
+</member><member name="F:PH.Map.AreaEnum.Special">
+	<summary>
+ Not used
+ </summary>
+</member><member name="F:PH.Map.AreaEnum.Vessel">
+	<summary>
+ Not used
+ </summary>
+</member><member name="F:PH.Map.AreaEnum.Bone">
+	<summary>
+ Movement are not allowed. Black in 2D viewer
+ </summary>
+</member><member name="T:PH.Map.AreaEnum">
+	<summary>
+ Indicate the blood density of a cell
+ </summary>
+	<remarks>Special and Vessel are not used. In high density, your bots move slower than in LowDensity</remarks>
+</member><member name="P:PH.Map.Tissue.Width">
+	<summary>
+ Width of the tissue
+ </summary>
+	<remarks>Always 200</remarks>
+</member><member name="P:PH.Map.Tissue.Height">
+	<summary>
+ Height of the tssue
+ </summary>
+	<remarks>Always 200</remarks>
+</member><member name="P:PH.Map.Tissue.FileName">
+	<summary>
+ Name of the file
+ </summary>
+</member><member name="P:PH.Map.Tissue.Entities">
+	<summary>
+ Collection of entities (AZN and Hoshimi points) in the tissue
+ </summary>
+</member><member name="P:PH.Map.Tissue.BloodStreams">
+	<summary>
+ Collection of streams in the tissue
+ </summary>
+</member><member name="P:PH.Map.Tissue.EntitiesByType(PH.Map.EntityEnum)">
+	<summary>
+ Collection of entities of the specified type
+ </summary>
+	<param name="EntityType">Type of entities wanted</param>
+</member><member name="P:PH.Map.Tissue.Item(System.Int32,System.Int32)">
+	<summary>
+ Return the cell at (x,y). Throw an exception if outside of the tissue
+ </summary>
+	<param name="x">x location</param>
+	<param name="y">y location</param>
+</member><member name="M:PH.Map.Tissue.GetEntitiesByType(PH.Map.EntityEnum)">
+	<summary>
+ Return collection of entities of the specified type. Same as EntitiesByType property
+ </summary>
+	<param name="entType">Type of entities wanted</param>
+</member><member name="M:PH.Map.Tissue.CreateFromBitmap(System.String)">
+	<summary>
+ Create a tissue from a bitmap file
+ </summary>
+	<param name="sBitmapFileName">name of the file of the bitmap</param>
+	<returns>the tissue created</returns>
+</member><member name="M:PH.Map.Tissue.CreateFromBitmap(System.Drawing.Bitmap)">
+	<summary>
+ Create a tissue from a bitmap
+ </summary>
+	<param name="oBitmap">the bitmap</param>
+	<returns>the tissue created</returns>
+</member><member name="M:PH.Map.Tissue.Create(System.String)">
+	<summary>
+ Create a tissue from a tissue (.tsu) file
+ </summary>
+	<param name="sFileName">name of the tissue file</param>
+	<returns>the tissue created</returns>
+</member><member name="M:PH.Map.Tissue.SetBitmap(System.Drawing.Bitmap)">
+	<summary>
+ set a bitmap to the tissue. Create all cells from this bitmap
+ </summary>
+	<param name="oBitmap">bitmap</param>
+	<returns>true if no error occur</returns>
+</member><member name="M:PH.Map.Tissue.Save">
+	<summary>
+ Save the tissue to a .tsu file
+ </summary>
+</member><member name="M:PH.Map.Tissue.ExtractPicture">
+	<summary>
+ Create a bitmap from the tissue
+ </summary>
+	<returns>the bitmap</returns>
+</member><member name="M:PH.Map.Tissue.ExtractPicture(System.Int32)">
+	<summary>
+ Create a bitmap with a zoom (for better aspect)
+ </summary>
+	<param name="Zoom">zoom factor</param>
+	<returns>the bitmap created</returns>
+</member><member name="M:PH.Map.Tissue.getElement(System.Int32,System.Int32)">
+	<summary>
+ Get the first entity from a location (x,y)
+ </summary>
+	<param name="x">x location</param>
+	<param name="y">y location</param>
+	<returns>The entity if there is one, either return null (nothing in VB .NET)</returns>
+	<remarks></remarks>
+</member><member name="M:PH.Map.Tissue.IsInMap(System.Int32,System.Int32)">
+	<summary>
+ Indicate if the location is in the tissue
+ </summary>
+	<param name="iX">x</param>
+	<param name="iY">y</param>
+	<returns>true if in the tissue, either false</returns>
+</member><member name="M:PH.Map.Tissue.IsInStream(System.Int32,System.Int32)">
+	<summary>
+ Return a reference to the BloodStream if there is one at the location
+ </summary>
+	<param name="X">x</param>
+	<param name="Y">y</param>
+	<returns>The reference to the Bloodstream. If therre is no BloodStream, return null (Nothing for VB .NET)</returns>
+	<remarks></remarks>
+</member><member name="M:PH.Map.Tissue.GetEntityTXT">
+	<exclude/>
+</member><member name="M:PH.Map.Tissue.SetEntityTXT(System.String)">
+	<exclude/>
+</member><member name="M:PH.Map.Tissue.GetStreamTXT">
+	<exclude/>
+</member><member name="M:PH.Map.Tissue.SetStreamTXT(System.String)">
+	<exclude/>
+</member><member name="T:PH.Map.Tissue">
+	<summary>
+		<img src="carte.jpg"/><br/>
+ The map of the mission
+ </summary>
+	<remarks></remarks>
+</member><member name="P:PH.Map.BloodStream.X">
+	<summary>
+ X location of the stream
+ </summary>
+</member><member name="P:PH.Map.BloodStream.Y">
+	<summary>
+ Y location of the stream
+ </summary>
+</member><member name="P:PH.Map.BloodStream.Width">
+	<summary>
+ Width of the stream
+ </summary>
+</member><member name="P:PH.Map.BloodStream.Height">
+	<summary>
+ Height of the stream
+ </summary>
+</member><member name="P:PH.Map.BloodStream.Direction">
+	<summary>
+ Direction of the stream
+ </summary>
+</member><member name="P:PH.Map.BloodStream.Location">
+	<summary>
+ Location of the stream (top-left)
+ </summary>
+</member><member name="P:PH.Map.BloodStream.Size">
+	<summary>
+ Size of the stream
+ </summary>
+</member><member name="P:PH.Map.BloodStream.Rectangle">
+	<summary>
+ Rectangle of the stream
+ </summary>
+</member><member name="T:PH.Map.BloodStream">
+	<summary>
+		<img src="flux.jpg"/><br/>
+ Represente a stream in the map
+ </summary>
+</member><member name="M:PH.Map.EntityCollection.Add(PH.Map.EntityEnum,System.Int32,System.Int32)">
+	<summary>
+ Add an entity to the collection
+ </summary>
+	<param name="TypeA">type of the entity (AZN or Hoshimi)</param>
+	<param name="XA">X location</param>
+	<param name="YA">Y location</param>
+	<returns>The entity added</returns>
+</member><member name="P:PH.Map.EntityCollection.Item(System.Int32)">
+	<summary>
+ Entity in the collection
+ </summary>
+	<param name="Index">index in the collection</param>
+	<returns>the entity</returns>
+	<remarks>Throw an exception if outside the collection</remarks>
+</member><member name="M:PH.Map.EntityCollection.Remove(PH.Map.Entity)">
+	<summary>
+ Remove an entity
+ </summary>
+	<param name="oElt">Entity to remove</param>
+</member><member name="T:PH.Map.EntityCollection">
+	<summary>
+ Typed collection of entities (AZN or Hoshimi points)
+ </summary>
+</member><member name="P:PH.Map.Cell.X">
+	<summary>
+ X location of the cell
+ </summary>
+</member><member name="P:PH.Map.Cell.Y">
+	<summary>
+ Y location of the cell
+ </summary>
+</member><member name="P:PH.Map.Cell.Location">
+	<summary>
+ Location of the Cell
+ </summary>
+</member><member name="P:PH.Map.Cell.AreaType">
+	<summary>
+ Type of blood of the cell
+ </summary>
+</member><member name="P:PH.Map.Cell.Region">
+	<summary>
+ Region type of the cell
+ </summary>
+	<remarks>Region are only for aspect, no influences for the movements of your bots</remarks>
+</member><member name="M:PH.Map.Cell.Clone">
+	<summary>
+ Create a clone of the cell
+ </summary>
+</member><member name="T:PH.Map.Cell">
+	<summary>
+ Represent a cell in the tissue
+ </summary>
+</member><member name="F:PH.Map.EntityEnum.AZN">
+	<summary>
+		<img src="azn.jpg"/><br/>
+ Represent a point where you can collect AZN molecules
+ </summary>
+</member><member name="F:PH.Map.EntityEnum.HoshimiPoint">
+	<summary>
+		<img src="hoshimi.jpg"/><br/>
+ Represent a point where you can inject AZN molecule
+ </summary>
+</member><member name="T:PH.Map.EntityEnum">
+	<summary>
+ Different type of entity in a tissue
+ </summary>
+	<remarks></remarks>
+</member>
+</members>
+</doc>

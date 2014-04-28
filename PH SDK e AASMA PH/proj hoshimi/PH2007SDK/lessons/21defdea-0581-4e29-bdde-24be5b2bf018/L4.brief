@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<Mission xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Description />
+  <Objectives>
+    <BaseObjective xsi:type="NeuroControllerObjective">
+      <Bonus>1000</Bonus>
+      <Status>ToBeDone</Status>
+      <Value>0</Value>
+      <StartTurn>1400</StartTurn>
+      <EndTurn>1499</EndTurn>
+      <NumberOfNeuroControler>0</NumberOfNeuroControler>
+    </BaseObjective>
+  </Objectives>
+</Mission>

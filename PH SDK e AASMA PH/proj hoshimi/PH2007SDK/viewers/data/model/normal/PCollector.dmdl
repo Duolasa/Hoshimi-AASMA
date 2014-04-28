@@ -1,0 +1,9 @@
+name = 'PCollector'
+groups = {
+{
+  fx = 'entity', pri = 0,
+  params = {
+	  { 'tex', 'tBase', 'PCollector' },
+  },
+},
+}

@@ -1,0 +1,685 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<head>
+<meta http-equiv="Content-Language" content="fr" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled 1</title>
+<link rel="stylesheet" type="text/css" href="..\css\msdn.css" />
+</head>
+
+<body>
+
+<h1 style="text-align: left">
+Tutorials for Developpers</h1>
+<h2 style="text-align: left">
+Injection Point, Move your NanoAI, create a NanoCollector</h2>
+<p style="text-align: left">
+&nbsp;</p>
+<p style="text-align: left">
+&nbsp;</p>
+<p>At the end of this tutorial, you will be able to create de dll for Project 
+Hoshimi, inject your NanoAI in the tissue, move it and build a NanoCollector.</p>
+<h3>Configure your developper tool</h3>
+<p>You can use Visual Basic 2005 Express Edition, Visual C# Express Edition or 
+any version of Visual Studio 2005. For those tutorials, I have used Express 
+Editions.</p>
+<p>Launch your developper tool, create a new Project and choose Class Library.</p>
+<p>By default, it create de class called Class1 that you can delete. The first thing to do is to add references to Project Hoshimi main librairies. 
+Those two dlls are:</p>
+<ul>
+	<li>PH.Common.dll,</li>
+	<li>PH.Map.dll,</li>
+</ul>
+<p class="code">They are located in the Project Hoshimi Folder.</p>
+<div class="lang">
+<p class="langTitle">C#</p>
+<p>Look at the Solution Explorer:</p>
+<ol>
+	<li>Right click on References and Add Reference...</li>
+	<li>Select Browse Folder,</li>
+	<li>Go to Project Hoshimi Folder and select both files (by using Ctrl key),</li>
+	<li>Click on OK button.</li>
+	<li>Select both Reference in Solution Explorer,</li>
+	<li>Right click and Properties,</li>
+	<li>In Properties, set Copy Local to False.</li>
+	<li>Do the same with System.Drawing assembly with is in the .NET tab.</li>
+</ol>
+<p class="langTitle">Visual Basic</p>
+<p>Look at the Solution Explorer:</p>
+<ol>
+	<li>Double-click on My Project,</li>
+	<li>Select the References tab,</li>
+	<li>Click on Add button,</li>
+	<li>Go to Project Hoshimi Folder and select both files (by using Ctrl key),</li>
+	<li>Click on OK button.</li>
+	<li>Select both References,</li>
+	<li>In the Menu, click on View -&gt; Properties Window (or F4),</li>
+	<li>In the Properties Window, set Copy Local to False.</li>
+	<li>Do the same with System.Drawing assembly with is in the .NET tab.</li>
+</ol>
+</div>
+<p>It is important to set Copy Local to false. If you don&#39;t do that, when you 
+will build your assembly, it will copy both referenced files (PH.Common and 
+PH.Map) in the same folder than your assembly (dll): this is not required.</p>
+<p>There is still one thing to do to be ready to start: you must build your 
+assembly in the right folder.</p>
+<p>Project Hoshimi application allow you to play with assemblies which are in 
+the %Project Hoshimi Folder%/players. So you must target this folder for your 
+build.</p>
+<div class="lang">
+<p class="langTitle">C#</p>
+<ol>
+	<li>Double-click on Properties in Solution Explorer,</li>
+	<li>Go to Build tab,</li>
+	<li>In Output Path section, click on Browse and select %Project Hoshimi 
+	Folder%/players folder.</li>
+</ol>
+
+<p class="langTitle">Visual Basic</p>
+<ol>
+	<li>Double-click on My Project in Solution Explorer,</li>
+	<li>Go to Compile tab,</li>
+	<li>In Build Output Path, click on Browse and select %Project Hoshimi 
+	Folder%/players folder.</li>
+</ol>
+<p>NB: I recommand you to set Option Strict to On in the Build tab, you&#39;ll learn 
+a lot doing so in all your developments.</p>
+</div>
+<p>&nbsp;</p>
+
+<p>Save your project (you can save it in %Project Hoshimi Folder%/Developpers).</p>
+<p>You are now ready to start your development.</p>
+<h3>Create myPlayer</h3>
+<p>If you want to play with Project Hoshimi, you must be recognize as a Player. 
+To do so, your assembly must contain one (and only one) class that inherits from 
+PH.Common.Player class.</p>
+<p>So add a new class in your project name MyPlayer (right-click in Solution 
+Explorer then Add -&gt; Class) and write the following code:</p>
+<div class="lang">
+<p class="langTitle">C#</p>
+<font SIZE="2">
+<p></font><font SIZE="2" COLOR="#0000ff">public</font><font SIZE="2"> </font>
+<font SIZE="2" COLOR="#0000ff">class</font><font SIZE="2"> </font>
+<font SIZE="2" COLOR="#008080">myPlayer</font><font SIZE="2"> : PH.Common.</font><font SIZE="2" COLOR="#008080">Player</p>
+</font><font SIZE="2">
+<p>{}</p>
+</font>
+
+<p class="langTitle">Visual Basic</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;"><span style="color: blue;">Public</span>
+	<span style="color: blue;">Class</span> myPlayer</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+	Inherits</span> PH.Common.Player</p>
+	<p style="margin: 0px;"><span style="color: blue;">End</span>
+	<span style="color: blue;">Class</span></p>
+</div>
+<!--EndFragment-->
+</div>
+<p>This is the most important class of your assembly: everything starts in this 
+class.</p>
+<h3>Define my flag</h3>
+<p>You can define a flag for your player. You must create a bitmap file, 64 * 64 
+pixels. Then, import it in your project:</p>
+<div class="lang">
+<p class="langTitle">C#</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<ul>
+		<li>Double-click on Properties in Solution Explorer<span style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 70%">,</span></li>
+		<li>Select Resources tab,</li>
+		<li>Click on Add Resources -&gt; Existing File.. and select your bitmap 
+		file<span style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 70%">,</span></li>
+	</ul>
+	<p>Then you must override the Flag property of your class:</p>
+	<div style="font-family: Courier New; font-size: 10pt; color: black;">
+		<p style="margin: 0px;"><span style="color: blue;">public</span>
+		<span style="color: blue;">override</span> System.Drawing.<span style="color: teal;">Bitmap</span> 
+		Flag</p>
+		<p style="margin: 0px;">{</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		get</span>{<span style="color: blue;">return</span> Properties.<span style="color: teal;">Resources</span>.rcFlag;}</p>
+		<p style="margin: 0px;">}</p>
+	</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+<p class="langTitle">Visual Basic</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<div style="font-family: Courier New; font-size: 10pt; color: black; ">
+	<ul>
+		<li>Double-click on <span>My Project</span> in Solution Explorer<span style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 70%">,</span></li>
+		<li>Select Resources tab,</li>
+		<li>Click on Add Resources -&gt; Existing File.. and select your bitmap 
+		file<span style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 70%">,</span></li>
+	</ul>
+	<p>Then you must override the Flag property of your class:</p>
+	<div style="font-family: Courier New; font-size: 10pt; color: black;">
+		<p style="margin: 0px;"><span style="color: blue;">Public</span>
+		<span style="color: blue;">Overrides</span> <span style="color: blue;">
+		ReadOnly</span> <span style="color: blue;">Property</span> Flag()
+		<span style="color: blue;">As</span> System.Drawing.Bitmap</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		Get</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">Return</span> <span style="color: blue;">My</span>.Resources.rcFlag</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		End</span> <span style="color: blue;">Get</span></p>
+		<p style="margin: 0px;"><span style="color: blue;">End</span>
+		<span style="color: blue;">Property</span></p>
+	</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+</div>
+<p>You are ready to start to write &quot;real code&quot;. </p>
+<h3>Events in Project Hoshimi</h3>
+<p>When you start a new game in Project Hoshimi, the application create a 
+GameEngine object. This object is THE manage of the game. It ask you want you 
+want to do, it does the same with the other player (if there is one), does the 
+same with Pierre&#39;s AI and validate all actions.</p>
+<p>To be a good labotory assistant, you must understand how it works:</p>
+<ul>
+	<li>First, it load you assembly, your AI and verify if it is valid (we will 
+	see in another tutorial what is a valid player),</li>
+	<li>It loads the tissue informations, mission and objectives,</li>
+	<li>Then it fire the ChooseInjectionPoint of each players including Pierre&#39;s 
+	AI,</li>
+	<li>Then the game starts and each turn, it fire a WhatToDoNext event for 
+	each player.</li>
+</ul>
+<p>So the two events in a PH.Common.Player class, are very importants.</p>
+<p>ChooseInjectionPoint: This event occur only one time and this is where you 
+must define your injection point. You do it by setting a value to 
+InjectionPointWanted property.</p>
+<p>WhatToDoNext: It occur each turn of the game. So, as there is 1500 turns in a 
+game, it occur 1500 times. BUT: this event is fired only if you are not 
+executing your code. If your code take a long time, you can miss turns.</p>
+<p>So you must listen to those events and this must be done in a constructor of 
+your class. Add the following code to your class:</p>
+<div class="lang">
+<p class="langTitle">C#</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;"><span style="color: blue;">public</span>
+	<span style="color: blue;">class</span> <span style="color: teal;">myPlayer</span> 
+	: PH.Common.<span style="color: teal;">Player</span></p>
+	<p style="margin: 0px;">{</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">public</span> 
+	myPlayer() { }</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">public</span> 
+	myPlayer(<span style="color: blue;">string</span> name,
+	<span style="color: blue;">int</span> ID): <span style="color: blue;">base</span>(name, 
+	ID)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; { </p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">this</span>.ChooseInjectionPoint +=
+	<span style="color: blue;">new</span> PH.Common.<span style="color: teal;">ChooseInjectionPointHandler</span>(myPlayer_ChooseInjectionPoint);</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">this</span>.WhatToDoNext +=
+	<span style="color: blue;">new</span> PH.Common.<span style="color: teal;">WhatToDoNextHandler</span>(myPlayer_WhatToDoNext);</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; }</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+	private</span> <span style="color: blue;">void</span> 
+	myPlayer_ChooseInjectionPoint()</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; {}</p>
+	<p style="margin: 0px;">&nbsp;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+	private</span> <span style="color: blue;">void</span> myPlayer_WhatToDoNext()</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; {}</p>
+	<p style="margin: 0px;">}</p>
+</div>
+<!--EndFragment-->
+<p class="langTitle">Visual Basic</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<div style="font-family: Courier New; font-size: 10pt; color: black; ">
+		<p style="margin: 0px;"><span style="color: blue;">Public</span>
+		<span style="color: blue;">Class</span> myPlayer</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		Inherits</span> PH.Common.Player</p>
+		<p style="margin: 0px;">&nbsp;</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		Public</span> <span style="color: blue;">Sub</span>
+		<span style="color: blue;">New</span>()</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		End</span> <span style="color: blue;">Sub</span></p>
+		<p style="margin: 0px;">&nbsp;</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		Public</span> <span style="color: blue;">Sub</span>
+		<span style="color: blue;">New</span>(<span style="color: blue;">ByVal</span> 
+		name <span style="color: blue;">As</span> <span style="color: blue;">
+		String</span>, <span style="color: blue;">ByVal</span> ID
+		<span style="color: blue;">As</span> <span style="color: blue;">Integer</span>)</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">MyBase</span>.New(name, ID)</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		End</span> <span style="color: blue;">Sub</span></p>
+		<p style="margin: 0px;">&nbsp;</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		Private</span> <span style="color: blue;">Sub</span> 
+		myPlayer_ChooseInjectionPointEvent() <span style="color: blue;">Handles</span>
+		<span style="color: blue;">Me</span>.ChooseInjectionPoint</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		End</span> <span style="color: blue;">Sub</span></p>
+		<p style="margin: 0px;">&nbsp;</p>
+		<p style="margin: 0px;">&nbsp;</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		Private</span> <span style="color: blue;">Sub</span> 
+		myPlayer_WhatToDoNextEvent() <span style="color: blue;">Handles</span>
+		<span style="color: blue;">Me</span>.WhatToDoNext</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		End</span> <span style="color: blue;">Sub</span></p>
+		<p style="margin: 0px;"><span style="color: blue;">End</span>
+		<span style="color: blue;">Class</span></p>
+	</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+</div>
+<p>It is really important to use both constructors but only the one with Name 
+and ID parameters is called by the Game Engine. Don&#39;t add any other line of code 
+in those constructors because you don&#39;t have any information at this moment (this 
+constructor is used by the GameEngine to validate your assembly, nothing else).</p>
+<h3>ChooseInjectionPoint event</h3>
+<p>This is where all begins. In this event, you have access already to a lot of 
+informations like:</p>
+<ul>
+	<li>Description of the tissue,</li>
+	<li>Informations about the objectives,</li>
+	<li>Where Pierre&#39;s NanoAI is injected,</li>
+	<li>Where Pierre build NeuroControllers,</li>
+	<li>etc.</li>
+</ul>
+<p>We must choose here where your NanoAI and most of your Nanobots must appear 
+in the tissue. You do this by setting InjectionPointWanted property. For example, 
+if you want to be injected at point (120, 50):</p>
+<div class="lang">
+<p class="langTitle">C#</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;"><span style="color: blue;">private</span>
+	<span style="color: blue;">void</span> myPlayer_ChooseInjectionPoint()</p>
+	<p style="margin: 0px;">{</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">this</span>.InjectionPointWanted 
+	= <span style="color: blue;">new</span> <span style="color: teal;">Point</span>(120, 
+	50);</p>
+	<p style="margin: 0px;">}</p>
+</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+<p class="langTitle">Visual Basic</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<div style="font-family: Courier New; font-size: 10pt; color: black; ">
+	<div style="font-family: Courier New; font-size: 10pt; color: black;">
+		<p style="margin: 0px;"><span style="color: blue;">Private</span>
+		<span style="color: blue;">Sub</span> myPlayer_ChooseInjectionPointEvent()
+		<span style="color: blue;">Handles</span> <span style="color: blue;">Me</span>.ChooseInjectionPoint</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">Me</span>.InjectionPointWanted 
+		= <span style="color: blue;">New</span> Point(120, 50)</p>
+		<p style="margin: 0px;"><span style="color: blue;">End</span>
+		<span style="color: blue;">Sub</span></p>
+	</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+</div>
+<p>It is important to know that you ask to be injected at point (120, 50) and 
+it&#39;s the responsability of the GameEngine to decide if it is right or not. For 
+example if the point (120, 50) is a bone area, it will decide for you a new 
+Injection Point, a valid injection point (usually in the center of the tissue, 
+near Pierre). In all the game, all you do is: &quot;I want to...&quot;, not &quot;I do this...&quot;. 
+You will understand this more clearly in the WhatToDoNext event secton of this 
+tutorial.</p>
+<h3>Test your Strategy</h3>
+<p>You can now test your strategy. Build your assembly then launch Project 
+Hoshimi Application.</p>
+<p>Go to developper section: if all goes right, you must see your player with 
+your flag in the player&#39;s list. If not, take a look at the bottom of the window 
+if there is any error messages.</p>
+<p>Select your player, select a mission and click on Start button. Game will 
+start and you&#39;ll see your NanoAI injected at point (120, 50) (only if this point 
+is not a bone -black- area).</p>
+<h3>WhatToDoNext event</h3>
+<p>As I said, each turn of the game, the WhatToDoNext event is fired. So it&#39;s in 
+this event that you will decide of the actions of your NanoAI and your different 
+Nanobot.</p>
+<p>You can ask to your NanoAI to do something with the AI property of your 
+player class. For example to move your AI to another point, you must use its 
+MoveTo(Point) method:</p>
+<div class="lang">
+<p class="langTitle">C#</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;"><span style="color: blue;">private</span>
+	<span style="color: blue;">void</span> myPlayer_WhatToDoNext()</p>
+	<p style="margin: 0px;">{</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">this</span>.AI.MoveTo(<span style="color: blue;">new</span>
+	<span style="color: teal;">Point</span>(100, 50));</p>
+	<p style="margin: 0px;">}</p>
+</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+<p class="langTitle">Visual Basic</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<div style="font-family: Courier New; font-size: 10pt; color: black; ">
+	<div style="font-family: Courier New; font-size: 10pt; color: black;">
+		<p style="margin: 0px;"><span style="color: blue;">Private</span>
+		<span style="color: blue;">Sub</span> myPlayer_WhatToDoNextEvent()
+		<span style="color: blue;">Handles</span> <span style="color: blue;">Me</span>.WhatToDoNext</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">Me</span>.AI.MoveTo(<span style="color: blue;">New</span> 
+		Point(100, 50))</p>
+		<p style="margin: 0px;"><span style="color: blue;">End</span>
+		<span style="color: blue;">Sub</span></p>
+	</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+</div>
+
+<p>BUT: your Nanobots can react to only one order, one action at the same time. 
+If the GameEngine detects that your NanoAI was doing another thing while you ask 
+to move it, it will not take in consideration your new action. In this case, the 
+MoveTo method will return false.</p>
+<p><strong>As I said before, you ask for something, but the GameEngine decide.</strong></p>
+<p>You can know if your NanoAI was doing somthing with its State property. If it 
+equals to WaitingOrders, so you can ask it to do a new action, otherwise you can 
+be sure that the GameEngine will refuse the new action. So the previous code can 
+be modified like this:</p>
+<div class="lang">
+<p class="langTitle">C#</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;"><span style="color: blue;">private</span>
+	<span style="color: blue;">void</span> myPlayer_WhatToDoNext()</p>
+	<p style="margin: 0px;">{</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">if</span> 
+	(<span style="color: blue;">this</span>.AI.State ==
+	<span style="color: teal;">NanoBotState</span>.WaitingOrders)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">this</span>.AI.MoveTo(<span style="color: blue;">new</span>
+	<span style="color: teal;">Point</span>(100, 50));</p>
+	<p style="margin: 0px;">}</p>
+</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+<p class="langTitle">Visual Basic</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<div style="font-family: Courier New; font-size: 10pt; color: black; ">
+	<div style="font-family: Courier New; font-size: 10pt; color: black;">
+		<p style="margin: 0px;"><span style="color: blue;">Private</span>
+		<span style="color: blue;">Sub</span> myPlayer_ChooseInjectionPointEvent()
+		<span style="color: blue;">Handles</span> <span style="color: blue;">Me</span>.ChooseInjectionPoint</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">If</span> 
+		(<span style="color: blue;">Me</span>.AI.State = 
+		NanoBotState.WaitingOrders) <span style="color: blue;">Then</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">Me</span>.AI.MoveTo(<span style="color: blue;">New</span> 
+		Point(100, 50))</p>
+		<p style="margin: 0px;"><span style="color: blue;">End</span>
+		<span style="color: blue;">Sub</span></p>
+	</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+</div>
+
+<p>When you use the MoveTo action, the GameEngine calculate for you your path, 
+avoiding to be stopped by bone for example. You can implement your own 
+PathFinding algorithm but it is a little bit more complicated.</p>
+<p>There is another reasons why the GameEngine would refuse a MoveTo action:</p>
+<ul>
+	<li>You ask it to move to a bone area,</li>
+	<li>The path calculated by the GameEngine is too big (more than 400 cells),</li>
+</ul>
+<p>Your NanoAI can use some other actions:</p>
+<ul>
+	<li>StopMoving which cause it to stop immediatly,</li>
+	<li>Build for building other Nanobots,</li>
+	<li>ForceAutodestruction to destruct it immediatly (this is clearly stupid 
+	;-)),</li>
+</ul>
+<h3>Creating Another Nanobot</h3>
+<p>If you use only your NanoAI, you have no chances to win any games against 
+another player. So you must define the other nanobots you want to create and ask 
+the NAnoAI to build those. There is different kind of Nanobots you can define 
+like NanoCollector, NanoContainer, NanoExplorer, NanoWall, NanoNeedle, 
+NanoBlocker and the new NanoIPCreator.</p>
+<p>Here we will define our NanoCollector and ask the NanoAI to build one.</p>
+<p>Go back to you project and add a new class named Collector. To be recognize 
+as a NanoCollector by the GameEngine, it must inherit from the PH.Common.NanoCollector 
+class:</p>
+<div class="lang">
+<p class="langTitle">C#</p>
+	<div style="font-family: Courier New; font-size: 10pt; color: black;">
+		<p style="margin: 0px;">[PH.Common.<span style="color: teal;">Characteristics</span>(ContainerCapacity 
+		= 20,</p>
+		<p style="margin: 0px;">&nbsp;CollectTransfertSpeed = 5,</p>
+		<p style="margin: 0px;">&nbsp;Scan = 5,</p>
+		<p style="margin: 0px;">&nbsp;MaxDamage = 0,</p>
+		<p style="margin: 0px;">&nbsp;DefenseDistance = 0,</p>
+		<p style="margin: 0px;">&nbsp;Constitution = 20)]</p>
+		<p style="margin: 0px;"><span style="color: blue;">public</span>
+		<span style="color: blue;">class</span> <span style="color: teal;">
+		Collector</span> : PH.Common.<span style="color: teal;">NanoCollector</span></p>
+		<p style="margin: 0px;">{}</p>
+	</div>
+<!--EndFragment-->
+<p class="langTitle">Visual Basic</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<div style="font-family: Courier New; font-size: 10pt; color: black; ">
+	<div style="font-family: Courier New; font-size: 10pt; color: black;">
+		<p style="margin: 0px;">&lt;PH.Common.Characteristics(ContainerCapacity:=20, 
+		_</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; CollectTransfertSpeed:=5, _</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; Scan:=5, _</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; MaxDamage:=0, _</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; DefenseDistance:=0, _</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; Constitution:=20)&gt; _</p>
+		<p style="margin: 0px;">&nbsp; <span style="color: blue;">Public</span>
+		<span style="color: blue;">Class</span> Collector</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		Inherits</span> PH.Common.NanoCollector</p>
+		<p style="margin: 0px;"><span style="color: blue;">End</span>
+		<span style="color: blue;">Class</span></p>
+	</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+</div>
+
+<p>As you can see there is no code inside, but I have added a characteristic 
+attribute to it. To be valid, any of your Nanobot must be define with this 
+attribute and inherit from one of the Nanobot class. For each characteristic, 
+depending of the type of the Nanobot, there is limits.</p>
+<p>For example, for a NanoCollector, the ContainerCapacity value must be between 
+0 to 20.</p>
+<p>And the sum of all characteristics of a Nanobot is also limited.</p>
+<p>For example, for a NanoCollector, it can exceed 50.</p>
+<p>If you define a Nanobot with wrong characteristics, the GameEngine will 
+refuse to load your assembly (and it will even not be loaded in the Project 
+Hoshimi application).</p>
+<p>To know those limits for each kind of nanobot, open the 
+ProjectHoshimi.exe.Config file with NotePad and take a look at the XML content.</p>
+<p>To know more about what those characteristics are design for, look in Hoshimi 
+Lab: there is a full web page about it.</p>
+<p>You can also define another NanoCollector in your assembly, there is no 
+limits. For example, you can decide to create a NanoCollector that can carry a 
+lot of AZN molecules setting its ContainerCapacity to the maximum (20) and 
+another that can defend (attack) setting its MaxDamage to the maximum (5) and 
+its DefenseDistance also to the maximum (12):</p>
+<div class="lang">
+<p class="langTitle">C#</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;">[PH.Common.<span style="color: teal;">Characteristics</span>(ContainerCapacity 
+	= 20,</p>
+	<p style="margin: 0px;">&nbsp;CollectTransfertSpeed = 5,</p>
+	<p style="margin: 0px;">&nbsp;Scan = 5,</p>
+	<p style="margin: 0px;">&nbsp;MaxDamage = 0,</p>
+	<p style="margin: 0px;">&nbsp;DefenseDistance = 0,</p>
+	<p style="margin: 0px;">&nbsp;Constitution = 20)]</p>
+	<p style="margin: 0px;"><span style="color: blue;">public</span>
+	<span style="color: blue;">class</span> <span style="color: teal;">Collector</span> 
+	: PH.Common.<span style="color: teal;">NanoCollector</span></p>
+	<p style="margin: 0px;">{}</p>
+	<p style="margin: 0px;">&nbsp;</p>
+	<p style="margin: 0px;">[PH.Common.<span style="color: teal;">Characteristics</span>(ContainerCapacity 
+	= 0,</p>
+	<p style="margin: 0px;">CollectTransfertSpeed = 5,</p>
+	<p style="margin: 0px;">Scan = 5,</p>
+	<p style="margin: 0px;">MaxDamage = 5,</p>
+	<p style="margin: 0px;">DefenseDistance = 12,</p>
+	<p style="margin: 0px;">Constitution = 20)]</p>
+	<p style="margin: 0px;"><span style="color: blue;">public</span>
+	<span style="color: blue;">class</span> <span style="color: teal;">Defender</span> 
+	: PH.Common.<span style="color: teal;">NanoCollector</span></p>
+	<p style="margin: 0px;">{}</p>
+</div>
+<!--EndFragment-->
+<p class="langTitle">Visual Basic</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<div style="font-family: Courier New; font-size: 10pt; color: black; ">
+	<div style="font-family: Courier New; font-size: 10pt; color: black;">
+		<p style="margin: 0px;">&lt;PH.Common.Characteristics(ContainerCapacity:=20, 
+		_</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; CollectTransfertSpeed:=5, _</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; Scan:=5, _</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; MaxDamage:=0, _</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; DefenseDistance:=0, _</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; Constitution:=20)&gt; _</p>
+		<p style="margin: 0px;">&nbsp; <span style="color: blue;">Public</span>
+		<span style="color: blue;">Class</span> Collector</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		Inherits</span> PH.Common.NanoCollector</p>
+		<p style="margin: 0px;"><span style="color: blue;">End</span>
+		<span style="color: blue;">Class</span></p>
+		<p style="margin: 0px;">&nbsp;</p>
+		<p style="margin: 0px;">&lt;PH.Common.Characteristics(ContainerCapacity:=0, 
+		_</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; CollectTransfertSpeed:=5, _</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; Scan:=5, _</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; MaxDamage:=5, _</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; DefenseDistance:=12, _</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; Constitution:=20)&gt; _</p>
+		<p style="margin: 0px;">&nbsp; <span style="color: blue;">Public</span>
+		<span style="color: blue;">Class</span> Defender</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		Inherits</span> PH.Common.NanoCollector</p>
+		<p style="margin: 0px;"><span style="color: blue;">End</span>
+		<span style="color: blue;">Class</span></p>
+	</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+</div>
+
+<p>Now that you have define your NanoCollector, you can ask the NanoAI to build 
+it. Build method require the type of the Nanobot you want to create. If the 
+GameEngine allow you to create the Nanobot, it will inject it at the Injection 
+Point of your team (this is not the case for NanoNeedle, NanoBlocker and 
+NanoWall which are injected at the location of the NanoAI).</p>
+<p>In the following code, your NanoAI first create a Collector then move to 
+another location:</p>
+<div class="lang">
+<p class="langTitle">C#</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;"><span style="color: blue;">bool</span> 
+	bCollectorBuilded;</p>
+	<p style="margin: 0px;"><span style="color: blue;">private</span>
+	<span style="color: blue;">void</span> myPlayer_WhatToDoNext()</p>
+	<p style="margin: 0px;">{</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">if</span> 
+	(<span style="color: blue;">this</span>.AI.State ==
+	<span style="color: teal;">NanoBotState</span>.WaitingOrders)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; {</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">if</span> (!bCollectorBuilded)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">if</span> (<span style="color: blue;">this</span>.AI.Build(<span style="color: blue;">typeof</span>(<span style="color: teal;">Collector</span>)))</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	bCollectorBuilded = <span style="color: blue;">true</span>;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">else</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">this</span>.AI.MoveTo(<span style="color: blue;">new</span>
+	<span style="color: teal;">Point</span>(1<span style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 70%">0</span>0,
+	<span style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 70%">
+	5</span>0));</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; }</p>
+	<p style="margin: 0px;">}</p>
+</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+<p class="langTitle">Visual Basic</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<div style="font-family: Courier New; font-size: 10pt; color: black; ">
+	<div style="font-family: Courier New; font-size: 10pt; color: black;">
+		<p style="margin: 0px;"><span style="color: blue;">Dim</span> 
+		bCollectorBuilded <span style="color: blue;">As</span>
+		<span style="color: blue;">Boolean</span></p>
+		<p style="margin: 0px;"><span style="color: blue;">Private</span>
+		<span style="color: blue;">Sub</span> myPlayer_WhatToDoNextEvent()
+		<span style="color: blue;">Handles</span> <span style="color: blue;">Me</span>.WhatToDoNext</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">If</span>
+		<span style="color: blue;">Me</span>.AI.State = 
+		NanoBotState.WaitingOrders <span style="color: blue;">Then</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">If</span> <span style="color: blue;">Not</span> 
+		bCollectorBuilded <span style="color: blue;">Then</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">If</span> <span style="color: blue;">Me</span>.AI.Build(<span style="color: blue;">GetType</span>(Collector))
+		<span style="color: blue;">Then</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		bCollectorBuilded = <span style="color: blue;">True</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">End</span> <span style="color: blue;">If</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">Else</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">Me</span>.AI.MoveTo(<span style="color: blue;">New</span> 
+		Point(100, 50))</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color: blue;">End</span> <span style="color: blue;">If</span></p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		End</span> <span style="color: blue;">If</span></p>
+		<p style="margin: 0px;"><span style="color: blue;">End</span>
+		<span style="color: blue;">Sub</span></p>
+	</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+</div>
+<!--EndFragment-->
+</div>
+
+<h2>CONGRATULATIONS!</h2>
+<p>You know now how to get injected, create Nanobots and move your Nanobots.</p>
+<p>In the other tutorial, we will learn how to know more about the tissue, 
+collecting AZN molecules and transfer those molecules inside NanoNeedles.</p>
+<p>&nbsp;</p>
+<p><strong>You can find the code of this tutorial in %Project Hoshimi Folder%/Developpers</strong></p>
+<p>&nbsp;</p>
+<p style="text-align: right">Richard Clark</p>
+
+</body>
+
+</html>

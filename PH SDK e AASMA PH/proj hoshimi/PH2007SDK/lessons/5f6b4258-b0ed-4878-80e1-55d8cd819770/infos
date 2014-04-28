@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<LessonDescription xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Mode>0</Mode>
+  <Title>Small Competition 1</Title>
+  <School>c2i.fr</School>
+  <Summary>Try to do the best score and compare yourself with other players</Summary>
+  <Author>Richard Clark</Author>
+  <Level>3</Level>
+  <DateCreation>2006-11-18T09:33:33.11916+01:00</DateCreation>
+  <Country>1033</Country>
+  <ID>5f6b4258-b0ed-4878-80e1-55d8cd819770</ID>
+  <Files>
+    <FileDescription>
+      <FileName>infos</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>MSDN.css</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>phlogo32.png</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>PierreLesson1.dll</FileName>
+      <Value>pierre</Value>
+    </FileDescription>
+    <FileDescription>
+      <FileName>sc1.brief</FileName>
+      <Value>mission</Value>
+    </FileDescription>
+    <FileDescription>
+      <FileName>sc1.htm</FileName>
+      <Value>htm</Value>
+    </FileDescription>
+    <FileDescription>
+      <FileName>sc1.tsu</FileName>
+      <Value>tissue</Value>
+    </FileDescription>
+  </Files>
+</LessonDescription>

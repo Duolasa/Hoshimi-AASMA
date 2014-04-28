@@ -1,0 +1,2 @@
+PHAutomate.exe /T:GA /TI:"C:\Documents and Settings\Richard\Desktop\PH2007 Try\VG.Mission\VGServer\bin\Debug\missions\A2Bis.tsu" /P1:"C:\Documents and Settings\Richard\Desktop\PH2007 Try\VG.Mission\VGServer\bin\Debug\players\PHPro.dll" /FQ:0 /Pierre:"C:\Documents and Settings\Richard\Desktop\PH2007 Try\VG.Mission\VGServer\bin\Debug\players\PHPro.dll" /P2:"C:\Documents and Settings\Richard\Desktop\PH2007 Try\VG.Mission\VGServer\bin\Debug\players\PHPro.dll" 
+pause

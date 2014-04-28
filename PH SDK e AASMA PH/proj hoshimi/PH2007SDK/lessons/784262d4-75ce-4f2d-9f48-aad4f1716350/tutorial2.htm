@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link rel="stylesheet" type="text/css" href="MSDN.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Document sans nom</title>
+</head>
+
+<body>
+<p>In this tutorial, you will learn how to create new Nanobots, configure Group Actions and the use of a Test Actions. For testing purpose, select the lesson called 2-Learn squads and moving.</p>
+<h2>The Navigation Objective </h2>
+<p>Each map has missions embedded into it. There are different kind of missions (Navigation objective, score objective, AI alive objective). Here we will work with navigation objectives. </p>
+<p>You can see the missions embedded in any map by double clicking on the map file, then clicking on &quot;Show Mission Summary&quot;. In this mission, there are 3  Navigation Objectives.</p>
+<p><img src="objectives2.jpg" width="608" height="659" /></p>
+<p>Each objective can increase your score if you achieve it. The amount of points it worth is written in the Mission Summary. Here, you can see: 1000 points, 500 points and 200 points. So the first is the most important to achieve in this map. </p>
+<p>A navigation objective contains several points. In order to achieve it, you have to send a bot to each of these points (not necessarly the same). The objective can require that every bot sent to these points should be of one type. For exemple, if you take the objective 0, you have to send bots to these points :</p>
+<ul>
+  <li>{X=15,Y=193} after turn 0 and before turn 1500</li>
+  <li> {X=24,Y=148} after turn 0 and before turn 1500</li>
+  <li> {X=51,Y=137} after turn 0 and before turn 1500</li>
+  <li> {X=64,Y=122} after turn 0 and before turn 1500</li>
+</ul>
+<p>and you can send any type of NanoBot to these points. But we are not going to send our NanoAI because this bot has many other important tasks to do. </p>
+<h2>Add a new Nanobot Type</h2>
+<p>To reach those points, we will use NanoExplorer, because they move at the same speed whatever the blood density is, it's a good kind of Nanobot for Navigation Objective.</p>
+<p>Create a new Strategy and add a NanoAI and a NanoExplorer.</p>
+<p>By default, this will be called NanoExplorer1 (but you can change it if you want). Choose your Injection Point (for example the middle of Navigation Objective).</p>
+<p>In the default state of your NanoAI, add a Build Action and select your NanoExplorer1 (or the name you give to your NanoExplorer) in "Nanobot to build Name".</p>
+<p><img src="build.jpg" width="662" height="522" /></p>
+<p>In the default state of your NanoExplorer1, add a MoveTo action with destination set to "Navigation Objective Not Reached".</p>
+<p><img src="moveto.jpg" width="661" height="522" /></p>
+<p>Test your Strategy.</p>
+<p><img src="pro16.jpg" width="294" height="276" /></p>
+<p>Wahooo: you'll see your NanoAI creating many  NanoExplorers, it stops only when the maximum amount is reached (40 Nanobots). Well, objectives are done, but you cannot build any other NanoBot...</p>
+<p>What happens exactly ? At the start of the game, once your NanoAI is injected, it set his state to the default state, "DefaultState". This state contains only one actions, Build a NanoExplorer1. So your NanoAI follow your order and build this NanoExplorer1.</p>
+<p>Next, because all the actions in DefaultState are done and because the Repeat parameter of DefaultState is set to forever, it starts again all the actions in DefaultState, so it builds another NanoExplorer1. And it goes like that... forever ! </p>
+<p><img src="tree3.jpg" width="660" height="219" /></p>
+<p>If you want to build only 10 NanoExplorer1, change the repeat parameter of the DefaultState of your NanoAI and set it to 10.</p>
+<p><img src="tree4.jpg" width="660" height="209" /></p>
+<p>Test again your Strategy and you'll see only 10 NanoExplorer1 moving in the tissue.</p>
+<h2>Test Action</h2>
+<p>You can see that all navigation objectives are reached before the end of the game. So our NanoExplorer1 become quite useless. It could be a good idea to destroy them when all objectives are done (remember that total numbers of your Nanobots at the same time in the tissue is limited to 40).</p>
+<p>In the DefaultState of your NanoExplorer1, remove the MoveTo Action and add a Test Action.</p>
+<p>In the test action, select the Value Test. In value test you can compare two values. Those values can be:</p>
+<ul>
+  <li>A value (between 0 to 100), </li>
+  <li>The Current Turn, </li>
+  <li>The Current Score, </li>
+  <li>The Current number of AZN molecules in the stock of the Nanobot, </li>
+  <li>The number of Navigation Objectives, </li>
+  <li>The number of Navigation Objectives not reached, </li>
+  <li>The number of Nanobots of a define kind (in your team). </li>
+</ul>
+<p>Here, we will compare the number of Navigation Objectives Not Reached to 0.</p>
+<p><img src="tree5.jpg" width="661" height="170" /></p>
+<p>Expand now the Test node. You see that there is two new nodes (a green and a red one). They both represent a Group Actions. The Green one is executed if the result is true. The Red one is executed if the result is false.</p>
+<p>So in green one, add a ForceAutoDestruction action and in the red one, add a MoveTo action, moveTo the nearest Navigation Objective Not Reached. Make sure, for both Group Action, to set its repeat parameter to 1.</p>
+<p><img src="tree6.jpg" width="660" height="262" /></p>
+<p>What happens exactly now: when a NanoExplorer1 is created, it start its instructions in the DefaultState. Its first instruction is the test. If there remains Navigation Objectives Not Reached, it executes actions in the Red Group actions and only one time: go to the nearest Navigation Objective Not Reached.</p>
+<p>Then, because DefaultState repeat is set to Forever, it execute again the test. If there is no more navigation objectives to reach, it destroys itself.</p>
+<p>Easy and powerful.</p>
+<p>&nbsp;</p>
+<p style="TEXT-ALIGN: right">Richard Clark and RaptorXP </p>
+</body>
+</html>

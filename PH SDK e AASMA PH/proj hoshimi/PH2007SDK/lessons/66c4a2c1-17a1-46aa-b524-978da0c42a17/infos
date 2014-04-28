@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<LessonDescription xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Mode>0</Mode>
+  <Title>4-Attack!</Title>
+  <School>c2i.fr</School>
+  <Summary>Learn how to destroy the enemy.</Summary>
+  <Author>Richard Clark</Author>
+  <Level>1</Level>
+  <DateCreation>2006-11-19T09:59:15.664176+01:00</DateCreation>
+  <Country>1033</Country>
+  <ID>66c4a2c1-17a1-46aa-b524-978da0c42a17</ID>
+  <Files>
+    <FileDescription>
+      <FileName>L4.brief</FileName>
+      <Value>mission</Value>
+    </FileDescription>
+    <FileDescription>
+      <FileName>L4.tsu</FileName>
+      <Value>tissue</Value>
+    </FileDescription>
+    <FileDescription>
+      <FileName>lesson4.htm</FileName>
+      <Value>htm</Value>
+    </FileDescription>
+    <FileDescription>
+      <FileName>MSDN.css</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>phlogo32.png</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>PierreLesson4.dll</FileName>
+      <Value>pierre</Value>
+    </FileDescription>
+  </Files>
+</LessonDescription>

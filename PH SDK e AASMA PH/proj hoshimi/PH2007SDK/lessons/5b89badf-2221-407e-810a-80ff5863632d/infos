@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<LessonDescription xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Mode>0</Mode>
+  <Title>5-A more complex mission</Title>
+  <School>c2i.fr</School>
+  <Summary>This mission contains different kind of objectives.</Summary>
+  <Author>Richard Clark</Author>
+  <Level>1</Level>
+  <DateCreation>2006-11-19T09:59:15.664176+01:00</DateCreation>
+  <Country>1033</Country>
+  <ID>5b89badf-2221-407e-810a-80ff5863632d</ID>
+  <Files>
+    <FileDescription>
+      <FileName>L5.brief</FileName>
+      <Value>mission</Value>
+    </FileDescription>
+    <FileDescription>
+      <FileName>L5.tsu</FileName>
+      <Value>tissue</Value>
+    </FileDescription>
+    <FileDescription>
+      <FileName>lesson5.htm</FileName>
+      <Value>htm</Value>
+    </FileDescription>
+    <FileDescription>
+      <FileName>MSDN.css</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>phlogo32.png</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>PierreLesson4.dll</FileName>
+      <Value>pierre</Value>
+    </FileDescription>
+  </Files>
+</LessonDescription>

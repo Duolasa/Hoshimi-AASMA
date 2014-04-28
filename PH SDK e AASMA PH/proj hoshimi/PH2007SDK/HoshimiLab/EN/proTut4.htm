@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Language" content="fr" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled 1</title>
+<link rel="stylesheet" type="text/css" href="..\css\msdn.css" />
+</head>
+
+<body>
+
+<h1 style="text-align: center">Tutorial 4</h1>
+<p>This tutorial learn you how to attack and listen to events. For testing 
+purpose, select the lesson called 4-Attack!</p>
+<p>In this mission, we must destroy all Pierre&#39;s NeuroController. To do so, we 
+must be able to destroy them (so we need NanoProtector) and we much detect them. 
+Because NanoExplorer have the best Scan, we will use it.</p>
+<p>In our Strategy, we will have:</p>
+<ul>
+	<li>A NanoAI,</li>
+	<li>A NanoExplorer,</li>
+	<li>A NanoProtector,</li>
+</ul>
+<h2>Configure NanoAI actions</h2>
+<p>Let&#39;s first rename its DefaultState to Init and add a new State called 
+DoNothing.</p>
+<p>In Init State, we will build 6 NanoProtector1 and 24 NanoExplorer1. To do so, 
+we will use Group Actions. In Init, add a first Group Actions:</p>
+<table cellspacing="0" cellpadding="5">
+	<tr>
+		<td valign="top">
+		<img alt="Init State" src="../img/pro17.jpg" width="187" height="129" /></td>
+		<td valign="top">
+		<ul>
+			<li>Set its Repeat to 3,</li>
+			<li>Add inside this Group Action two Build NanoProtector1 actions,</li>
+			<li>Add another Group Action at the end of this Group Action,</li>
+			<li>set its repeat to 8,</li>
+			<li>Add a Build NanoExplorer1 to this new Group Action,</li>
+			<li>Add at the end of the Init State a StopMoving Action with Change 
+			State set to DoNothing. </li>
+		</ul>
+		</td>
+	</tr>
+</table>
+<p>This is a good example of using Group Actions ;-) You see also that in the 
+Strategy Treeview, when a Single Action change the State of the Nanobot, it&#39;s in 
+green.</p>
+<p>In the DoNothing, just add a StopMoving action in it.</p>
+<p>&nbsp;So once all Nanobots have been created, the NanoAI do nothing (good job man 
+;-)).</p>
+<h2>Configure NanoExplorer and NanoProtector actions</h2>
+<p>For the NanoExplorer, it&#39;s really simple. Its job is to find NeuroControllers, 
+so we will ask it to scout randomly in the tissue:</p>
+<ul>
+	<li>Just add a MoveTo action with a Random Distance set to 30 cells (because 
+	Scan characteristic of NanoExplorer is 30).</li>
+</ul>
+<p>For the NanoProtector, its a little bit more complicated: it will listen to 
+the NanoExplorer event.</p>
+<p>First, in the Default State of the NanoProtector, move it to Pierre&#39;s IP (there 
+is a lot of chances that there will be a NeuroController there).</p>
+<p>Secondly, add a new State to it and name it NanoExplorer1EnemyDetected. Check 
+the Listen to the following event and select NanoExplorer1_EnemyDetected:</p>
+<p>as soon as a NanoExplorer1 will detect a Pierre&#39;s Nanobot, all NanoProtector1 
+will change their state to this new one.</p>
+<p>In this new state, we will move to the detected Nanobot location. This 
+location is the Event location. But we don&#39;t need (and we must not) go to the 
+event location, we must stay a little away from it (to avoid being attack by the 
+NeuroController). So configure the MoveTo action like this:</p>
+<ul>
+	<li>Destination = EventLocation,</li>
+	<li>DistanceFromLocation = 10.</li>
+</ul>
+<table cellspacing="0" cellpadding="5">
+	<tr>
+		<td valign="top">
+		<img alt="NanoProtector" src="../img/pro18.jpg" width="272" height="184" /></td>
+		<td valign="top">
+		<p>Once near the detected NeuroController, we must attack it. First idea 
+		would be to add a DefendTo action. But we want to be sure that it will 
+		be destroyed before doing anything else. To do so, a little tip is to 
+		add a Test action with a Distance Test:</p>
+		<ul>
+			<li>Add a Test Action,</li>
+			<li>Select Distance Test,</li>
+			<li>Between = PierreBotLocation (Any),</li>
+			<li>And = Local,</li>
+			<li>&lt;= 12</li>
+		</ul>
+		<p>If True, use a DefendTo action, if not (it mean there is no more 
+		Pierre&#39;s Nanobot in this area), MoveTo PierreIP and change State to 
+		DefaultState.</p>
+		</td>
+	</tr>
+</table>
+<p>It works! BUT (there is always a but with me ;-)), your NanoExplorer and 
+NanoProtector can be destroyed during the game. We need to be sure we will have 
+enough Explorer and Protector to destroy all those NeuroController.</p>
+<h2>Let&#39;s configure NanoAI actions... again </h2>
+<table cellspacing="0" cellpadding="5">
+	<tr>
+		<td valign="top">
+		<img alt="NanoAI Actions" src="../img/pro19.jpg" width="244" height="125" /></td>
+		<td valign="top">
+		<p>As you will see, it&#39;s very simple. First, add a new State to your 
+		NanoAI and configure it to listen to NanoExplorer1 Destroyed event.</p>
+		<p>In this state (with repeat set to forever), test if you have enough 
+		NanoExplorer1 (ie 24).</p>
+		<p>If not, build one NanoExplorer1.</p>
+		<p>If you have enough NanoExplorer1, add a StopMoving action with a 
+		change State to DoNothing.</p>
+		<p>You can do now exactly the same with NanoProtector1: add a new state 
+		with a test, etc.</p>
+		</td>
+	</tr>
+</table>
+<p>Test your Strategy.</p>
+<p>Your NanoExplorer1 will scout the tissue.</p>
+<p>As soon as one of your NanoExplorer1 detect a NeuroController, EnemyDetected 
+event is Fired.</p>
+<p>Because NanoProtector1 are listening to this event, they go to this bad 
+NeuroController and destroy it.</p>
+<h2 style="text-align: center">GOOD JOB!</h2>
+<p>&nbsp;</p>
+<p style="text-align: right">Richard Clark</p>
+</body>
+
+</html>

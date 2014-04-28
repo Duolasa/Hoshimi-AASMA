@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<LessonDescription xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Mode>0</Mode>
+  <Title>Imagine Cup 2007 Round 1</Title>
+  <School>www.c2i.fr</School>
+  <Summary>All you need to be qualified for Imagine Cp Round 2 is to create a Strategy file with a minimum score of 300 points.</Summary>
+  <Author>Richard Clark</Author>
+  <Level>0</Level>
+  <DateCreation>2006-09-28T18:00:27.7234288+02:00</DateCreation>
+  <Country>1033</Country>
+  <ID>c17288cb-7340-4648-8393-48c971d57bfe</ID>
+  <Files>
+    <FileDescription>
+      <FileName>2007R1.brief</FileName>
+      <Value>mission</Value>
+    </FileDescription>
+    <FileDescription>
+      <FileName>2007R1.tsu</FileName>
+      <Value>tissue</Value>
+    </FileDescription>
+    <FileDescription>
+      <FileName>infos</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>MSDN.css</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>PH.png</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>PHB1.dll</FileName>
+      <Value>pierre</Value>
+    </FileDescription>
+    <FileDescription>
+      <FileName>phlogo32.png</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>pierre.phb</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>round1.htm</FileName>
+      <Value>htm</Value>
+    </FileDescription>
+  </Files>
+</LessonDescription>

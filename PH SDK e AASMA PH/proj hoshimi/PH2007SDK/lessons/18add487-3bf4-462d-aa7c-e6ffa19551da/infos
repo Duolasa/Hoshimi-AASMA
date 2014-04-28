@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<LessonDescription xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Mode>0</Mode>
+  <Title>Small Competition 4</Title>
+  <School>c2i.fr</School>
+  <Summary>Lesson for Small Competition 4 on Project-Hoshimi.com</Summary>
+  <Author>Richard Clark</Author>
+  <Level>3</Level>
+  <DateCreation>2007-03-30T10:00:00+01:00</DateCreation>
+  <Country>1033</Country>
+  <ID>18ADD487-3BF4-462d-AA7C-E6FFA19551DA</ID>
+  <Files>
+    <FileDescription>
+      <FileName>MSDN.css</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>sc4.brief</FileName>
+      <Value>mission</Value>
+    </FileDescription>
+    <FileDescription>
+      <FileName>sc4.htm</FileName>
+      <Value>htm</Value>
+    </FileDescription>
+    <FileDescription>
+      <FileName>sc4.tsu</FileName>
+      <Value>tissue</Value>
+    </FileDescription>
+    <FileDescription>
+      <FileName>Pierre2007-R2.dll</FileName>
+      <Value>pierre</Value>
+    </FileDescription>
+  </Files>
+</LessonDescription>

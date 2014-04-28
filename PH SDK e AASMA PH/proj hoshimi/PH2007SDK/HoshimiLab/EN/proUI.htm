@@ -1,0 +1,253 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Language" content="fr" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled 1</title>
+<link rel="stylesheet" type="text/css" href="..\css\msdn.css" />
+</head>
+
+<body>
+
+<h1 style="text-align: center; ">
+User Interface</h1>
+<p style="text-align: center">
+<img alt="Interface" src="../img/pro1.jpg" width="930" height="716" /></p>
+<p style="text-align: left">
+This window contains:</p>
+<ul>
+	<li>
+	<p style="text-align: left">Strategy files manager on the top right,</p>
+	</li>
+	<li>
+	<p style="text-align: left">Missions Selector below the Strategy files 
+	manager,</p>
+	</li>
+	<li>
+	<p style="text-align: left">Pierre&#39;s AI Selector below the Missions Selector,</p>
+	</li>
+	<li>
+	<p style="text-align: left">Strategy Editor on the right which contains:</p>
+	<ul>
+		<li>
+		<p style="text-align: left">Standard toolbar and new Nanobots toolbar,</p>
+		</li>
+		<li>
+		<p style="text-align: left">Group Actions toolbar and Single Action 
+		toolbar,</p>
+		</li>
+		<li>
+		<p style="text-align: left">Strategy Treeview,</p>
+		</li>
+		<li>
+		<p style="text-align: left">Details panel which contains details of the 
+		Selected node in the Strategy Treeview,</p>
+		</li>
+		<li>
+		<p style="text-align: left">Errors list window on the bottom right.</p>
+		</li>
+	</ul>
+	</li>
+</ul>
+<h2>Strategy files Manager</h2>
+<table cellspacing="0" cellpadding="5">
+	<tr>
+		<td valign="top">
+		<img alt="Load and Manage Strategy files" src="../img/pro2.jpg" width="227" height="249" /></td>
+		<td valign="top">
+		On the left, 
+you can manage your strategy files:<br />
+		<br />
+		Click on the first button to create a new empty strategy.<br />
+		Double click on an existing strategy file or select it and click on Open 
+		button to load the strategy in the editor.<br />
+		Click on the Save button to save your current strategy. The name of the 
+		file is the name of your strategy.<br />
+		Click on the Delete button to delete the selected strategy file.<br />
+		<br />
+		To test your strategy, you must also select a mission. You can also 
+		choose a spectific Pierre&#39;s AI if you want.<br />
+		<br />
+		Once you have loaded your strategy, you can edit it on the right of the 
+		window.</td>
+	</tr>
+</table>
+<h2>Standard and&nbsp; new Nanobots toolbars</h2>
+<p><img alt="Main functions" src="../img/pro3.jpg" width="397" height="27" /></p>
+<p>The first button is the Build button. Click on it to see if there is no error 
+in your strategy. If it contains errors, it will appear oin the Error list window (see below).</p>
+<p>The arrow allow you to re-order Single Actions only.</p>
+<p>Copy, cut, paste and delete button allow you to Copy, cut, paste and delete the selected node in 
+the Strategy TreeView.</p>
+<p>Next, each button allow you to add a new kind of Nanobot in your Strategy. 
+You can have several kinds of each Nanobot but one (and only one) NanoAI and one 
+or zero NanoIPCreator.</p>
+<h2>Group Actions and Single Actions toolbars</h2>
+<table cellspacing="0" cellpadding="5">
+	<tr>
+		<td valign="top">
+		<img alt="Group Actions toolbar" src="../img/pro4.jpg" width="28" height="289" /></td>
+		<td valign="top"><strong>Group Actions:</strong><br />
+				For each Nanobot of your Strategy, you can define one or more 
+		States. A State contains one or more Group, Test and Single Actions. Click on the Add State 
+		button to add a new State to your selected Nanobot.<br />
+		<br />
+		In a State or in a Group Actions, you can add a Group Actions. A Group 
+		Actions can contain one or more Group, Test and Single Actions. To add a 
+		Group Actions, click on the Add Group Actions button.<br />
+		<br />
+		In a State or a Group Actions, you can add a Test Actions. A Test 
+		Actions contains two Group Actions. The first is executed if the Test 
+		result is true, the second is executed if the Test result is false. To 
+		add a Test Action, click on the Add Test Actions button.<br />
+		<br />
+		<strong>Single Actions:</strong><br />
+		Those are the different actions your Nanobots can do. It can MoveTo, 
+		CollectFrom, TransferTo, etc. Beware: some actions are not allowed for a 
+		kind of Nanobot. For example, if you try to add a MoveTo action to a 
+		nanoNeedle, you&#39;ll see a Build error in the Errors list window. To add a 
+		Single action, click on the wanted action button.</td>
+	</tr>
+</table>
+<h2>Strategy Treeview</h2>
+<table cellspacing="0" cellpadding="5">
+	<tr>
+		<td valign="top">
+		<img alt="Strategy Treeview" src="../img/pro5.jpg" width="225" height="363" /></td>
+		<td valign="top">This is the representation of your strategy. The first node allow 
+		your to name it and to choose your injection point.<br />
+		Then, for each Nanobot of your Strategy, you have its different states 
+		and for each state, Group, Test and Single Actions.<br />
+		<br />
+		To add a new Nanobot in your Strategy, click in the New Nanobot toolbar.<br />
+		To add a new State to a Nanobot, select it and click on the New State in 
+		Group Actions toolbar.<br />
+		<br />
+		To edit a node, select it in the Strategy Treeview.</td>
+	</tr>
+</table>
+<h2>Error list window</h2>
+<p>
+<img alt="Errors list window" src="../img/pro8.jpg" width="486" height="62" /></p>
+<p>If there is an error in your Strategy, this error appear in this window. To 
+go directly to this error, double click on it.</p>
+<h2>Details panel</h2>
+<p>In this part, you can edit the selected node.</p>
+<h3>Strategy Node</h3>
+<p>If you select the first node of your strategy, you can define the name of 
+your Strategy and the Injection Point wanted.</p>
+<p><img alt="Strategy Node" src="../img/pro6.jpg" width="489" height="341" /></p>
+<p>The name of your strategy is the name of your file. Change it and click on 
+Apply button. Then save it and it will appear in the Strategy files manager.</p>
+<p>You can choose your Injection Point in two way:</p>
+<ul>
+	<li>You define a specific location. Your NanoAI will be injected at the 
+	nearest valid point in the tissue. For example if you select point (120, 
+	120) and if this point is a bone area, your Injection Point will be the 
+	nearest point not in a bone area.</li>
+	<li>You define a Calculated location. At the beginning of the game, your 
+	Strategy will calculte the middle of the Hoshimi Points available in the 
+	tissue. It does the same with the AZN Points and the navigation objectives 
+	points. Then, it calculate a point depending of the weight of each of those 
+	points:<br />
+	<br />
+	Point = (HoshimiPoint middle * HP weight + AZN Points * AZNP weight + 
+	Objectives Points * OBJP weight) /(HP weight + AZNP weight + OBJP weight)<br />
+	<br />
+	Then, you can choose to be injected at the nearest Hoshimi Point, AZN Point 
+	or Objective Point of the calculated point or keep this calculated point.<br />
+	Again, your Strategy will choose the nearest valid point in the tissue.</li>
+</ul>
+<p>Once you define your name and your Injection Point, click on Apply button.</p>
+<h3>Nanobot Node</h3>
+<p><img alt="Nanobot Node" src="../img/pro9.jpg" width="484" height="342" /></p>
+<p>When you select a Nanobot node, you can change its kind of Nanobot and its 
+Default State. When your nanobot is created in the tissue, its first actions are 
+the actions in its Default State.</p>
+<h3>State Node</h3>
+<p><img alt="State Node" src="../img/pro10.jpg" width="486" height="235" /></p>
+<p>When you select a State node, you can set its name. You can also define it as 
+the default state (you can verify this by selecting then the Nanobot node).</p>
+<p>A State contains Group, Test and Single Actions. When all the actions are 
+executed, you can decide to repeat actions from the begining by selecting 
+Forever radio button. If you want that all your actions are repeated a number of 
+times, define it.</p>
+<p>A Nanobot can also change its state by listening to events. For each Nanobot 
+of your Strategy, there is 3 events:</p>
+<ul>
+	<li>Nanobot destroyed,</li>
+	<li>Enemy Detected,</li>
+	<li>Other Player Detected.</li>
+</ul>
+<p>If you want that your Nanobot execute some actions when one of those events 
+is fired, check it and select it.</p>
+<h3>Group Actions Node</h3>
+<p><img alt="Group Actions" src="../img/pro11.jpg" width="486" height="185" /></p>
+<p>A Group Actions can contains Group, Test and Single Actions. You can set its 
+name and define if actions are repeated when all are done. For example if you 
+want to build 4 NanoExplorer, add a Group Actions, add a Build action in it and 
+set its repeat to 4. A Group Actions must contains one or more actions. It can&#39;t 
+be empty.</p>
+<h3>Test Actions</h3>
+<p><img alt="Test Actions" src="../img/pro12.jpg" width="486" height="233" /></p>
+<p>This is the more complicated ;-). A Test action contains two Group Action and 
+a test. At the execution of a Test action, the test is...tested. If the result 
+is true, the first Group Actions is executed, if not, the second is executed.</p>
+<p>There is two kind of test:</p>
+<ul>
+	<li>Value test allow you to compare two values. For example, you can test if 
+	the Number of NanoExplorer1 equal 0. If true, you can add a Build action.</li>
+</ul>
+<img alt="Value Test" src="../img/pro13.jpg" width="324" height="210" />
+<br />
+<ul>
+	<li>Distance Test allow you to compare the distance between 2 points. Fo 
+	example here, I test if I&#39;m near a Pierre&#39;s Nanobot of any kind (distance &lt;= 
+	10).</li>
+</ul>
+<p><img alt="Distance Test" src="../img/pro14.jpg" width="486" height="97" /></p>
+<p>You can define complex test. If you check the Show test in Log, result of the 
+test will appear in the log area in the 2D viewer. This can be usefull in &quot;debug 
+mode&quot;.</p>
+<h3>Single Actions</h3>
+<p>For each kind of actions, you can define parameters. For example, for a 
+MoveTo action:</p>
+<p><img alt="MoveTo Action" src="../img/pro15.jpg" width="486" height="276" /></p>
+<p>You define where you want to go. Here, I choose the nearest Hoshimi Point 
+with no NanoNeedle of my team.</p>
+<p>In MoveTo, you can also define the distance from the destination you want to 
+go. It can be usefull for example if you choose to attack a Pierres&#39;s Nanobot: 
+select the Nearest Pierre&#39;s Nanobot points and a distance of 10 cells. You can 
+stay away from it an attack it safely.</p>
+<p>&nbsp;</p>
+<p>For each Single action, you can define more details:</p>
+<ul>
+	<li>Change Internal Name allow you to change its name in the viewer,</li>
+	<li>Change State allow you to ... change its state. So next action to be 
+	executed will be the first action of the selected State,</li>
+	<li>Log text allow you to write in the log area in the 2D viewer.</li>
+</ul>
+<p>For each kond of action you have different parameters:</p>
+<ul>
+	<li>For CollectFrom, TransferTo and DefendTo, you define the location to 
+	collect/transfer/defend, the number of turns you collect/transfer/defend and 
+	the distance from the location,</li>
+	<li>For Build, you must define which kind of Nanobot your NanoAI must build. 
+	If you have a NanoIPCreator in your tissue, you can also ask that it appear 
+	at the NanoIPCreator location,</li>
+	<li>ForceAutoDestruction, OpenIP and CloseIP don&#39;t have parameters,</li>
+	<li>StopMoving can be usefull to change State or to avoid going directly to 
+	a Pierre&#39;s Nanobot.</li>
+</ul>
+<h2>Test your Strategy</h2>
+<p>Once your strategy is ready, click on the Build button to be sure there is no 
+error. Then, select your Mission, a Pierre&#39;s AI if you want and click on the 
+Test Strategy button.</p>
+<p>&nbsp;</p>
+<h1 style="text-align: center">ENJOY!</h1>
+<p>&nbsp;</p>
+<p style="text-align: right">Richard Clark</p>
+</body>
+
+</html>

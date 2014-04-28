@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<PHViewer>
+  <name>Viewer 2D</name>
+  <description>Simple 2D Viewer. Great for debugging information.</description>
+  <bitmap>PHViewer2D.jpg</bitmap>
+</PHViewer>

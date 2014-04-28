@@ -1,0 +1,9 @@
+name = 'PNeuroCtrl'
+groups = {
+{
+  fx = 'entity', pri = 0,
+  params = {
+	  { 'tex', 'tBase', 'PNeuroCtrl' },
+  },
+},
+}

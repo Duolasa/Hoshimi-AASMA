@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<LessonDescription xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Mode>0</Mode>
+  <Title>Small Competition 2</Title>
+  <School>c2i.fr</School>
+  <Summary>Small Competition 2 on Project-Hoshimi.com</Summary>
+  <Author>Richard Clark</Author>
+  <Level>3</Level>
+  <DateCreation>2006-12-18T14:48:26.3274576+01:00</DateCreation>
+  <Country>1033</Country>
+  <ID>9647ac52-6918-4a3d-9004-8607277dc1c8</ID>
+  <Files>
+    <FileDescription>
+      <FileName>heart.brief</FileName>
+      <Value>mission</Value>
+    </FileDescription>
+    <FileDescription>
+      <FileName>heart.tsu</FileName>
+      <Value>tissue</Value>
+    </FileDescription>
+    <FileDescription>
+      <FileName>infos</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>MSDN.css</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>myStrategy1.phPro</FileName>
+      <Value>pierre</Value>
+    </FileDescription>
+    <FileDescription>
+      <FileName>sc2.htm</FileName>
+      <Value>htm</Value>
+    </FileDescription>
+  </Files>
+</LessonDescription>

@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Language" content="fr" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled 1</title>
+<link rel="stylesheet" type="text/css" href="../css/msdn.css" />
+</head>
+
+<body>
+
+<h1 style="text-align: center; font-weight: normal; ">
+How do I create a lesson or a complex mission?</h1>
+<p>Creating a lesson, or a complex mission is quite easy. Both have the save 
+file format which is in reality a zip file with the .phl extension. It contains 
+the following files:</p>
+<ul>
+	<li>The tissue, a .tsu file,</li>
+	<li>The mission description, a .brief file with the same name than the .tsu 
+	file,</li>
+	<li>The help file, a .htm (only .htm) file,</li>
+	<li>All pictures, css, etc. files needed by the Help file,</li>
+	<li>a info file which contains description of the lesson (this is created by 
+	the PHLessonCreator application),</li>
+	<li>optionally a .zip file which can contains for example a solution, a 
+	project,</li>
+	<li>Optionally a .dll file which is Pierre AI.</li>
+</ul>
+<p>So if you want to create a lesson or a complex mission, you must put all 
+those files in the same directory.</p>
+<p>There can be only one tsu, one brief, one htm and one zip files.</p>
+<p>You can avoid providing the dll for Pierre AI and zip file.</p>
+<p><strong>Create the phl file</strong></p>
+<p>To help you creating the lesson, I provide you a small application called 
+PHLessonCreator. Launch this application.</p>
+<p style="text-align: center">
+<img alt="PHLessonCreator" src="../img/HoshimiLessonCreator.png" width="469" height="434" /></p>
+<p>Click on the Browse Lesson and select your folder where you put all the 
+files. If you forgot to put a needed file, it will tell you.</p>
+<p>It will automaticly create the info file for you if it doesn&#39;t exist.</p>
+<p>It will read the info file if it exist.</p>
+<p>Then, fill the Lesson Informations part:</p>
+<ul>
+	<li>Name is the name of your lesson,</li>
+	<li>Level can be 1, 2, 3 or special. If you want to create a complex mission 
+	that will appear in the Developpers section, choose Special. If you want to 
+	create a lesson for Beginners, select 1, 2 or 3.</li>
+	<li>Author is your name.</li>
+	<li>Country is the LCID of your country. For example 1033 for USA, 1036 for 
+	France.</li>
+	<li>School is your school or enterprise name.</li>
+	<li>Mode can be Beginner only actually.</li>
+	<li>ID is a unique Guid for your lesson. When you import a lesson, the 
+	application read this Guid to see if it is already imported (an update it) 
+	or not.</li>
+	<li>Date of creation is when you created your lesson.</li>
+	<li>Summary is the text that describe your lesson.</li>
+</ul>
+<p>You can then edit your Tissue/Mission and your Htm file by using the Tools 
+section. Use Config buttons to select applications that can edit your 
+Tissue/Mission files and htm file.</p>
+<p>Once your OK, click on the Package lesson to create the .phl file.</p>
+<p><strong>Using the phl file in Project Hoshimi</strong></p>
+<p>If you create a lesson for Beginners (with level 1, 2 or 3) or a complex 
+Mission for Developpers, you need to 
+import it. Launch Project Hoshimi application and go to the Beginner section.</p>
+<p>On the top right, you&#39;ll see a Import Lessons button. Click on it and select 
+the folder where is your .phl file. It will import all lessons files of this 
+folder (for technical reasons, it must end the application and restart it).</p>
+<p>Launch Project Hoshimi application and you&#39;ll see it in the Developpers 
+sections and in the Special sections for Beginners.</p>
+<p><strong>Tips for Pierre team AI</strong></p>
+<p>Pierre team AI is a player dll. So you have to create a new dll for it. This 
+can be complex but hopefully, you can use Project Hoshimi for Beginners for it, 
+it is fully compatible. So creating its AI can be done in feww seconds.</p>
+<p>Launch Project Hoshimi and go to Beginner section. Select a lesson and create 
+the strategy you want for Pierre. Some tips:</p>
+<ul>
+	<li>Choose an Injection Point near the center of the tissue,</li>
+	<li>Don&#39;t make it too aggressive,</li>
+</ul>
+<p>Once it&#39;s done, Export your strategy.</p>
+<p>Now, go back to the folder which contains all files of your lesson. Copy in 
+it PHB1.dll in it and copy the strategy file you just created (it is in the 
+%Project Hoshimi%/Beginners folder. Rename it pierre.phb.</p>
+<p>This file is an Xml files. If you want that Pierre inject NeuroControllers at 
+the beginning of the game, you must edit this Xml file. For example, if you want 
+a NeuroController at (120,120) point at the beginning, edit the Xml file 
+(pierre.phb file) and modify the &lt;neuros /&gt; node like this:</p>
+<p>&lt;neuros&gt;<br />
+&nbsp;&nbsp;&nbsp; &lt;neuro x=&quot;120&quot; y=&quot;120&quot; /&gt;<br />
+&lt;/neuros&gt;</p>
+<p>Package again your lesson, and that&#39;s it.</p>
+<p>&nbsp;</p>
+<p>If you have any questions, don&#39;t hesitate to ask me on the discussion forum.</p>
+<p>&nbsp;</p>
+<p style="text-align: right">Richard Clark</p>
+
+</body>
+
+</html>

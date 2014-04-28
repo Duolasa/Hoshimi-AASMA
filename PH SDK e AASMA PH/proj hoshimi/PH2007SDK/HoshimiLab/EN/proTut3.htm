@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Language" content="fr" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled 1</title>
+<link rel="stylesheet" type="text/css" href="..\css\msdn.css" />
+</head>
+
+<body>
+
+<h1 style="text-align: center">Tutorial 3</h1>
+<p>This tutorial learn you how to Collect and Transfer AZN molecults in 
+NanoNeedles. For testing purpose, select the lesson called 3-Collect</p>
+<p>This mission is quite simple: you must reach a score of 500 points before 
+turn 1000. You need to create NanoNeedle and to fill it with AZN molecules.</p>
+<p>Create a new Strategy, choose an Injection Point and add:</p>
+<ul>
+	<li>a NanoAI,</li>
+	<li>A NanoNeedle (will be called NanoNeedle1),</li>
+	<li>A NanoContainer (will be called NanoContainer1),</li>
+</ul>
+<p>NanoContainer are better here than NanoCollector because we only want to 
+collect AZN molecules.</p>
+<h2>Building NanoNeedle and NanoContainer</h2>
+<p>We need to build NanoNeedle on Hoshimi Point. In our strategy, we decide that 
+for each NanoNeedle created, we will create two NanoContainer. It&#39;s because a 
+NanoContainer can store 50 AZN molecules and that a NanoNeedle can store 100 AZN 
+molecules.</p>
+<p>So we will add the following actions to our NanoAI:</p>
+<ol>
+	<li>MoveTo nearest Hoshimi Point without Needle,</li>
+	<li>Build a NanoNeedle1,</li>
+	<li>Build a NanoContainer1,</li>
+	<li>Build another NanoContainer1.</li>
+</ol>
+<p>Doing so, our NanoAI will create a NanoNeedle on each Hoshimi Points of the 
+tissue.</p>
+<h2>Configure NanoNeedle1 Actions</h2>
+<p>Select then the NanoNeedle1. We need to add at least one action to it. We can 
+decide to add for example a StopMoving (but not really interesting). We will add 
+a DefendTo action. If a Pierre&#39;s Nanobot approach it, it will fire on it. In the 
+parameters of your DefendTo action, set the destination to the Nearest Pierre&#39;s 
+Nanobot location.</p>
+<h2>Configure NanoContainer1 Actions</h2>
+<p>One simple solution for our NanoContainer1 would be in its DefaultState to 
+add the following actions:</p>
+<ol>
+	<li>MoveTo nearest AZN Point,</li>
+	<li>CollectFrom Current Location during 10 turns,</li>
+	<li>MoveTo nearest Hoshimi Point with Not Full Needle,</li>
+	<li>TransferTo Current Location during 10 turns.</li>
+</ol>
+<p>It works, quite well. But we will improve it. To understand the following, 
+test first the strategy and look carefully.</p>
+<p>What happen? Sometimes, a NanoContainer1 can reach a NanoNeedle1 which is 
+already full. Why? Because while the NanoContainer1 was moving to the 
+NanoNeedle1, another NanoContainer1 fill the NanoNeedle1. And worse, once our 
+NanoContainer1 reached the NanoNeedle1, it go back to the AZN Point to get some 
+molecules but with a full stock: it loose a lot of time!</p>
+<p>To improve this, we will need to add a Test Action.</p>
+<p>Delete all the actions inside the NanoContainer1 Default State and add a Test 
+Action. Configure the test to: If Nanobot Stock &gt; 0?</p>
+<p>In the True result (repeat = 1), add:</p>
+<ul>
+	<li>MoveTo Hoshimi Point With Not Full Needle,</li>
+	<li>TransferTo Current Location during 10 turns.</li>
+</ul>
+<p>In the False result (repeat = 1), add:</p>
+<ul>
+	<li>MoveTo AZN Point,</li>
+	<li>CollectFrom Current Location during 10 turns.</li>
+</ul>
+<p>That&#39;s it, and it is really better: at start, because its stock equal 0, it 
+goes to the AZN Point and fill its stock. Then, it goes to the NanoNeedle not 
+full. When reaching the Needle, after trying to TransferTo it all its AZN, test 
+is run again. If its empty, it goes back to the AZN Point. If not, it tries to 
+find another not full NanoNeedle.</p>
+<p>You can even improve the strategy of your NanoContainer by moving in two step 
+to the NanoNeedle1. True Result must in this case contains the following 
+actions:</p>
+<ul>
+	<li>MoveTo Hoshimi Point With Not Full Needle but Distance from Destination 
+	= 10,</li>
+	<li>MoveTo Hoshimi Point With Not Full Needle (Distance from Destination = 
+	0),</li>
+	<li>TransferTo Current Location during 10 turns.</li>
+</ul>
+<p>So here, it don&#39;t go directly to the NanoNeedle location. It stop first 10 
+cells away from it. Then, by using again the MoveTo, it recalcultate the nearest 
+not full needle.</p>
+<p>Do some test to see the differences.</p>
+<p>&nbsp;</p>
+<p style="text-align: right">Richard Clark</p>
+</body>
+
+</html>

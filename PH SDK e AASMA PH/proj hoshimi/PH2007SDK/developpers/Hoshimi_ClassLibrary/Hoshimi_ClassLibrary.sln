@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual C# Express 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hoshimi_ClassLibrary", "Hoshimi_ClassLibrary\Hoshimi_ClassLibrary.csproj", "{FAF714F5-8ABD-49EC-A8CB-791CD6C2852E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FAF714F5-8ABD-49EC-A8CB-791CD6C2852E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAF714F5-8ABD-49EC-A8CB-791CD6C2852E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAF714F5-8ABD-49EC-A8CB-791CD6C2852E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAF714F5-8ABD-49EC-A8CB-791CD6C2852E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

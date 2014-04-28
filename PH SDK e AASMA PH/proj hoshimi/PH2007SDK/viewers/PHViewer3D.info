@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<PHViewer>
+  <name>Official Viewer 3D</name>
+  <description>View game in full 3D (DirectX 9 needed with a good 3D Graphics card)</description>
+  <bitmap>PHViewer3D.jpg</bitmap>
+</PHViewer>

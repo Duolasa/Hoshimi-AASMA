@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<LessonDescription xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Mode>0</Mode>
+  <Title>3-Collect and transfer AZN Molecules</Title>
+  <School>c2i.fr</School>
+  <Summary>You will learn how to create NanoNeedle, collect and transfer AZN molecules.</Summary>
+  <Author>Richard Clark - RaptorXP</Author>
+  <Level>2</Level>
+  <DateCreation>2006-11-19T10:08:44.8326+01:00</DateCreation>
+  <Country>1033</Country>
+  <ID>189924c1-706a-4818-a427-af842085cb1a</ID>
+  <Files>
+    <FileDescription>
+      <FileName>infos</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>L3.brief</FileName>
+      <Value>mission</Value>
+    </FileDescription>
+    <FileDescription>
+      <FileName>L3.tsu</FileName>
+      <Value>tissue</Value>
+    </FileDescription>
+    <FileDescription>
+      <FileName>MSDN.css</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>PierreLesson1.dll</FileName>
+      <Value>pierre</Value>
+    </FileDescription>
+    <FileDescription>
+      <FileName>tree1.jpg</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>tree2.jpg</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>tree3.jpg</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>tree4.jpg</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>tree5.jpg</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>tree6.jpg</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>tree7.jpg</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>tutorial3.htm</FileName>
+      <Value>htm</Value>
+    </FileDescription>
+  </Files>
+</LessonDescription>

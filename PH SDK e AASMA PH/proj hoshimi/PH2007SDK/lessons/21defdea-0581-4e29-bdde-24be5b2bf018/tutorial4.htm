@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link rel="stylesheet" type="text/css" href="MSDN.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Document sans nom</title>
+</head>
+
+<body>
+<p>Ok, now we are about to  learn how to attack other bots and how to listen to events.</p>
+<h2>The bad guy</h2>
+<p>You may have seen that some bots have an ability called DefendTo. In fact, it's an ability to attack. But you can only attack the neutral team (Pierre's team). Its bots are white in the game. He can kill the two competitors, and the two competitors can kill him. But remeber that you cannot kill your opponent (green or blue) and he cannot kill you. You can only attack the bad guy.</p>
+<p>Pierre's team is a team like yours, but it is written by the Project Hoshimi staff. Like you, he has an Injection Point, and he has a NanoAI.  The main difference is that its purpose is not to get a high score, but it is to kill you... Be careful, because if a Pierre's bot is too close to one of yours, he will shoot you. So don't let him do that, and kill him first.</p>
+<h2>How attacks work? </h2>
+<p>In Intermediate Mode, Protectors, Needles and Collectors are able to kill Pierre's bots.</p>
+<p>Let's take a look to the characteristics of each bots, for Protector, you'll see :</p>
+<ul>
+  <li>ContainerCapacity : 0 </li>
+  <li>CollectTransfertSpeed : 0 </li>
+  <li>Scan : 5 </li>
+  <li><strong>MaxDamage</strong> : 5 </li>
+  <li><strong>DefenseDistance</strong> : 12 </li>
+  <li><strong>Constitution</strong> : 25 </li>
+</ul>
+<p>The three last characteristics are important when attacking or beeing attacked. DefenseDistance is the maximum distance between the bot's location and the point where it wants to attack. Constitution is its maximum hit points. When it is attacked, a random damage is applied to this bot. The random damage will be picked between 1 and MaxDamage. </p>
+<h2>The mission </h2>
+<p>For testing purpose, select the lesson called 4-Attack!</p>
+<p>Pierre can build a exclusive kind of nanobot called NeuroController. It is much like a NanoNeedle. A kind of objective that you can encounter is NanoNeuroController objective. It asks you to kill enough NeuroControllers before a deadline turn. Here the description says : &quot;Only 0 NanoNeuroController must be in the body at turn 1400&quot;. </p>
+<p> In this mission, we must destroy all Pierre's NeuroController. To do so, we must be able to destroy them (so we need NanoProtector) and we much detect them. Because NanoExplorer have the best Scan characteristic, we will use it.</p>
+<p>In our Strategy, we will have:</p>
+<ul>
+  <li>A NanoAI, rename its default state to Init </li>
+  <li>A NanoExplorer,</li>
+  <li>A NanoProtector (we will call him AIProtector)</li>
+</ul>
+<p><img src="tree1.jpg" width="133" height="129" /></p>
+<h2>Configure NanoAI actions</h2>
+<p>Let's first rename its DefaultState to Init and add a new State called DoNothing.</p>
+<p>In Init State, we will build 6 AIProtector and 24 NanoExplorer1. To do so, we will use Group Actions. In Init, add a first Group Actions:</p>
+<table cellpadding="5" cellspacing="0">
+  <tbody>
+    <tr>
+      <td valign="top"><img src="tree2.jpg" width="197" height="284" /></td>
+      <td valign="top"><ul>
+          <li>Set its Repeat value to 3,</li>
+          <li>Add inside this Group Action two Build NanoProtector1 actions,</li>
+          <li>Add another Group Action at the end of this Group Action,</li>
+          <li>Set its Repeat value to 8,</li>
+          <li>Add a Build NanoExplorer1 to this new Group Action,</li>
+          <li>Add a new state for the NanoAI, and call it DoNothing</li>
+          <li>In the DoNothing, just add a StopMoving action in it.</li>
+          <li>Add at the end of the Init State a StopMoving Action with Change State set to DoNothing.</li>
+          </ul>
+        </td>
+    </tr>
+  </tbody>
+</table>
+<p>This is a good example of using Group Actions ;-). You can also see that in the Strategy tree, when a Single Action change the State of the Nanobot, it's in green.</p>
+<p>So once all nanobots have been created, the NanoAI doesn't do anything (good job man ;-)).</p>
+<h2>Configure NanoExplorer and NanoProtector actions</h2>
+<p>For the NanoExplorer, it's really simple. Its job is to find NeuroControllers, so we will ask it to scout randomly in the tissue:</p>
+<ul>
+  <li>Just add a MoveTo action with a Random Distance set to 30 cells (because Scan characteristic of NanoExplorer is 30).</li>
+</ul>
+<p>For the NanoProtector, its a little bit more complicated: it will listen to the NanoExplorer event.</p>
+<p>First, in the Default State of the protector, move it to Pierre's IP (there is a lot of chances that there will be a NeuroController there).</p>
+<p>Secondly, add a new State to it and name it NanoExplorerEnemyDetected. Check &quot;Listen to the following event&quot; and select &quot;NanoExplorer_EnemyDetected&quot;: as soon as a NanoExplorer1 will detect a Pierre's Nanobot, all NanoProtector1 will change their state to this new one.</p>
+<p>In this new state, we will move to the detected Nanobot location. This location is the Event location. But we don't need (and we must not) go to the event location, we must stay a little away from it (to avoid being attacked by the NeuroController).:</p>
+<ul>
+  <li>Add a MoveTo action to the NanoExplorerEnemyDetected state </li>
+  <li>Set the destination to EventLocation</li>
+  <li>Set distance from destination to 10.</li>
+</ul>
+<table cellpadding="5" cellspacing="0">
+  <tbody>
+    <tr>
+      <td valign="top"><img src="test.jpg" width="435" height="206" /></td>
+      <td valign="top"><p>Once near the detected NeuroController, we must attack it. The first idea would be to add a DefendTo action. But we want to be sure that it will be destroyed before doing anything else. To do so, you can use  a Test action with a Distance Test:</p>
+          <ul>
+            <li>Add a Test Action,</li>
+            <li>Select Distance Test,</li>
+            <li>Between  PierreBotLocation (Any) and Local</li>
+            <li>Set the comparison with &quot; &lt;= 12 &quot; </li>
+          </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p>In the true branch, use a DefendTo action, and select PierreBot Location as destination, with &quot;Any&quot; nanobot. In the false branch (it means there is no more Pierre's Nanobot in this area), add a MoveTo action with PierreIP as destination and change State to DefaultState.</p>
+<p>You should have something like this: </p>
+<p><img src="tree3.jpg" width="272" height="307" /></p>
+<p>It works! BUT (there is always a but with me ;-)), your NanoExplorer and NanoProtector can be destroyed during the game. We need to be sure we will have enough Explorer and Protector to destroy all those NeuroController.</p>
+<h2>Let's configure NanoAI actions... again </h2>
+<table cellpadding="5" cellspacing="0">
+  <tbody>
+    <tr>
+      <td valign="top"><img src="test2.jpg" width="370" height="206" /></td>
+      <td valign="top"><p>As you will see, it's very simple.</p>
+        <ul>
+          <li>First, add a new State to your NanoAI and configure it to listen to NanoExplorer_Destroyed event.</li>
+          <li>In this state (with repeat set to forever), you have to test if you have enough NanoExplorer (ie 24) : &quot;Number of NanoExplorer &lt; 24&quot;.</li>
+          <li>If not (the result is true), build one NanoExplorer.</li>
+          <li>If you have enough NanoExplorer (the result is false), add a StopMoving action with a change State to DoNothing.</li>
+        </ul>        
+    <p>You can do now exactly the same with NanoProtector1: add a new state with a test, etc.</p></td>
+    </tr>
+  </tbody>
+</table>
+<p><img src="tree4.jpg" width="249" height="225" /></p>
+<p>Test your Strategy.</p>
+<p>Your NanoExplorer1 will scout the tissue.</p>
+<p>As soon as one of your NanoExplorer1 detect a NeuroController, EnemyDetected event is fired.</p>
+<p>Because NanoProtector1 are listening to this event, they go to this bad NeuroController and destroy it.</p>
+<h2 style="text-align: center;">GOOD JOB!</h2>
+<p>&nbsp;</p>
+<p style="text-align: right;">Richard Clark and RaptorXP </p>
+</body>
+</html>

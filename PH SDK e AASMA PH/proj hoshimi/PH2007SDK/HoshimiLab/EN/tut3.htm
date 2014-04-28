@@ -1,0 +1,653 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<head>
+<meta http-equiv="Content-Language" content="fr" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled 1</title>
+<link rel="stylesheet" type="text/css" href="..\css\msdn.css" />
+</head>
+
+<body>
+
+<h1 style="text-align: left">
+Tutorials for Developpers</h1>
+<h2 style="text-align: left">
+Mission and Objectives</h2>
+<p style="text-align: left">
+&nbsp;</p>
+<p style="text-align: left">
+&nbsp;</p>
+<p>In this tutorial, you will learn how to accomplish objectives of mission.</p>
+<h2>The mission</h2>
+<p>In this tutorial, we will use the Complex Mission: Imagine Cup 2007 Round1. 
+It&#39;s called Complex mission not because it&#39;s hard but because you have a special 
+version of Pierre&#39;AI, a text explaining you the goal of Imagine Cup, etc.</p>
+<p>So select it and click on the &quot;View Mission Details&quot; button (just above). A 
+new window appear with a view of the tissue. In this window, click on the &quot;Show 
+Mission Summary&quot; button in the toolbar. You can see that this mission contains 3 
+objectives:</p>
+<ul>
+	<li>Objective 0: It&#39;s a Navigation Objective. Any of your Nanobots must go 
+	to 3 points in the tissue. This can be done by any kind of Nanobot. If you 
+	accomplish this objective, you see you gain 200 points.</li>
+	<li>Objective 1: It&#39;s a AIAlive Objective. This means that you will gain 300 
+	points if your AI is alive at turn 1200.</li>
+	<li>Objective 3: It&#39;s a Score Objective. You must have at least 500 points 
+	at turn 1400. If so, you gain 200 points.</li>
+</ul>
+<p>There is more kind of objectives in Project Hoshimi. Look at those in the 
+Hoshimi&#39;s Lab to learn more.</p>
+<p>Our first objective to accomplish is a Navigation Objective. Because any kind 
+of Nanobot can do it, the best is to use NanoExplorer because it goes very fast 
+in the tissue (same speed in high, medium or low density of blood).</p>
+<p>So we must define a Explorer in our Nanobots:</p>
+
+<div class="lang">
+<p class="langTitle">C#</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;">[<span style="color: teal;">Characteristics</span>(ContainerCapacity 
+	= 0,</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; CollectTransfertSpeed = 0,</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; Scan = 30,</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; MaxDamage = 0,</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; DefenseDistance = 0,</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; Constitution = 10)]</p>
+	<p style="margin: 0px;"><span style="color: blue;">public</span>
+	<span style="color: blue;">class</span> <span style="color: teal;">Explorer</span> 
+	: PH.Common.<span style="color: teal;">NanoExplorer</span>,
+	<span style="color: teal;">IActionable</span></p>
+	<p style="margin: 0px;">{}</p>
+</div>
+<!--EndFragment-->
+<p class="langTitle">Visual Basic</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+		<p style="margin: 0px;">&lt;Characteristics(ContainerCapacity:=0, _</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; CollectTransfertSpeed:=0, _</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; Scan:=30, _</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; MaxDamage:=0, _</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; DefenseDistance:=0, _</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; Constitution:=10)&gt; _</p>
+		<p style="margin: 0px;"><span style="color: blue;">Public</span>
+		<span style="color: blue;">Class</span> Explorer</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		Inherits</span> PH.Common.NanoExplorer</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		Implements</span> IActionable</p>
+		<p style="margin: 0px;"><span style="color: blue;">End</span>
+		<span style="color: blue;">Class</span></p>
+	</div>
+	</div>
+<p>As you can see, I use the same tip than in the previous tutorial, using my 
+IActionable interface.</p>
+<p>What this Explorer must do:</p>
+<ul>
+	<li>it must know first which points is must visit,</li>
+	<li>go to each points,</li>
+	<li>when all points are visited, we can destroy it.</li>
+</ul>
+<p>So I add a new enumeration in this class, using the same approach than in 
+previous tutorial:</p>
+
+<div class="lang">
+<p class="langTitle">C#</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;">[<span style="color: teal;">Characteristics</span>(ContainerCapacity 
+	= 0,</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; CollectTransfertSpeed = 0,</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; Scan = 30,</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; MaxDamage = 0,</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; DefenseDistance = 0,</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; Constitution = 10)]</p>
+	<p style="margin: 0px;"><span style="color: blue;">public</span>
+	<span style="color: blue;">class</span> <span style="color: teal;">Explorer</span> 
+	: PH.Common.<span style="color: teal;">NanoExplorer</span>,
+	<span style="color: teal;">IActionable</span></p>
+	<p style="margin: 0px;">{</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">public</span>
+	<span style="color: blue;">enum</span> <span style="color: teal;">
+	WhatToDoNextAction</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; {</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	WaitingForPoints = 0,</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	MoveToPoint = 1,</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; }</p>
+	<p style="margin: 0px;">&nbsp;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+	private</span> <span style="color: teal;">WhatToDoNextAction</span> 
+	m_WhatToDoNext = <span style="color: teal;">WhatToDoNextAction</span>.WaitingForPoints;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">public</span>
+	<span style="color: teal;">WhatToDoNextAction</span> WhatToDoNext</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; {</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">get</span> { <span style="color: blue;">return</span> 
+	m_WhatToDoNext; }</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">set</span> { m_WhatToDoNext =
+	<span style="color: blue;">value</span>; }</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; }</p>
+	<div>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+		public</span> <span style="color: blue;">void</span> DoActions()</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; {</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; }</p>
+	</div>
+<!--EndFragment-->
+<p style="margin: 0px;">}</p>
+</div>
+<!--EndFragment-->
+<p class="langTitle">Visual Basic</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;">&lt;Characteristics(ContainerCapacity:=0, _</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; CollectTransfertSpeed:=0, _</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; Scan:=30, _</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; MaxDamage:=0, _</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; DefenseDistance:=0, _</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; Constitution:=10)&gt; _</p>
+	<p style="margin: 0px;"><span style="color: blue;">Public</span>
+	<span style="color: blue;">Class</span> Explorer</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+	Inherits</span> PH.Common.NanoExplorer</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+	Implements</span> IActionable</p>
+	<p style="margin: 0px;">&nbsp;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">Public</span>
+	<span style="color: blue;">Enum</span> WhatToDoNextAction</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	WaitingForPoints = 0</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	MoveToPoint = 1</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">End</span>
+	<span style="color: blue;">Enum</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+	Private</span> m_WhatToDoNext <span style="color: blue;">As</span> 
+	WhatToDoNextAction = WhatToDoNextAction.WaitingForPoints</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">Public</span>
+	<span style="color: blue;">Property</span> WhatToDoNext()
+	<span style="color: blue;">As</span> WhatToDoNextAction</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">Get</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">Return</span> m_WhatToDoNext</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">End</span> <span style="color: blue;">Get</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">Set</span>(<span style="color: blue;">ByVal</span> 
+	value <span style="color: blue;">As</span> WhatToDoNextAction)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	m_WhatToDoNext = value</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">End</span> <span style="color: blue;">Set</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">End</span>
+	<span style="color: blue;">Property</span></p>
+	<p style="margin: 0px;">&nbsp;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">Public</span>
+	<span style="color: blue;">Sub</span> DoActions() <span style="color: blue;">
+	Implements</span> IActionable.DoActions</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">End</span>
+	<span style="color: blue;">Sub</span></p>
+	<p style="margin: 0px;"><span style="color: blue;">End</span>
+	<span style="color: blue;">Class</span></p>
+</div>
+<!--EndFragment-->
+<p>&nbsp;</p>
+</div>
+<p>My Explorer must know where to go. I just add a new property to it which will 
+allow my AI to give it orders, ie giving it a queue of points to visit:</p>
+
+<div class="lang">
+<p class="langTitle">C#</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;"><span style="color: blue;">private</span>
+	<span style="color: teal;">Queue</span>&lt;<span style="color: teal;">Point</span>&gt; 
+	m_PointsToVisit = <span style="color: blue;">new</span>
+	<span style="color: teal;">Queue</span>&lt;<span style="color: teal;">Point</span>&gt;();</p>
+	<p style="margin: 0px;"><span style="color: blue;">public</span>
+	<span style="color: teal;">Queue</span>&lt;<span style="color: teal;">Point</span>&gt; 
+	PointsToVisit</p>
+	<p style="margin: 0px;">{</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">get</span> 
+	{ <span style="color: blue;">return</span> m_PointsToVisit; }</p>
+	<p style="margin: 0px;">}</p>
+	<p style="margin: 0px;"><span style="color: blue;">public</span>
+	<span style="color: blue;">void</span> DoActions()</p>
+	<p style="margin: 0px;">{</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">switch</span> 
+	(<span style="color: blue;">this</span>.WhatToDoNext)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; {</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">case</span> <span style="color: teal;">
+	WhatToDoNextAction</span>.WaitingForPoints:</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">break</span>;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">case</span> <span style="color: teal;">
+	WhatToDoNextAction</span>.MoveToPoint:</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	MakeMove();</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">break</span>;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; }</p>
+	<p style="margin: 0px;">}</p>
+	<p style="margin: 0px;"><span style="color: blue;">private</span>
+	<span style="color: blue;">void</span> MakeMove()</p>
+	<p style="margin: 0px;">{</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">if</span> 
+	(<span style="color: blue;">this</span>.PointsToVisit.Count &gt; 0)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">this</span>.MoveTo(PointsToVisit.Dequeue());</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">else</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">this</span>.ForceAutoDestruction();</p>
+	<p style="margin: 0px;">} </p>
+</div>
+<!--EndFragment-->
+<p class="langTitle">Visual Basic</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;"><span style="color: blue;">Private</span> 
+	m_PointsToVisit <span style="color: blue;">As</span>
+	<span style="color: blue;">New</span> Queue(<span style="color: blue;">Of</span> 
+	Point)</p>
+	<p style="margin: 0px;"><span style="color: blue;">Public</span>
+	<span style="color: blue;">ReadOnly</span> <span style="color: blue;">
+	Property</span> PointsToVisit() <span style="color: blue;">As</span> Queue(<span style="color: blue;">Of</span> 
+	Point)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">Get</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">Return</span> m_PointsToVisit</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">End</span>
+	<span style="color: blue;">Get</span></p>
+	<p style="margin: 0px;"><span style="color: blue;">End</span>
+	<span style="color: blue;">Property</span></p>
+	<p style="margin: 0px;">&nbsp;</p>
+	<p style="margin: 0px;"><span style="color: blue;">Public</span>
+	<span style="color: blue;">Sub</span> DoActions() <span style="color: blue;">
+	Implements</span> IActionable.DoActions</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">Select</span>
+	<span style="color: blue;">Case</span> <span style="color: blue;">Me</span>.WhatToDoNext</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">Case</span> WhatToDoNextAction.WaitingForPoints</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">Case</span> WhatToDoNextAction.MoveToPoint</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	MakeMove()</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">End</span>
+	<span style="color: blue;">Select</span></p>
+	<p style="margin: 0px;"><span style="color: blue;">End</span>
+	<span style="color: blue;">Sub</span></p>
+	<p style="margin: 0px;"><span style="color: blue;">Private</span>
+	<span style="color: blue;">Sub</span> MakeMove()</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">If</span>
+	<span style="color: blue;">Me</span>.PointsToVisit.Count &gt; 0
+	<span style="color: blue;">Then</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">Me</span>.MoveTo(<span style="color: blue;">Me</span>.PointsToVisit.Dequeue)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">Else</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">Me</span>.ForceAutoDestruction()</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">End</span>
+	<span style="color: blue;">If</span></p>
+	<p style="margin: 0px;"><span style="color: blue;">End</span>
+	<span style="color: blue;">Sub</span></p>
+</div>
+<!--EndFragment-->
+<p>&nbsp;</p>
+</div>
+<p>If my Explorer is waiting for Points to Explorer, it does nothing. If it must 
+move to all its points, I use the MakeMove method. This verify if there is still 
+points to visit. If not, it destroy itself (poor boy!), otherwise, it move to 
+the other point. Really easy isn&#39;t it?</p>
+<p>I will not make any changes to this class now. I just have to give orders to 
+my AI.</p>
+<p>What my AI must do?</p>
+<ul>
+	<li>Build an Explorer,</li>
+	<li>Fill the PointsToVisit property of the Explorer,</li>
+</ul>
+<p>So again, I create a new enumeration in the myPlayer class:</p>
+
+<div class="lang">
+<p class="langTitle">C#</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;"><span style="color: blue;">public</span>
+	<span style="color: blue;">enum</span> <span style="color: teal;">
+	WhatToDoNextAction</span></p>
+	<p style="margin: 0px;">{</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; BuildExplorer = 0,</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; FillNavPoints = 1,</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; NothingToDo = 2,</p>
+	<p style="margin: 0px;">}</p>
+	<p style="margin: 0px;"><span style="color: blue;">private</span>
+	<span style="color: teal;">WhatToDoNextAction</span> m_WhatToDoNext =
+	<span style="color: teal;">WhatToDoNextAction</span>.BuildExplorer;</p>
+	<p style="margin: 0px;"><span style="color: blue;">public</span>
+	<span style="color: teal;">WhatToDoNextAction</span> AI_WhatToDoNext</p>
+	<p style="margin: 0px;">{</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">get</span> 
+	{ <span style="color: blue;">return</span> m_WhatToDoNext; }</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">set</span> 
+	{ m_WhatToDoNext = <span style="color: blue;">value</span>; }</p>
+	<p style="margin: 0px;">}</p>
+</div>
+<!--EndFragment-->
+<p class="langTitle">Visual Basic</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;"><span style="color: blue;">Public</span>
+	<span style="color: blue;">Enum</span> WhatToDoNextAction</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; BuildExplorer = 0</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; FillNavPoints = 1</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; NothingToDo = 2</p>
+	<p style="margin: 0px;"><span style="color: blue;">End</span>
+	<span style="color: blue;">Enum</span></p>
+	<p style="margin: 0px;">&nbsp;</p>
+	<p style="margin: 0px;"><span style="color: blue;">Private</span> 
+	m_WhatToDoNext <span style="color: blue;">As</span> WhatToDoNextAction = 
+	WhatToDoNextAction.BuildExplorer</p>
+	<p style="margin: 0px;"><span style="color: blue;">Public</span>
+	<span style="color: blue;">Property</span> AI_WhatToDoNext()
+	<span style="color: blue;">As</span> WhatToDoNextAction</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">Get</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">Return</span> m_WhatToDoNext</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">End</span>
+	<span style="color: blue;">Get</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">Set</span>(<span style="color: blue;">ByVal</span> 
+	value <span style="color: blue;">As</span> WhatToDoNextAction)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	m_WhatToDoNext = value</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">End</span>
+	<span style="color: blue;">Set</span></p>
+	<p style="margin: 0px;"><span style="color: blue;">End</span>
+	<span style="color: blue;">Property</span></p>
+</div>
+<!--EndFragment-->
+</div>
+<p>And I just have to change my AI_DoActions method to follow my strategy:</p>
+
+<div class="lang">
+<p class="langTitle">C#</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;"><span style="color: blue;">private</span>
+	<span style="color: blue;">void</span> AI_DoActions()</p>
+	<p style="margin: 0px;">{</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">if</span> 
+	(<span style="color: blue;">this</span>.AI.State ==
+	<span style="color: teal;">NanoBotState</span>.WaitingOrders)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; {</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">switch</span>(<span style="color: blue;">this</span>.AI_WhatToDoNext)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">case</span> <span style="color: teal;">
+	WhatToDoNextAction</span>.BuildExplorer:</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">if</span> (<span style="color: blue;">this</span>.AI.Build(<span style="color: blue;">typeof</span>(<span style="color: teal;">Explorer</span>)))</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">this</span>.AI_WhatToDoNext =
+	<span style="color: teal;">WhatToDoNextAction</span>.FillNavPoints;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">break</span>;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">case</span> <span style="color: teal;">
+	WhatToDoNextAction</span>.FillNavPoints:</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">foreach</span> (<span style="color: teal;">NanoBot</span> 
+	bot <span style="color: blue;">in</span> <span style="color: blue;">this</span>.NanoBots)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	{</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">if</span> (bot <span style="color: blue;">is</span>
+	<span style="color: teal;">Explorer</span> &amp;&amp; </p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	((<span style="color: teal;">Explorer</span>)bot).WhatToDoNext ==
+	<span style="color: teal;">Explorer</span>.<span style="color: teal;">WhatToDoNextAction</span>.WaitingForPoints)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	{</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	SelectObjectivePoints((<span style="color: teal;">Explorer</span>)bot);</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">this</span>.AI_WhatToDoNext =
+	<span style="color: teal;">WhatToDoNextAction</span>.NothingToDo;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">break</span>;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	}</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	}</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">break</span>;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">case</span> <span style="color: teal;">
+	WhatToDoNextAction</span>.NothingToDo:</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">break</span>;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; }</p>
+	<p style="margin: 0px;">}</p>
+		<p style="margin: 0px;"><span style="color: blue;">private</span>
+		<span style="color: blue;">void</span> SelectObjectivePoints(<span style="color: teal;">Explorer</span> 
+		explo)</p>
+		<p style="margin: 0px;">{</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; explo.PointsToVisit.Clear();</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; explo.PointsToVisit.Enqueue(<span style="color: blue;">new</span>
+		<span style="color: teal;">Point</span>(117, 142));</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; explo.PointsToVisit.Enqueue(<span style="color: blue;">new</span>
+		<span style="color: teal;">Point</span>(111, 154));</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; explo.PointsToVisit.Enqueue(<span style="color: blue;">new</span>
+		<span style="color: teal;">Point</span>(128, 195));</p>
+		<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; explo.WhatToDoNext =
+		<span style="color: teal;">Explorer</span>.<span style="color: teal;">WhatToDoNextAction</span>.MoveToPoint;</p>
+		<p style="margin: 0px;">}</p>
+</div>
+<!--EndFragment-->
+<p class="langTitle">Visual Basic</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;"><span style="color: blue;">Private</span>
+	<span style="color: blue;">Sub</span> AI_DoActions()</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">If</span>
+	<span style="color: blue;">Me</span>.AI.State = NanoBotState.WaitingOrders
+	<span style="color: blue;">Then</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">Select</span> <span style="color: blue;">Case</span>
+	<span style="color: blue;">Me</span>.AI_WhatToDoNext</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">Case</span> WhatToDoNextAction.BuildExplorer</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">If</span> <span style="color: blue;">Me</span>.AI.Build(<span style="color: blue;">GetType</span>(Explorer))
+	<span style="color: blue;">Then</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">Me</span>.AI_WhatToDoNext = 
+	WhatToDoNextAction.FillNavPoints</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">End</span> <span style="color: blue;">If</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">Case</span> WhatToDoNextAction.FillNavPoints</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">For</span> <span style="color: blue;">Each</span> 
+	bot <span style="color: blue;">As</span> NanoBot <span style="color: blue;">
+	In</span> <span style="color: blue;">Me</span>.NanoBots</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">If</span> <span style="color: blue;">TypeOf</span> 
+	(bot) <span style="color: blue;">Is</span> Explorer
+	<span style="color: blue;">AndAlso</span> _</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">CType</span>(bot, Explorer).WhatToDoNext = 
+	Explorer.WhatToDoNextAction.WaitingForPoints <span style="color: blue;">Then</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	SelectObjectivePoints(<span style="color: blue;">CType</span>(bot, 
+	Explorer))</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">Me</span>.AI_WhatToDoNext = 
+	WhatToDoNextAction.NothingToDo</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">Exit</span> <span style="color: blue;">For</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">End</span> <span style="color: blue;">If</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">Next</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">Case</span> WhatToDoNextAction.NothingToDo</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">End</span> <span style="color: blue;">Select</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">End</span>
+	<span style="color: blue;">If</span></p>
+	<p style="margin: 0px;"><span style="color: blue;">End</span>
+	<span style="color: blue;">Sub</span></p>
+	<p style="margin: 0px;"><span style="color: blue;">Private</span>
+	<span style="color: blue;">Sub</span> SelectObjectivePoints(<span style="color: blue;">ByVal</span> 
+	explo <span style="color: blue;">As</span> Explorer)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; explo.PointsToVisit.Clear()</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; explo.PointsToVisit.Enqueue(<span style="color: blue;">New</span> 
+	Point(117, 142))</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; explo.PointsToVisit.Enqueue(<span style="color: blue;">New</span> 
+	Point(111, 154))</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; explo.PointsToVisit.Enqueue(<span style="color: blue;">New</span> 
+	Point(128, 195))</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; explo.WhatToDoNext = 
+	Explorer.WhatToDoNextAction.MoveToPoint</p>
+	<p style="margin: 0px;"><span style="color: blue;">End</span>
+	<span style="color: blue;">Sub</span></p>
+</div>
+<!--EndFragment-->
+<p>&nbsp;</p>
+</div>
+<p>This works fine for this mission and only for it, because I set the points to 
+visit with a &quot;scripting code&quot; approach. This can be used for Round1, but if you 
+want to go to final in Korea, you must have another approach.</p>
+<h2>Discover Objectives at runtime</h2>
+<p>The Player class has a property called Mission which allow you to learn more 
+at runtime of what you have to do.</p>
+<p>The Mission class has a collection property called Objectives of 
+BaseObjectives.</p>
+<p>Each kind of Objective you can meet inherits from BaseObjective. So for 
+example, if you search for a NavigationObjective in the mission, you can use the 
+followiing code:</p>
+
+<div class="lang">
+<p class="langTitle">C#</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;"><span style="color: blue;">foreach</span> (PH.Mission.<span style="color: teal;">BaseObjective</span> 
+	objective <span style="color: blue;">in</span> <span style="color: blue;">
+	this</span>.Mission.Objectives)</p>
+	<p style="margin: 0px;">{</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">if</span> 
+	(objective <span style="color: blue;">is</span> PH.Mission.<span style="color: teal;">NavigationObjective</span>)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; {</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	PH.Mission.<span style="color: teal;">NavigationObjective</span> navObj = (PH.Mission.<span style="color: teal;">NavigationObjective</span>)objective;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: green;">//do something with this NavigationObjective</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; }</p>
+	<p style="margin: 0px;">}</p>
+</div>
+<!--EndFragment-->
+<p class="langTitle">Visual Basic</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;"><span style="color: blue;">For</span>
+	<span style="color: blue;">Each</span> objective <span style="color: blue;">
+	As</span> PH.Mission.BaseObjective <span style="color: blue;">In</span>
+	<span style="color: blue;">Me</span>.Mission.Objectives</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">If</span>
+	<span style="color: blue;">TypeOf</span> (objective)
+	<span style="color: blue;">Is</span> PH.Mission.NavigationObjective
+	<span style="color: blue;">Then</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">Dim</span> navObj <span style="color: blue;">As</span> 
+	PH.Mission.NavigationObjective = <span style="color: blue;">CType</span>(objective, 
+	PH.Mission.NavigationObjective)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: green;">&#39;do something with this Navigation Objective</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">End</span>
+	<span style="color: blue;">If</span></p>
+	<p style="margin: 0px;"><span style="color: blue;">Next</span></p>
+	</div>
+</div>
+<p>The NavigationObjective class has a collection property of NavPoint. With the 
+NavPoint class you know where is the point to reach and some other informations 
+we will not discuss here.</p>
+<p>So now we can change the SelectObjectivePoints method to take this in 
+consideration:</p>
+
+<div class="lang">
+<p class="langTitle">C#</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;"><span style="color: blue;">private</span>
+	<span style="color: blue;">void</span> NEW_SelectObjectivePoints(<span style="color: teal;">Explorer</span> 
+	explo)</p>
+	<p style="margin: 0px;">{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; explo.PointsToVisit.Clear();</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">
+	foreach</span> (PH.Mission.<span style="color: teal;">BaseObjective</span> 
+	objective <span style="color: blue;">in</span> <span style="color: blue;">
+	this</span>.Mission.Objectives)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; {</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">if</span> (objective <span style="color: blue;">
+	is</span> PH.Mission.<span style="color: teal;">NavigationObjective</span>)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	PH.Mission.<span style="color: teal;">NavigationObjective</span> navObj = (PH.Mission.<span style="color: teal;">NavigationObjective</span>)objective;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">foreach</span> (PH.Mission.<span style="color: teal;">NavPoint</span> 
+	np <span style="color: blue;">in</span> navObj.NavPoints)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	explo.PointsToVisit.Enqueue(np.Location);</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">break</span>;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; }</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; explo.WhatToDoNext =
+	<span style="color: teal;">Explorer</span>.<span style="color: teal;">WhatToDoNextAction</span>.MoveToPoint;</p>
+	<p style="margin: 0px;">}</p>
+</div>
+<!--EndFragment-->
+<p class="langTitle">Visual Basic</p>
+<div style="font-family: Courier New; font-size: 10pt; color: black;">
+	<p style="margin: 0px;"><span style="color: blue;">Private</span>
+	<span style="color: blue;">Sub</span> NEW_SelectObjectivePoints(<span style="color: blue;">ByVal</span> 
+	explo <span style="color: blue;">As</span> Explorer)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; explo.PointsToVisit.Clear()</p>
+	<p style="margin: 0px;">&nbsp;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">For</span>
+	<span style="color: blue;">Each</span> objective <span style="color: blue;">
+	As</span> PH.Mission.BaseObjective <span style="color: blue;">In</span>
+	<span style="color: blue;">Me</span>.Mission.Objectives</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">If</span> <span style="color: blue;">TypeOf</span> 
+	(objective) <span style="color: blue;">Is</span> PH.Mission.NavigationObjective
+	<span style="color: blue;">Then</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">Dim</span> navObj <span style="color: blue;">As</span> 
+	PH.Mission.NavigationObjective = <span style="color: blue;">CType</span>(objective, 
+	PH.Mission.NavigationObjective)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">For</span> <span style="color: blue;">Each</span> 
+	np <span style="color: blue;">As</span> PH.Mission.NavPoint
+	<span style="color: blue;">In</span> navObj.NavPoints</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	explo.PointsToVisit.Enqueue(np.Location)</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">Next</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="color: blue;">End</span> <span style="color: blue;">If</span></p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; <span style="color: blue;">Next</span></p>
+	<p style="margin: 0px;">&nbsp;</p>
+	<p style="margin: 0px;">&nbsp;&nbsp;&nbsp; explo.WhatToDoNext = 
+	Explorer.WhatToDoNextAction.MoveToPoint</p>
+	<p style="margin: 0px;"><span style="color: blue;">End</span>
+	<span style="color: blue;">Sub</span></p>
+</div>
+<!--EndFragment-->
+</div>
+<p>This code now works on any tissue with any mission (even if there is no 
+NavigationObjective).</p>
+<h2>CONGRATULATIONS!</h2>
+<p>You know now how to obtain informations on Mission and Objectives. The next 
+tutorial is about Round1 competition.</p>
+<p><strong>You can find the code of this tutorial in %Project Hoshimi Folder%/Developpers.</strong></p>
+<p style="text-align: right">Richard Clark</p>
+
+</body>
+
+</html>

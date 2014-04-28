@@ -1,0 +1,73 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Installing the AASM CS Agents Platform</title>
+<style>
+<!--
+ li.MsoNormal
+	{mso-style-parent:"";
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	margin-left:0cm; margin-right:0cm; margin-top:0cm}
+-->
+</style>
+</head>
+
+<body>
+<h2>Configuring MS Visual Studio<a name="configuringMSVC"></a></h2>
+
+<table border="0" width="100%" id="table1" style="border-collapse: collapse" bgcolor="#C0C0C0">
+<tr>
+<td><b>NOTE</b><p>
+		<span style="font-size: 12.0pt; font-family: Times New Roman">In this 
+		text the following abbreviations are used:</span></p>
+		<ul>
+			<li><font size="2"><span style="font-family: Courier New">
+			{PROJECT_HOSHIMI_HOME}</span></font><span style="font-size: 12.0pt; font-family: Times New Roman"> 
+			– The directory where you installed (unziped) Project Hoshimi SDK</span></li>
+		</ul>
+</td>
+</tr>
+</table>
+
+
+
+<p>A MS Visual Studio 2005 solution is provided with the AASMA Framework to edit the source 
+code. Just open ProjectHoshimiAASMA.sln</p>
+<p><b>Whenever you build the code a DLL is generated: <font size="2">
+	<span style="font-family:&quot;Courier New&quot;">AASMAHoshimi.dll</span></font>. 
+You must copy this DLL to the directory: <span style="font-family: Courier New"><font size="2">
+		{PROJECT_HOSHIMI_HOME}\players</font></span>.</b></p>
+<p>Optionally, you may configure MS Visual Studio to copy automatically as a 
+&quot;Post-build Event&quot;. In order to do this, follow these steps:</p>
+<ol>
+	<li><span style="font-size: 12.0pt; font-family: Times New Roman">In the <b>
+	Solution Explorer</b> window, right-click on the </span> <font size="2"><span style="font-family: Courier New">
+	AASMAHoshimi</span></font><span style="font-size: 12.0pt; font-family: Times New Roman"> 
+	project (the one in bold) and choose <b>Properties</b></span></li>
+	<li>Select <b>Build 
+	Events</b> on the left section</li>
+	<li>
+	<p style="margin-top: 0; margin-bottom: 0">Edit the <b> Post-Build Event command line</b>, on the 
+	right section, to:</li>
+</ol>
+<p style="margin-top: 0; margin-bottom: 0"><font size="2">
+<span style="font-family: Courier New">&nbsp;&nbsp;&nbsp; copy &quot;$(TargetPath)&quot; &quot;{PROJECT_HOSHIMI_HOME}\players&quot; /y</span></font></p>
+<p align="center">
+<img border="0" src="Post-BuildEvent.JPG"></p>
+<p align="center"><i>Fig.1 - Setup up a Post-Build Event to copy the game DLL 
+automatically.</i> <br>
+&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><br>
+&nbsp;</h2>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

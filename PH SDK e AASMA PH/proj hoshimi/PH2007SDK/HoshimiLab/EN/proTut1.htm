@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Language" content="fr" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled 1</title>
+<link rel="stylesheet" type="text/css" href="..\css\msdn.css" />
+</head>
+
+<body>
+
+<h1 style="text-align: center">Tutorial 1</h1>
+<p>This tutorial learn you how to move your NanoAI. For testing purpose, select 
+the lesson called 1-Injection Point and first actions.</p>
+<p>Click on the New Strategy button. This will create an empty strategy with 
+nothing in it.</p>
+<p>Your first task is to add a nanoAI: click on the New NanoAI in the New 
+Nanobot toolbar.</p>
+<p>If you click on the Build button, you&#39;ll see there is two errors: your 
+Strategy doesn&#39;t have a valid name (its empty) and no default state is define 
+for your NanoAI. Don&#39;t worry, we will correct this.</p>
+<h2>Strategy Name and Injection Point</h2>
+<p>Select the first node in the Strategy Treeview, the Strategy node. Write a 
+name for your Strategy. Because it will be the name of the file, you must enter 
+valid characters for it (for example &quot;\&quot; is not allowed). Click on Apply button 
+and Save your Strategy: you see it now in your Strategy files Manager.</p>
+<p>&nbsp;</p>
+<p>You must then define your injection point. You know that in this mission, you 
+have one objective, a Navigation Objective. So we will decide to be injected at 
+the middle of the Navigation Objective Points.</p>
+<p>To do so, set the weight of Objective Points to 100 and the others to 0 and 
+choose to keep the calculated location. In this mission, there is only 2 
+navigation objectives, so your NanoAI will be injected just at the middle of 
+those 2 points (inside the stream).</p>
+<p>To go faster, you can also choose to be injected at the nearest Navigation 
+Objective Point from this middle: you will be injected directly on one Objective 
+Point.</p>
+<h2>Move your NanoAI</h2>
+<p>In the Strategy Treeview, expand the NanoAI node. You can see there is a 
+state called DefaultState: each time you add a Nanobot, a state is added 
+automaticly.</p>
+<p>Once your NanoAI will be injected in the tissue, you want it to move to a 
+Navigation Objective. So select the DefaultState node and click on the Add new 
+MoveTo action.</p>
+<p>Select your MoveTo node. You must define where you want it to go. In 
+Destination, click on the arrow: you&#39;ll see the different possible locations. 
+Those are grouped in categories.</p>
+<p>In <strong>General</strong>, you can choose:</p>
+<ul>
+	<li>Current Location: it&#39;s the current location of your Nanobot (not usefull 
+	for a MoveTo because your NanoAI will not move),</li>
+	<li>X-Y: you can define a specific location on the tissue,</li>
+	<li>Random: it&#39;s a random point at a certain distance from the current 
+	location of the Nanobot. Can be usefull to scout around a point,</li>
+	<li>Injection Point: it&#39;s the Injection Point of your team.</li>
+</ul>
+<p>In <strong>MyBots</strong>, your Strategy will calculate this point depending 
+of the type of a Nanobot:</p>
+<ul>
+	<li>Location: calculate the nearest location of a bot of a define type in my 
+	team,</li>
+	<li>Destination: calculate the nearest destination of a bot of a define type 
+	in my team,</li>
+</ul>
+<p>Let&#39;s take an example: imagine that you have define two Nanobot kind in your 
+strategy, a NanoAI and a NanoExplorer1. Imagine next that you build 10 
+NanoExplorer1. If you choose nearest Location of a NanoExplorer1 for the 
+destination of your MoveTo action for your NanoAI, this NanoAI will go to the 
+nearest location of a NanoExplorer1 in the tissue.</p>
+<p>In <strong>Tissue.Points</strong>, you can choose:</p>
+<ul>
+	<li>The nearest Hoshimi Point from your location,</li>
+	<li>The nearest AZN Point from your location,</li>
+	<li>The nearest Navigation Objective Point from your location</li>
+	<li>The nearest Navigation Objective Point not reached from your location.</li>
+</ul>
+<p>In <strong>HoshimiNeedle.Points</strong>, you&#39;ll find locations of Hoshimi 
+Points with or not with NanoNeedle of your team on it. There is also the Hoshimi 
+Points with NanoNeedles not full of AZN molecules. We will see tutorial 3 how 
+this can be usefull.</p>
+<p>&nbsp;</p>
+<p>In <strong>Pierre.Bots</strong> and <strong>OtherPlayer.Bots</strong>, it&#39;s 
+the same than with MyBots: you search the nearest location or destination of a 
+Nanobot of a define type in Pierre team or in the Other player team. Beware: 
+calculation os done with Nanobots that your Nanobots can see, ie in the scan 
+range of your Nanobots.</p>
+<p>&nbsp;</p>
+<p>At least, there is the <strong>Event</strong> category: this is usefull only 
+when your are in a State that listen to an event. For example, the Event 
+Location point in a Enemy Detected event is the location of the Pierre&#39;s Nanobot 
+that have been detected.</p>
+<p>&nbsp;</p>
+<p>So here, we will choose in Tissue.Points, the nearest Navigation Objective 
+not reached.</p>
+<p>&nbsp;</p>
+<p>If you test your Strategy, you&#39;ll see that everything will works fine, but we 
+can add more informations: this can be usefully for complex strategy.</p>
+<h2>Action details</h2>
+<p>Select your MoveTo Action and check &quot;Change Internal Name&quot;. In the text area, 
+write somthing like &quot;Go Obj&quot; and in &quot;Log text&quot; write &quot;Look for Objective Point&quot;.</p>
+<p>You&#39;ll see in the 2D viewer that aside your NanoAI, &quot;Go Obj&quot; appear and &quot;Look 
+for Objective Point&quot; appear in the log area. Trust me: for complex Strategy, it 
+is very, very usefull.</p>
+<p>&nbsp;</p>
+<p style="text-align: right">Richard Clark</p>
+</body>
+
+</html>

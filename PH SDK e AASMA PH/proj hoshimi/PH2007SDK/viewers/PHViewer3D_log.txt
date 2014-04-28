@@ -1,0 +1,159 @@
+app> creating device resource manager
+app> creating reloadable resources manager
+app> setup resource bundles
+app> create d3d resources
+app> activate d3d resources
+app> setup app contexts
+game> create render context
+resource> loading fx 'lib/global'
+resource> fx loaded, already has restoring pass
+game> create input context
+game> initialize DirectInput
+game>  add DI keyboard device
+game>  add DI mouse device
+app> initialize app
+game> Initializing...
+game> Video memory seems to be: 768
+resource> loading fx 'debug'
+resource> fx loaded, generating state restore pass
+resource> texture loaded 'guiskin'
+game> Starting...
+app> app initialized
+game> Init step: Connecting to server...
+resource> texture loaded 'Logo512'
+net> initialize winsock
+net> initialize socket
+net> resolve server address 
+net> server address is 192.168.1.7
+net> connect
+net> set socket to nonblocking mode
+game> Init step: Requesting game desc...
+net> Connection protocol test
+net> Fetch game description
+game> Game map name: sc1.tsu
+game> Init step: Calculating level mesh...
+resource> mesh loaded 'billboard'
+resource> loading fx 'minimapLev'
+resource> fx loaded, generating state restore pass
+game> Reading level mesh from cache...
+resource> model desc loaded 'normal/level'
+resource> loading fx 'level'
+resource> fx loaded, generating state restore pass
+resource> texture loaded 'WallsGray'
+resource> model desc loaded 'normal/levelMega'
+resource> loading fx 'levelMega'
+resource> fx loaded, generating state restore pass
+game> Init step: Initializing level points mesh...
+resource> model desc loaded 'normal/points'
+resource> loading fx 'points'
+resource> fx loaded, generating state restore pass
+resource> texture loaded 'Spark'
+game> Init step: Creating renderers...
+resource> loading fx 'minimap'
+resource> fx loaded, generating state restore pass
+resource> texture loaded 'Blob'
+resource> texture loaded 'Hud'
+resource> loading fx 'StreamImpostor'
+resource> fx loaded, generating state restore pass
+resource> texture loaded 'StreamImpostors'
+game> Init step: Creating entities...
+resource> mesh loaded 'PointHoshimi'
+resource> model desc loaded 'normal/PointHoshimi'
+resource> loading fx 'Point'
+resource> fx loaded, generating state restore pass
+resource> mesh loaded 'PointAZN'
+resource> model desc loaded 'normal/PointAZN'
+resource> mesh loaded 'Decor1'
+resource> model desc loaded 'normal/Decor1'
+resource> loading fx 'PointDecor'
+resource> fx loaded, generating state restore pass
+resource> texture loaded 'Decor1'
+resource> mesh loaded 'Decor7'
+resource> model desc loaded 'normal/Decor7'
+resource> loading fx 'PointDecorCell'
+resource> fx loaded, generating state restore pass
+resource> texture loaded 'DecorEnv'
+resource> mesh loaded 'Decor2'
+resource> model desc loaded 'normal/Decor2'
+resource> texture loaded 'Decor2'
+resource> mesh loaded 'PointMission'
+resource> model desc loaded 'normal/PointMission'
+resource> mesh loaded 'StreamRed'
+resource> model desc loaded 'normal/StreamRed'
+resource> loading fx 'StreamEntity'
+resource> fx loaded, generating state restore pass
+resource> mesh loaded 'StreamWhite'
+resource> model desc loaded 'normal/StreamWhite'
+game> Init step: Initializing GUI...
+time> initialization 0.403
+net> Query server state
+net> Query server state
+net> Query server state
+net> Query server state
+app> passivate d3d resources
+app> activate d3d resources
+net> Query server state
+net> Query server state
+net> Start game
+net> Query server state
+net> Query server state
+net> Query server state
+net> Query server state
+net> Query server state
+net> Query server state
+net> Query server state
+net> Query server state
+net> Query server state
+net> Query server state
+resource> mesh loaded 'PointInjection'
+resource> model desc loaded 'normal/PointInjection'
+resource> loading fx 'PointInjection'
+resource> fx loaded, generating state restore pass
+resource> texture loaded 'PointInjection'
+resource> mesh loaded 'AI_0'
+resource> model desc loaded 'normal/AI'
+resource> loading fx 'entity'
+resource> fx loaded, generating state restore pass
+resource> texture loaded 'NanoAI'
+resource> mesh loaded 'AI_1'
+resource> mesh loaded 'AI_2'
+resource> mesh loaded 'AI_3'
+resource> mesh loaded 'PAI_0'
+resource> model desc loaded 'normal/PAI'
+resource> texture loaded 'PAI'
+resource> mesh loaded 'PAI_1'
+resource> mesh loaded 'PAI_2'
+resource> mesh loaded 'PAI_3'
+resource> mesh loaded 'PNeuroCtrl_0'
+resource> model desc loaded 'normal/PNeuroCtrl'
+resource> texture loaded 'PNeuroCtrl'
+resource> mesh loaded 'PNeuroCtrl_1'
+resource> mesh loaded 'PNeuroCtrl_2'
+resource> mesh loaded 'PNeuroCtrl_3'
+resource> mesh loaded 'Collector_0'
+resource> model desc loaded 'normal/Collector'
+resource> texture loaded 'NanoCollector'
+resource> mesh loaded 'Collector_1'
+resource> mesh loaded 'Collector_2'
+resource> mesh loaded 'Collector_3'
+resource> mesh loaded 'Container_0'
+resource> model desc loaded 'normal/Container'
+resource> texture loaded 'NanoContainer'
+resource> mesh loaded 'Container_1'
+resource> mesh loaded 'Container_2'
+resource> mesh loaded 'Container_3'
+resource> mesh loaded 'Explorer_0'
+resource> model desc loaded 'normal/Explorer'
+resource> texture loaded 'NanoExplorer'
+resource> mesh loaded 'Explorer_1'
+resource> mesh loaded 'Explorer_2'
+resource> mesh loaded 'Explorer_3'
+app> passivate d3d resources
+app> delete d3d resources
+app> shutdown app
+game> Shutting down...
+net> shutdown
+game> Done!
+app> shutdown device resource manager
+app> destroy contexts
+app> destroy resource bundles

@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Language" content="fr" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled 1</title>
+<link rel="stylesheet" type="text/css" href="..\css\msdn.css" />
+</head>
+
+<body>
+
+<h1 style="text-align: center">Tutorial 2</h1>
+<p>This tutorial learn you how to create new Nanobots, configure Group Actions 
+and the use of a Test Actions. For testing purpose, select the lesson called 2-Learn 
+squads and moving.</p>
+<p>In this mission, there is a lot of Navigation Objectives. Of course, you will 
+not ask to reach all those points to the NanoAI: it have more important job to 
+do.</p>
+<h2>Add a new Nanobot Type</h2>
+<p>To reach those points, we will use NanoExplorer: because they don&#39;t take care 
+about blood density, it&#39;s a good kind of Nanobot for Navigation Objective.</p>
+<p>Create a new Strategy and add a NanoAI and a NanoExplorer. By default, this 
+will be called NanoExplorer1 (but you can change it if you want).</p>
+<p>Choose your Injection Point (for example the middle of Navigation Objective).</p>
+<p>In the default state of your NanoAI, add a Build Action and select your 
+NanoExplorer1 in &quot;Nanobot to build Name&quot;.</p>
+<p>In the default state of your NanoExplorer1, add a MoveTo action with 
+destination set to &quot;Navigation Objective Not Reached&quot;.</p>
+<p>Test your Strategy.</p>
+<p><img alt="40 Explorers" src="../img/pro16.jpg" width="294" height="276" /></p>
+<p>Wahooo: you&#39;ll see your NanoAI creating and creating numbers of NanoExplorer 
+(it stop when the maximum amount is reached, ie 40 Nanobots). Well: objectives 
+are done, but if you want to create some other Nanobots, it&#39;s not a good idea.</p>
+<p>What happen exactly: At the start of the game, once your NanoAI is injected, 
+it set his state to the default state, &quot;DefaultState&quot;. This state contains only 
+one actions, Build a NanoExplorer1. So your NanoAI follow your order and build 
+this NanoExplorer1.</p>
+<p>Next, because all the actions in Default State are done and because the 
+Repeat parameter of DefaultState is set to forever, it start again all the 
+actions in DefaultState, ie it build again a NanoExplorer1. And so on.</p>
+<p>If you want to build only 10 NanoExplorer1, change the repeat parameter of 
+the DefaultState of your NanoAI and set it to 10.</p>
+<p>Test again your Strategy and you&#39;ll see only 10 NanoExplorer1 moving in the 
+tissue.</p>
+<h2>Test Action</h2>
+<p>You can see that all navigation objectives are reached before the end of the 
+game. So our NanoExplorer1 are no more usefull. It could be a good idea to 
+destroy it when all objectives are done (remember that total numbers of your 
+Nanobots at the same time in the tissue is limited to 40).</p>
+<p>In the Default State of your NanoExplorer1, delete the MoveTo Action and add 
+a Test Action.</p>
+<p>In the test action, select the Value Test. In value test you can compare two 
+values. Those values can be:</p>
+<ul>
+	<li>A value (between 0 to 100),</li>
+	<li>The Current Turn,</li>
+	<li>The Current Score,</li>
+	<li>The Current number of AZN molecules in the stock of the Nanobot,</li>
+	<li>The number of Navigation Objectives,</li>
+	<li>The number of Navigation Objectives not reached,</li>
+	<li>The number of Nanobots of a define kind (in your team).</li>
+</ul>
+<p>Here, we will compare the number of Navigation Objectives Not Reached to 0.</p>
+<p>Expand now the Test node. You see that there is two new nodes (a green and a 
+red one). They both represent a Group Actions. The Green one is executed if the 
+result is true. The Red one is executed if the result is false.</p>
+<p>So in green one, add a ForceAutoDestruction action and in the red one, add a 
+MoveTo action, moveTo the nearest Navigation Objective Not Reached. Be sure, for 
+both Group Action, to set its repeat parameter to 1.</p>
+<p>What happen exactly now: when a NanoExplorer1 is created, it start its 
+instructions in the DefaultState. Its first instruction is the test. If there is 
+still Navigation Objectives Not Reached, it execute actions in the Red Group 
+actions and only one time: go to the nearest Navigation Objective Not Reached.</p>
+<p>Then, because DefaultState repeat is set to Forever, it execute again the 
+test. If there is no more navigation objectives to reach, it destroy itself.</p>
+<p>Easy and powerfull.</p>
+<p>&nbsp;</p>
+<p style="text-align: right">Richard Clark</p>
+</body>
+
+</html>

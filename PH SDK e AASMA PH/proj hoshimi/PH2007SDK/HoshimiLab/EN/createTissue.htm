@@ -1,0 +1,225 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Language" content="fr" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled 1</title>
+<link rel="stylesheet" type="text/css" href="../css/msdn.css" />
+</head>
+
+<body>
+
+<h1 style="text-align: center; font-weight: normal; ">
+How do I create a Tissue/Mission?</h1>
+<p style="text-align: left">You want to create a new Tissue/Mission? Use Mission 
+Editor for this, it will create for you the .tsu and the .brief file.</p>
+<p style="text-align: left">A .tsu file contains the description of the tissue. 
+It is in reality a zip file with:</p>
+<ul>
+	<li>
+	<p style="text-align: left">a bmp file 200 * 200 pixels,</p>
+	</li>
+	<li>
+	<p style="text-align: left">entities.txt which contains the locations of AZN 
+	and Hoshimi Points,</p>
+	</li>
+	<li>
+	<p style="text-align: left">streams.txt which contains size, location and 
+	direction of streams.</p>
+	</li>
+</ul>
+<p style="text-align: left">A .brief file contains the description of the 
+different objectives of the mission. It is an Xml file.</p>
+<p style="text-align: left">So the first thing to do is to create a bmp file 
+with you favorite picture editor. The colors used are important because a color 
+of a pixel describe the density of blood of the cell. Use:</p>
+<ul>
+	<li>
+	<p style="text-align: left">black (0,0,0) color for bones,</p>
+	</li>
+	<li>
+	<p style="text-align: left">red (255,0,0) color for normal density,</p>
+	</li>
+	<li>
+	<p style="text-align: left">blue (0,0,255) color for medium density,</p>
+	</li>
+	<li>
+	<p style="text-align: left">green (0,255,0) color for high density.</p>
+	</li>
+</ul>
+<p style="text-align: left">In 3D viewer, you can see also that some areas can 
+be in white or blue. This is only for &quot;cosmetic&quot; reasons and make no change to 
+the density of blood. In summary, here is a table describing all colors you can 
+use and the effect in 3D viewer:</p>
+<table align="center" cellspacing="0" cellpadding="5" style="border: 1px solid #000000">
+	<tr>
+		<td style="width: 100px; text-align: center; height: 20px; border: 1px solid #000000">
+		<strong>Density of blood</strong></td>
+		<td style="width: 100px; text-align: center; height: 20px; border: 1px solid #000000">
+		<strong>Red area</strong></td>
+		<td style="width: 100px; text-align: center; height: 20px; border: 1px solid #000000">
+		<strong>Blue area</strong></td>
+		<td style="width: 100px; text-align: center; height: 20px; border: 1px solid #000000">
+		<strong>White area</strong></td>
+	</tr>
+	<tr>
+		<td style="width: 100px; text-align: center; height: 20px; border: 1px solid #000000">
+		Bone</td>
+		<td style="width: 100px; height: 20px; text-align: center; border: 1px solid #000000">
+		0,0,0</td>
+		<td style="width: 100px; height: 20px; text-align: center; border: 1px solid #000000">
+		0,0,0</td>
+		<td style="width: 100px; height: 20px; text-align: center; border: 1px solid #000000">
+		0,0,0</td>
+	</tr>
+	<tr>
+		<td style="width: 100px; text-align: center; height: 20px; border: 1px solid #000000">
+		Normal</td>
+		<td style="width: 100px; height: 20px; text-align: center; border: 1px solid #000000">
+		255,0,0</td>
+		<td style="width: 100px; height: 20px; text-align: center; border: 1px solid #000000">
+		200,0,0</td>
+		<td style="width: 100px; height: 20px; text-align: center; border: 1px solid #000000">
+		128,0,0</td>
+	</tr>
+	<tr>
+		<td style="width: 100px; text-align: center; height: 20px; border: 1px solid #000000">
+		Medium</td>
+		<td style="width: 100px; height: 20px; text-align: center; border: 1px solid #000000">
+		0,0,255</td>
+		<td style="width: 100px; height: 20px; text-align: center; border: 1px solid #000000">
+		0,0,200</td>
+		<td style="width: 100px; height: 20px; text-align: center; border: 1px solid #000000">
+		0,0,128</td>
+	</tr>
+	<tr>
+		<td style="width: 100px; text-align: center; height: 20px; border: 1px solid #000000">
+		High</td>
+		<td style="width: 100px; height: 20px; text-align: center; border: 1px solid #000000">
+		0,255,0</td>
+		<td style="width: 100px; height: 20px; text-align: center; border: 1px solid #000000">
+		0,200,0</td>
+		<td style="width: 100px; height: 20px; text-align: center; border: 1px solid #000000">
+		0,128,0</td>
+	</tr>
+</table>
+<p style="text-align: center">&nbsp;</p>
+<p style="text-align: left">Another thing which is VERY important to don&#39;t crash 
+the 3D viewer: avoid diagonals. I mean there must be always two cells, two 
+pixels of the same color in vertical and/or horizontal direction.</p>
+<table align="center">
+<tr>
+<td><table style="border: 1px solid #000000" cellspacing="0" cellpadding="5">
+	<tr>
+		<td colspan="2" style="border: 1px solid #000000; text-align: center"><strong>Invalid</strong></td>
+	</tr>
+	<tr>
+		<td style="border: 1px solid #000000">0,0,0</td>
+		<td style="border: 1px solid #000000">255,0,0</td>
+	</tr>
+	<tr>
+		<td style="border: 1px solid #000000">255,0,0</td>
+		<td style="border: 1px solid #000000">0,0,0</td>
+	</tr>
+</table>
+</td>
+<td><table style="border: 1px solid #000000" cellspacing="0" cellpadding="5">
+	<tr>
+		<td colspan="2" style="border: 1px solid #000000; text-align: center"><strong>Valid</strong></td>
+	</tr>
+	<tr>
+		<td style="border: 1px solid #000000">255,0,0</td>
+		<td style="border: 1px solid #000000">255,0,0</td>
+	</tr>
+	<tr>
+		<td style="border: 1px solid #000000">255,0,0</td>
+		<td style="border: 1px solid #000000">0,0,0</td>
+	</tr>
+</table>
+</td></tr></table>
+
+<p style="text-align: left">
+But don&#39;t worry, in Mission Editor there is a tool that help you detecting 
+errors.</p>
+<p style="text-align: left">
+Once you have created your bmp file, you can launch and use Mission Editor to 
+create your Tissue/Mission files.</p>
+<p style="text-align: left">
+<strong>Mission Editor</strong></p>
+<p style="text-align: center">
+<img alt="Tissue/Mission Creator" src="../img/tissueCreator.png" width="699" height="721" /></p>
+<p>With Mission Editor you can open an existing Tissue/Mission and/or create a 
+new one.</p>
+<p>In the Tissue toolbar, you have a button called Import Cells Bitmap. Click on 
+it and select the bmp file you just create. To verify the validity of your 
+bitmap, click on the Validate Tissue button.</p>
+<p><strong>Adding AZN<span style="font-weight: normal">,</span></strong><span style="font-weight: normal">
+</span><strong>Hoshimi Points, Streams</strong></p>
+<p>You can then add AZN and Hoshimi Points by clicking on the buttons A and H. 
+When you click on it, a new entity (AZN or Hoshimi point) is created at (0,0). 
+To change the location, select it in the treeview on the left, and right click 
+on the tissue where you want ot to be. You can also change it in the property 
+area on the left bottom.</p>
+<p>You can do the same with streams. To change direction, width and height or 
+the stream, select it in the treeview and modify the values in the property area 
+on the left bottom.</p>
+<p><strong>Adding Objectives</strong></p>
+<p>In the Objectives toolbar, you have a button where you can select the kind of 
+objective you want to add. Select it in the treeview and don&#39;t forget to change 
+the bonus value.</p>
+<p>For each kind of objective, you have different values to set:</p>
+<table style="width: 400px; border: 1px solid #000000" cellspacing="0" cellpadding="5" align="center">
+	<tr>
+		<td style="text-align: center"><strong>Objectives</strong></td>
+		<td style="text-align: center"><strong>Specific Values</strong></td>
+	</tr>
+	<tr>
+		<td>AIAlive</td>
+		<td>The turn when the AI must be still alive to gain bonus</td>
+	</tr>
+	<tr>
+		<td>Score</td>
+		<td>What score to reach at a specific turn</td>
+	</tr>
+	<tr>
+		<td>NeuroController</td>
+		<td>Number of NeuroController of Pierre&#39;s team that must be reach 
+		between Start turn and End turn. If at any time during the interval the 
+		number is reached, the objective is done.</td>
+	</tr>
+	<tr>
+		<td>Navigation</td>
+		<td>The kind of Nanobot that must reach the navigation points.</td>
+	</tr>
+	<tr>
+		<td>UniqueNavigation</td>
+		<td>The kind of Nanobot that must reach the navigation points.</td>
+	</tr>
+</table>
+<p>For Navigation and UniqueNavigation objectives, you must add Navigation 
+points. You can do this like for AZ and Hoshimi Points. Click on Add Navigation 
+Point, select it in the treeview and right click on the tissue to set its 
+location. For Navigation Points, you can set too some values:</p>
+<ul>
+	<li>Start turn and End turn define the interval when the nanobot must reach 
+	this point,</li>
+	<li>Stock is the amount of AZN molecules the Nanobot must carry to validate 
+	the navigation. You can set it to -1 if you don&#39;t want to check for stock.</li>
+</ul>
+<p>BEWARE: there is no check of the validity of your objectives in this version 
+of Mission Editor. For example if Start turn is higher than the End turn in a 
+navigation point, it will not detect this error.</p>
+<p><strong>Saving the files</strong></p>
+<p>Now that you create the tissue, the objectives, you simply have to click on 
+the Save All button in Mission toolbar. It will create the .tsu file and the .brief 
+file. .brief file have the same name than the .tsu file (round1.tsu and round1.brief 
+for example).</p>
+<p>&nbsp;</p>
+<p>If you have any questions, don&#39;t hesitate to ask me on the discussion forum.</p>
+<p>&nbsp;</p>
+<p style="text-align: right">Richard Clark</p>
+
+</body>
+
+</html>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<Mission xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Description />
+  <Objectives>
+    <BaseObjective xsi:type="ScoreObjective">
+      <Bonus>1000</Bonus>
+      <Status>ToBeDone</Status>
+      <Value>0</Value>
+      <ScoreTurn>700</ScoreTurn>
+      <Score>700</Score>
+    </BaseObjective>
+  </Objectives>
+</Mission>

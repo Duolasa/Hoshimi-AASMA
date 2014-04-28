@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<LessonDescription xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Mode>0</Mode>
+  <Title>2-Learn squads and moving</Title>
+  <School>c2i.fr</School>
+  <Summary>This show you how to create squad and optimize your moves.</Summary>
+  <Author>Richard Clark - RaptorXP</Author>
+  <Level>2</Level>
+  <DateCreation>2006-11-19T10:08:44.8326+01:00</DateCreation>
+  <Country>1033</Country>
+  <ID>784262d4-75ce-4f2d-9f48-aad4f1716350</ID>
+  <Files>
+    <FileDescription>
+      <FileName>build.jpg</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>infos</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>L2.brief</FileName>
+      <Value>mission</Value>
+    </FileDescription>
+    <FileDescription>
+      <FileName>L2.tsu</FileName>
+      <Value>tissue</Value>
+    </FileDescription>
+    <FileDescription>
+      <FileName>moveto.jpg</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>MSDN.css</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>objectives2.jpg</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>PierreLesson1.dll</FileName>
+      <Value>pierre</Value>
+    </FileDescription>
+    <FileDescription>
+      <FileName>pro16.jpg</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>tree3.jpg</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>tree4.jpg</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>tree5.jpg</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>tree6.jpg</FileName>
+      <Value />
+    </FileDescription>
+    <FileDescription>
+      <FileName>tutorial2.htm</FileName>
+      <Value>htm</Value>
+    </FileDescription>
+  </Files>
+</LessonDescription>

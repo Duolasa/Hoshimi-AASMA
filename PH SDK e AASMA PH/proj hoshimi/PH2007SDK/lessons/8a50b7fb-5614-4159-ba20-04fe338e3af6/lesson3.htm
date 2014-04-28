@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Language" content="fr" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Lesson 3</title>
+<link rel="stylesheet" type="text/css" href="MSDN.css" />
+<META name="PHAuthor" content="Richard Clark" /><META name="PHCountry" content="1036" /><META name="PHDate" content="05/09/2006" /><META name="PHLevel" content="1" /><META name="PHSummary" content="Prise en main de l'interface et choix du point d'injection" /><META name="PHSchool" content="Mines de Nacy" /><META name="PHID" content="8a1fff54-2f91-4c1c-9b00-6be58f5bff31" /><META name="PHPierreDll" content="PierreLesson1.dll" /><META name="PHMode" content="Beginner" /><META name="PHDevSolution" content="" /><META name="PHTissue" content="A2.tsu" /><META name="PHTitle" content="Leçon 1" /></HEAD>
+<body>
+<h1>Lesson 3</h1>
+<h2>Introduction:</h2>
+<p>In this lesson, you will learn how to create NanoNeedle, collect AZN 
+molecules and transfer those molecules in your NanoNeedle.</p>
+<h2>NanoNeedles:</h2>
+<p>To build a NanoNeedle, you use the <b>BuildNeedle</b> action of your NanoAI. The NanoNeedle will be built <u>where your NanoAI is</u>.</p>
+<p>So to build a NanoNeedle on a Hoshimi Point, you&#39;ll have first to 
+Move your NanoAI to the Hoshimi Point and then build the NanoNeedle.</p>
+<p>(<i>It is important to gain points to build your NanoNedle on Hoshimi Points</i>).</p>
+<h2>Injection Point:</h2>
+<p>So first, choose an Injection Point near a Hoshimi Point. For example , 
+choose here <b>(150, 50)</b>.</p>
+<h2>Build the NanoNeedle:</h2>
+<p><u>Add two actions to your NanoAI:</u></p>
+<ul>
+	<li>MoveTo (143 54) where is the Hoshimi Point,</li>
+	<li>BuildNeedle.</li>
+</ul>
+<p>Test your strategy and you will see your first NanoNeedle.</p>
+<h2>Collecting AZN Molecules:</h2>
+<p>Collectors (and Containers) allow you to extract AZN Molecules from AZN 
+Points.</p>
+<p>A collector can stock 20 molecules and can extract (and transfer) 5 molecules/turn.</p>
+<p>A container can stock 50 molecules and can extract (and transfer) 5 molecules/turn.</p>
+<p>So to collect AZN, containers seems better, but a container can&#39;t defend 
+itself against enemy.</p>
+<p>Create a new squad of collector with 1 collector only.</p>
+<p>Go back to the Action tab and add it the following actions:</p>
+<ul>
+	<li>MoveTo AZN point at (154, 54)</li>
+	<li>Collect AZN molecules at (154, 54) with the option &quot;Number of turn = 4&quot;.</li>
+</ul>
+<p>So your NanoCollector will be injected at the Injection Point, will move to 
+the AZN point and then collect 4 turns*5 = 20 molecules.</p>
+<p>At the same time, your NanoAI will build the NanoNeedle at the Hoshimi Point.</p>
+<h2>Transfer the molecules to the NanoNeedle:</h2>
+<p>To gain points, you must transfer the molecules in the NanoNeedle. You will 
+ask your NanoCollector to do so. Add to it the following actions:</p>
+<ul>
+	<li>MoveTo the NanoNeedle (143, 54),</li>
+	<li>TransferTo at (143, 54) during 4 turns.</li>
+</ul>
+<p>Test your strategy: you&#39;ll see your NanoCollector collecting and transfering 
+AZN molecules to the NanoNeedle. It will go back 5 times to the AZN Point 
+because the NanoNeedle can stock up to 100 molecules. So it take quite a long 
+time to fill the NanoNeedle.</p>
+<p>You can see too that your NanoCollector will not move anymore when the 
+NanoNeedle will be filled, because it is trying to trasfer its molecules but 
+can&#39;t do that.</p>
+<p>To go faster, increase the number of Collectors in your squad in the Squad 
+tab. You can fill the NanoNeedle in one time only.</p>
+<h2>Score objective</h2>
+<p>There is only one objective in this mission, it is a score objective: you 
+must reach 700 points before turn 700. So you&#39;ll have to create more NanoNeedles, 
+and more squads.</p>
+<p>Then, try to reach the highest score the quickless you can.</p>
+<p id="author">Richard Clark</p>
+
+</body>
+
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Language" content="fr" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Round 1</title>
+<link rel="stylesheet" type="text/css" href="MSDN.css" />
+<META name="PHAuthor" content="Richard Clark" /><META name="PHCountry" content="1036" /><META name="PHDate" content="05/09/2006" /><META name="PHLevel" content="1" /><META name="PHSummary" content="Prise en main de l'interface et choix du point d'injection" /><META name="PHSchool" content="Mines de Nacy" /><META name="PHID" content="8a1fff54-2f91-4c1c-9b00-6be58f5bff31" /><META name="PHPierreDll" content="PierreLesson1.dll" /><META name="PHMode" content="Beginner" /><META name="PHDevSolution" content="" /><META name="PHTissue" content="A2.tsu" /><META name="PHTitle" content="Leçon 1" /></HEAD>
+<body>
+<h1>Round 1</h1>
+<h2>Welcome to the Project Hoshimi round 1 !</h2>
+
+<p>I'm the Professor Hoshimi and I'm here to help you to success your first real mission !</p>
+
+<p>If you did not read the previous lessons, I recommand you to do it before starting your strategy for the 1st round of the competition !</p>
+    <p>
+        <span style="font-size: 100%; color: red"><strong>If you create reach 300 points with
+            your Strategy, </strong></span><a href="http://imaginecup.com/MyStuff/MyProjectHoshimi.aspx">
+                <span style="font-size: 100%; color: red"><strong>go to ImagineCup.com and upload your
+                    Strategy File</strong></span></a><span style="font-size: 100%; color: red"><strong>
+                        to be qualified for Round 2.</strong></span></p>
+
+<h2>Pierre's behaviour:</h2>
+
+<p>Well, let's start this lesson by launching the game without any strategy, just to see how Pierre reacts !</p>
+
+<p><u>You can notice that there are 2 existing <i>NeuroControllers</i> on the map located at:</u>
+	</p>
+	<ul><li>95,130</li>
+	<li>158, 111</li></ul>
+
+<p>You can also notice that Pierre's Injection Point is <b>(99, 93)</b> so you'd better not choose yours near this location ! To finish with Pierre, you can see that it builds some "<i>badguys</i>" that follow a path by pair. I let you find out what path they follow.</p>
+
+<h2>Mission's Objectives:</h2>
+
+<p>Let's have a look to the objectives of the mission.<br />
+<u>After you click on the "Show Mission Summary" button, a textbox will appear which contains 3 objectives:</u>
+	</p>
+	<ul><li>A Navigation Objective (<b>200 bonus</b>)</li>
+	<li>A NanoAI-must-be-Alive Objective (<b>300 bonus</b>)</li>
+	<li>A Score Objective (<b>200 bonus</b>)</li></ul>
+	
+<p>Once you success one objectif, it will give you a bonus as indicated between the <b>()</b>.</p>
+
+<p>As to be qualified you need to have a score of <b>300</b> at the end of the game, you can simply only protect your NanoAI and make it alive until turn 1200 and you will win the mission and will be qualified for the round 2 later in the competition.</p>
+
+<p>But we are here to have fun and to do the best score !<br />
+So I propose you to finish all of the 3 objectives.</p>
+
+
+<h2>Injection Point:</h2>
+
+<p>Let's have a look at the Navigation Objective. All of its 3 points appear to be in the bottom on the brain, and we can see 4 Hoshimi Points there, so it seems to be a pretty good Injection Point.</p>
+
+<p>Choose for example the point <b>(138, 192)</b> for your Injection Point.</p>
+
+
+<h2>Squads:</h2>
+
+<p><u>We have 3 objectives to do, and for each of these objectives we will create one or more squads:</u>
+	</p>
+	<ul><li>Navigation Objective <b>==></b> An explorer squad appear to be the best because explorer goes faster than every bots !</li>
+	<li>NanoAI-must-be-alive Objective <b>==></b> We will need some protectors that will kill NeuroControllers</li>
+	<li>Score Objective <b>==></b> We will build a collector and a container squads.</li></ul>
+
+<p><u>Let's select the "Squad" tab, and add the 4 following squads:</u>
+	</p>
+	<ul><li>1 Explorer</li>
+	<li>2 Protectors (<i>don't forget to select the "Attack Enemy" checkbox</i>)</li>
+	<li>5 Collectors (<i>don't forget to select the "Attack Enemy" checkbox</i>)</li>
+	<li>2 Containers</li></ul>
+
+<p>And name each of these squad as you want !</p>
+
+
+<h2>Actions:</h2>
+
+<p>So, now we have squads, we have to order them actions to do during the game !</p>
+
+<h3>NanoAI:</h3>
+
+<p>There will be only 2 actions, move to the <i><b>NearestHoshimiPointWithoutNeedle</b></i> and build a Needle ! The NanoAI will do it for you !</p>
+
+<h3>Explorer:</h3>
+
+<p>Just give him 3 "<i><b>MoveTo</b></i>" order with the 3 different destinations of the Navigation Objective !</p>
+<p>And then add the action : "<b><i>ForceAutoDestruction</i></b>" to kill that explorer to free a place (remember, you can only have 40 bots at the same time in the game)...</p>
+
+
+<h3>Protectors:</h3>
+
+<p>They have to kill both <b>NeuroControllers</b> and then try to kill either Pierre or "<i>badguys</i>" !</p>
+<p>So add a first "<b><i>MoveTo</i></b>" action to a location near the NeuroController located at (158, 111) and then add an "<b><i>Attack</i></b>" action to kill it. You can for example select the location (166, 116) to avoid being killed by the enemy. Do the same for the other NeuroController, ie. choose the location (106,130) and fire at (95,130).</p>
+
+
+<h3>Collectors and Containers:</h3>
+
+<p><u>You can do simple by adding only 4 actions:</u>
+	</p>
+	<ul><li>MoveTo the <i><b>NearestAZN</b></i></li>
+	<li>CollectFrom the AZN Point during 4 turns for Collectors and 10 turns for Containers</li>
+	<li>MoveTo the <b><i>NearestHoshimiPointWithoutFullNeedle</i></b></li>
+	<li>TransferTo this Needle during 4 turns for Collectors and 10 turns for Containers</li></ul>
+
+
+<p>Then launch the game, and watch what happends !</p>
+
+<p>If you win, <b>congratulations</b> ! You can upload your strategy and submit it for the round 1 !</p>
+<p><u>Remember</u>, you can upload your strategy only 5 times.</p>
+
+<p>You should always win, but some nanobots should have a strange behaviour as Collectors and Containers.</p>
+<p>To correct it, you can delete their 4 actions, and add the actions needed to do 1 Needle over two and do the same for Containers, so they don't block anymore !</p>
+<p id="author">Richard Clark</p>
+</body>
+
+</html>

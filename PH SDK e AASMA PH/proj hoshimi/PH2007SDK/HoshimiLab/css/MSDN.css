@@ -1,0 +1,80 @@
+﻿body {
+	margin: 15px 15px 15px 15px;
+	padding: 0px 0px 0px 0px;
+	background: #ffffff;
+	color: #000000;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 70%;
+}
+h4
+	{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin-bottom: .4em; 
+	margin-top: 1em;
+	font-weight: bold;
+	}
+h3
+	{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin-bottom: .4em; 
+	margin-top: 1em;
+	font-weight: bold;
+	}
+h2
+	{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin-bottom: .4em; 
+	margin-top: 1em;
+	font-weight: bold;
+	}
+h1
+	{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin-bottom: .4em; 
+	margin-top: 1em;
+	font-weight: bold;
+	}
+h1
+	{
+	font-size: 200%;
+	margin-top: 0em;
+	}
+h2
+	{
+	font-size: 130%;
+	}
+h3
+	{
+	font-size: 115%;
+	}
+h4
+	{
+	font-size: 100%;
+	}
+	p
+	{
+	margin: .5em 0em .5em 0em;
+	}
+a:link {
+	color: #0000ff;
+}
+a:visited {
+	color: #0000ff;
+}
+a:hover {
+	color: #3366ff;
+}
+img {
+	border: none;
+}
+.lang
+{
+	background-color:#C0C0C0;
+	font-family:"Courier New", Courier, monospace;
+}
+.langTitle
+{
+	font-size: 130%;
+	font-weight:bold;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}

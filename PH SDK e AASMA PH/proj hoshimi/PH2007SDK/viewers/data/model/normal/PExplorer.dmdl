@@ -1,0 +1,9 @@
+name = 'PExplorer'
+groups = {
+{
+  fx = 'entity', pri = 0,
+  params = {
+	  { 'tex', 'tBase', 'PExplorer' },
+  },
+},
+}

@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link rel="stylesheet" type="text/css" href="MSDN.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Document sans nom</title>
+</head>
+
+<body>
+<p>Intermediate mode will give you much more power than beginner mode. In Intermediate mode, you will be able to build a strategy that can adapt to the map and to the environnement. In round 2, you will be injected in a map that you have never seen before, so your strategy has to adapt. In addition, there will be a second player on the map. You will have to obtain a bigger score than him to beat him. And there is a third player, but it's not a competitor, it a neutral player that will make your life harder. This third team is called Pierre's Team and it can kill your bots and you can kill theirs. Of course, it can also kill your opponent.</p>
+<p>Now let's start using the intermediate mode. This tutorial will learn you basics about the intermediate mode. We will see how to start a new strategy, and how to move a bot. For testing purpose, select the lesson called 1-Injection Point and first actions.</p>
+<h2>Starting a new strategy </h2>
+<p>Click on the New Strategy button. This will create an empty strategy with nothing in it.</p>
+<p><img src="tree.jpg" width="688" height="639" /></p>
+<p>If you click the Test strategy buton, you will get some errors: </p>
+<p><img src="errors.jpg" width="442" height="86" /></p>
+<p>This first thing to do is to give a name to you strategy. Select the node in the tree, then in the right pannel, type a name for your strategy. </p>
+<p><img src="name-ip.jpg" width="445" height="290" /></p>
+<p>Now, save your strategy. A new file will appear in left. A strategy is saved on disk as a .phPro file in the players directory.</p>
+<p>Now you have to select an injection point. You have 2 ways to select an injection point. First, you can specify a static point (Specific location). It will always be the same, on every map. But rember that a strategy has to work on any map. If you specify a point that is a very good injection point for a map, it can be a bad one for another map.</p>
+<p>The intermediate mode has a way to compute an injection point depending to the map. Select Calculated location. Then you have to select what is the most important point for computing your injection point. In our case, we will chose to only take care to objectives points. So we will set the objectives points value to 100 and others to 0 (see the screenshot above). Your stragegy will compute the middle of every objective points. Then you have to choose if you want to keep the point for your injection, or to go to the nearest Hoshimi Point, the nearest AZN point or the nearest objective Point. Here we will chose to keep the calculated point:</p>
+<p><img src="missionIP.jpg" width="608" height="659" /> </p>
+<p>There are only 2 objectives points, so your injection point will be the middle of the 2 objectives points.</p>
+<h2>Adding a NanoAI </h2>
+<p>Your strategy is not yet valid. Every strategy needs a NanoAI. NanoAI is the main bot. You can have only one NanoAI. He can build other bots, but if he dies, you won't be able to control your bots anymore. They will freeze. So the NanoAI is the most important bot of the game because he should die at no cost.</p>
+<p>To define the behaviour of your NanoAI, click on the NanoAI icon. A NanoAI will appear in the tree: </p>
+<p><img src="tree1.jpg" width="215" height="47" /> </p>
+<p>Now, if you try to test your stragegy, you will get the following error : &quot;A Group actions must have at least one action&quot;. If you define a bot, you must define actions for this bot (even if it don't do anything). So we will say to our NanoAI to move. Select the default state and click the MoveTo Action icon. You will obtain this screen: </p>
+<p><img src="MoveTo.jpg" width="661" height="525" /> </p>
+<h2>Select the destination </h2>
+<p>In the right pannel, you will have to define where you want your bot to move. Click on the menu. You have many choices to define the destination point. Each time you will have to define a point (for exemple where to attack, or where to transfer AZN), you will have this menu to choose the point. Now, pick  &quot;Navigation Objective&quot; in the Tissue.Points category. I will explain all the choices you have. </p>
+<p>Let's review the different ways to set a point. These are grouped by categories : </p>
+<p>In <strong>General</strong>, you can choose:</p>
+<ul>
+  <li>Current Location: It's the current location of your Nanobot (not useful for a MoveTo because your NanoAI will not move),</li>
+  <li>X-Y: You can define a specific location on the tissue, this point will remain the same whatever tissue you are playing on </li>
+  <li>Random: It's a random point at the given distance from the current location of the Nanobot. This can be usefull to scout around a point, </li>
+  <li>Injection Point: It's the Injection Point of your team.</li>
+</ul>
+<p><img src="pt-general.jpg" width="482" height="159" /></p>
+<p>In <strong>My.Bots</strong>, your Strategy will calculate this point depending of the type of a Nanobot:</p>
+<ul>
+  <li>Location: You have to specify a NanoBot type. During the game, your strategy will pick the nearest bot of this type in your team. The point chosen will be its location. </li>
+  <li>Destination: You have to specify a NanoBot type. During the game, your strategy will pick all the destinations of every bots of this type in your team. The point chosen will be the nearest of these. </li>
+</ul>
+<p>Let's take an example: imagine that you have define two Nanobot kind in your strategy, a NanoAI and a NanoExplorer1. Then imagine that you build 10 NanoExplorer1. If you choose nearest Location of a NanoExplorer1 for the destination of your MoveTo action for your NanoAI, this NanoAI will go to the nearest location of a NanoExplorer1 in the tissue.</p>
+<p><img src="pt-bots.jpg" width="483" height="162" /></p>
+<p>In <strong>Tissue.Points</strong>, you can choose:</p>
+<ul>
+  <li>The nearest Hoshimi Point from your location, </li>
+  <li>The nearest AZN Point from your location, </li>
+  <li>The nearest Navigation Objective Point from your location </li>
+  <li>The nearest Navigation Objective Point not reached from your location (that is the item we are using).</li>
+</ul>
+<p><img src="pt-tissue.jpg" width="482" height="189" /></p>
+<p><strong>HoshimiNeedle.Points</strong> will allow you to pick :</p>
+<ul>
+  <li>The nearest Hoshimi point with one of your NanoNeedle on it</li>
+  <li>The nearest Hoshimi point that has no NanoNeedle that belongs to you on it</li>
+  <li>The nearest Hoshimi point with one of your NanoNeedle not totally filled with AZN on it</li>
+  <li> The nearest Hoshimi point with one of your NanoNeedle filled of AZN on it</li>
+</ul>
+<p>We will see tutorial 3 how this can be useful.</p>
+<p><img src="pt-hoshimi-needle.jpg" width="483" height="212" /></p>
+<p>In <strong>Pierre.Bots</strong> and <strong>OtherPlayer.Bots</strong>, it's the same than with MyBots: your strategy will search the nearest location or destination of a NanoBot of a given type in Pierre team or in the Other player team. Beware: calculation is done only with Nanobots that your Nanobots can see, so they sould be in the sight radius of one of your bots.</p>
+<p>As protectors are from Collector type, you won't be able to know if a Collector is protector or a collector.</p>
+<p><img src="pt-pierre-bots.jpg" width="480" height="197" /> <img src="pt-otherplayers-bots.jpg" width="480" height="185" /></p>
+<p>At least, there is the <strong>Event</strong> category: this is useful only when your are in a State that listen to an event. For example, the Event Location point in a Enemy Detected event is the location of the Pierre's Nanobot that have been detected. The lesson 4 will describe how to use this. </p>
+<p><img src="pt-event.jpg" width="482" height="209" /></p>
+<p>If you test your Strategy, you'll see that everything will works fine, but we can add more informations: this can be usefully for complex strategy.</p>
+<h2>Action details</h2>
+<p>Select your MoveTo Action and check "Change Internal Name". In the text area, write somthing like "Go Obj" and in "Log text" write "Look for Objective Point".</p>
+<p>You'll see in the 2D viewer that aside your NanoAI, "Go Obj" appear and "Look for Objective Point" appear in the log area. Trust me: for complex Strategy, it is very, very useful.</p>
+<p style="TEXT-ALIGN: right">Richard Clark and RaptorXP </p>
+</body>
+</html>
