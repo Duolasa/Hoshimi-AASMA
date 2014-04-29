@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Drawing;
 using AASMAHoshimi;
 using AASMAHoshimi.Examples;
 using PH.Common;
@@ -32,9 +33,25 @@ namespace AASMAHoshimi.Reactive
       {
         this._nanoAI.Build(typeof(ReactiveNeedle), "N" + this._needleNumber++);
       }
+      List<Point> hoshimiPoints = getAASMAFramework().visibleHoshimies(getNanoBot());
+      if (hoshimiPoints.Count > 0)
+      {
+        Point closest = Utils.getNearestPoint(getNanoBot().Location, hoshimiPoints);
+        if (closest != getNanoBot().Location)
+        {
+
+        }
+      }
       if (frontClear())
       {
-        this.MoveForward();
+        if (Utils.randomValue(100) < 80)
+        {
+          this.MoveForward();
+        }
+        else
+        {
+          this.RandomTurn();
+        }
       }
       else
       {

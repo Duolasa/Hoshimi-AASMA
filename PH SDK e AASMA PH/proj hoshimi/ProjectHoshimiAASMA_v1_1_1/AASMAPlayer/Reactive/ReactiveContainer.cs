@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Drawing;
 using PH.Common;
 
 namespace AASMAHoshimi.Examples
@@ -19,9 +20,40 @@ namespace AASMAHoshimi.Examples
       {
         transferAZN();
       }
+      if (Stock < ContainerCapacity)
+      {
+        List<Point> aznPoints = getAASMAFramework().visibleAznPoints(this);
+        if (aznPoints.Count > 0)
+        {
+          Point closest = Utils.getNearestPoint(Location, aznPoints);
+          if (closest != Location)
+          {
+            
+          }
+        }
+      }
+      if (Stock == ContainerCapacity)
+      {
+        List<Point> emptyNeedles = getAASMAFramework().visibleEmptyNeedles(this);
+        if (emptyNeedles.Count > 0)
+        {
+          Point closest = Utils.getNearestPoint(Location, emptyNeedles);
+          if (closest != Location)
+          {
+
+          }
+        }
+      }
       if (frontClear())
       {
-        this.MoveForward();
+        if (Utils.randomValue(100) < 80)
+        {
+          this.MoveForward();
+        }
+        else
+        {
+          this.RandomTurn();
+        }
       }
       else
       {
