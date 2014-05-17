@@ -28,11 +28,11 @@ namespace AASMAHoshimi.Examples
           Point closest = Utils.getNearestPoint(Location, aznPoints);
           if (closest != Location)
           {
-            
+            MoveTo(closest);
           }
         }
       }
-      if (Stock == ContainerCapacity)
+      if (Stock >= ContainerCapacity * 0.8f)
       {
         List<Point> emptyNeedles = getAASMAFramework().visibleEmptyNeedles(this);
         if (emptyNeedles.Count > 0)
@@ -40,7 +40,7 @@ namespace AASMAHoshimi.Examples
           Point closest = Utils.getNearestPoint(Location, emptyNeedles);
           if (closest != Location)
           {
-
+            MoveTo(closest);
           }
         }
       }

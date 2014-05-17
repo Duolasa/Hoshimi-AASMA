@@ -37,9 +37,11 @@ namespace AASMAHoshimi.Reactive
       if (hoshimiPoints.Count > 0)
       {
         Point closest = Utils.getNearestPoint(getNanoBot().Location, hoshimiPoints);
-        if (closest != getNanoBot().Location)
+        List<Point> needlePoints = getAASMAFramework().visibleHoshimies(getNanoBot());
+        Point closestNeedle = Utils.getNearestPoint(getNanoBot().Location, needlePoints);
+        if (closest != getNanoBot().Location && closest != closestNeedle)
         {
-
+          getNanoBot().MoveTo(closest);
         }
       }
       if (frontClear())
