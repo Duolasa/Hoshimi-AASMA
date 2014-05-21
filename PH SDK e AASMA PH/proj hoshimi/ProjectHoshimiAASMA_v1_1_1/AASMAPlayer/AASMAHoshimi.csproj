@@ -53,10 +53,12 @@
     <Reference Include="PH.Common, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\players\PH.Common.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="PH.Map, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\players\PH.Map.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -87,6 +89,7 @@
     </Compile>
     <Compile Include="Reactive\ReactiveContainer.cs" />
     <Compile Include="Reactive\ReactiveAI.cs" />
+    <Compile Include="BDI\BDIExplorer.cs" />
     <Compile Include="Reactive\ReactiveExplorer.cs" />
     <Compile Include="Reactive\ReactiveNeedle.cs" />
     <Compile Include="Reactive\ReactiveProtector.cs" />
@@ -124,6 +127,6 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetPath)" "C:\Users\Lousada\Desktop\PH SDK e AASMA PH\proj hoshimi\PH2007SDK\players" /y</PostBuildEvent>
+    <PostBuildEvent>copy "$(TargetPath)" "C:\Users\rocky_000\Documents\Hoshimi-AASMA\PH SDK e AASMA PH\proj hoshimi\PH2007SDK\players" /y</PostBuildEvent>
   </PropertyGroup>
 </Project>
