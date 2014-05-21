@@ -68,6 +68,9 @@
   <ItemGroup>
     <Compile Include="AASMAMessage.cs" />
     <Compile Include="AASMAPlayer.cs" />
+    <Compile Include="BDI\BDIAI.cs" />
+    <Compile Include="BDI\BDIContainer.cs" />
+    <Compile Include="BDI\PlanCheckPoint.cs" />
     <Compile Include="Examples\BuildingAI.cs" />
     <Compile Include="Examples\CommunicativeExplorer.cs" />
     <Compile Include="Examples\PassiveContainer.cs" />
@@ -127,6 +130,6 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetPath)" "C:\Users\rocky_000\Documents\Hoshimi-AASMA\PH SDK e AASMA PH\proj hoshimi\PH2007SDK\players" /y</PostBuildEvent>
+    <PostBuildEvent>copy "$(TargetPath)" "E:\IST\AASMA\PH SDK e AASMA PH\proj hoshimi\PH2007SDK\players" /y</PostBuildEvent>
   </PropertyGroup>
 </Project>

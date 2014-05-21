@@ -1,12 +1,6 @@
 <?xml version="1.0"?>
 <ArrayOfUser xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <User>
-    <Name>justImagine</Name>
-  </User>
-  <User>
-    <Name>Bagran</Name>
-  </User>
-  <User>
-    <Name>Reactives</Name>
+    <Name>AASMA</Name>
   </User>
 </ArrayOfUser>

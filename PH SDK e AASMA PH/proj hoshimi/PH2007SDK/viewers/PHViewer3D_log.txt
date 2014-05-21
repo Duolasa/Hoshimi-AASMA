@@ -30,7 +30,7 @@ net> set socket to nonblocking mode
 game> Init step: Requesting game desc...
 net> Connection protocol test
 net> Fetch game description
-game> Game map name: sc1.tsu
+game> Game map name: L3.tsu
 game> Init step: Calculating level mesh...
 resource> mesh loaded 'billboard'
 resource> loading fx 'minimapLev'
@@ -57,12 +57,12 @@ resource> loading fx 'StreamImpostor'
 resource> fx loaded, generating state restore pass
 resource> texture loaded 'StreamImpostors'
 game> Init step: Creating entities...
-resource> mesh loaded 'PointHoshimi'
-resource> model desc loaded 'normal/PointHoshimi'
-resource> loading fx 'Point'
-resource> fx loaded, generating state restore pass
 resource> mesh loaded 'PointAZN'
 resource> model desc loaded 'normal/PointAZN'
+resource> loading fx 'Point'
+resource> fx loaded, generating state restore pass
+resource> mesh loaded 'PointHoshimi'
+resource> model desc loaded 'normal/PointHoshimi'
 resource> mesh loaded 'Decor1'
 resource> model desc loaded 'normal/Decor1'
 resource> loading fx 'PointDecor'
@@ -76,18 +76,14 @@ resource> texture loaded 'DecorEnv'
 resource> mesh loaded 'Decor2'
 resource> model desc loaded 'normal/Decor2'
 resource> texture loaded 'Decor2'
-resource> mesh loaded 'PointMission'
-resource> model desc loaded 'normal/PointMission'
-resource> mesh loaded 'StreamRed'
-resource> model desc loaded 'normal/StreamRed'
-resource> loading fx 'StreamEntity'
-resource> fx loaded, generating state restore pass
 resource> mesh loaded 'StreamWhite'
 resource> model desc loaded 'normal/StreamWhite'
+resource> loading fx 'StreamEntity'
+resource> fx loaded, generating state restore pass
+resource> mesh loaded 'StreamRed'
+resource> model desc loaded 'normal/StreamRed'
 game> Init step: Initializing GUI...
-time> initialization 0.403
-net> Query server state
-net> Query server state
+time> initialization 0.325
 net> Query server state
 net> Query server state
 app> passivate d3d resources
@@ -130,24 +126,16 @@ resource> texture loaded 'PNeuroCtrl'
 resource> mesh loaded 'PNeuroCtrl_1'
 resource> mesh loaded 'PNeuroCtrl_2'
 resource> mesh loaded 'PNeuroCtrl_3'
-resource> mesh loaded 'Collector_0'
-resource> model desc loaded 'normal/Collector'
-resource> texture loaded 'NanoCollector'
-resource> mesh loaded 'Collector_1'
-resource> mesh loaded 'Collector_2'
-resource> mesh loaded 'Collector_3'
 resource> mesh loaded 'Container_0'
 resource> model desc loaded 'normal/Container'
 resource> texture loaded 'NanoContainer'
 resource> mesh loaded 'Container_1'
 resource> mesh loaded 'Container_2'
 resource> mesh loaded 'Container_3'
-resource> mesh loaded 'Explorer_0'
-resource> model desc loaded 'normal/Explorer'
-resource> texture loaded 'NanoExplorer'
-resource> mesh loaded 'Explorer_1'
-resource> mesh loaded 'Explorer_2'
-resource> mesh loaded 'Explorer_3'
+resource> mesh loaded 'Nimbus'
+resource> loading fx 'nimbus'
+resource> fx loaded, generating state restore pass
+resource> texture loaded 'Nimbus'
 app> passivate d3d resources
 app> delete d3d resources
 app> shutdown app
