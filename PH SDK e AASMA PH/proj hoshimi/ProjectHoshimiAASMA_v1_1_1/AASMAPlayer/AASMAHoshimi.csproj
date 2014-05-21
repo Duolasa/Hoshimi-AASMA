@@ -70,6 +70,7 @@
     <Compile Include="AASMAPlayer.cs" />
     <Compile Include="BDI\BDIAI.cs" />
     <Compile Include="BDI\BDIContainer.cs" />
+    <Compile Include="BDI\BDIProtector.cs" />
     <Compile Include="BDI\PlanCheckPoint.cs" />
     <Compile Include="Examples\BuildingAI.cs" />
     <Compile Include="Examples\CommunicativeExplorer.cs" />

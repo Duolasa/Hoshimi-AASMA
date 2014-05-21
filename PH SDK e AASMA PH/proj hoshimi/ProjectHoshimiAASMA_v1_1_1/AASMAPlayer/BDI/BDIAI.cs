@@ -18,9 +18,15 @@ namespace AASMAHoshimi.BDI
     public override void DoActions()
     {
 
-      if (getAASMAFramework().containersAlive() < 10)
+ /* 
+   if (getAASMAFramework().containersAlive() < 10)
       {
         this._nanoAI.Build(typeof(BDIContainer), "C" + this._containerNumber++);
+      } 
+   */
+      if (getAASMAFramework().protectorsAlive() < 30)
+      {
+        this._nanoAI.Build(typeof(BDIProtector), "P" + this._protectorNumber++);
       }
    
     }
