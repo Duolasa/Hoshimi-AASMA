@@ -172,7 +172,7 @@ namespace AASMAHoshimi.BDI
         case PlanCheckPoint.Actions.BuildNeedle:
           if (previousInstructionIsFinished)
           {
-            //this._nanoAI.Build(typeof(BDINeedle), "N" + this._needleNumber++);
+            this._nanoAI.Build(typeof(BDINeedle), "N" + this._needleNumber++);
           }
           else
           {
