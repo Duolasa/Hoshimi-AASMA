@@ -16,7 +16,11 @@ namespace AASMAHoshimi.BDI
       Unload,
       Attack, 
       Run,
-      Defend
+      Defend,
+      BuildNeedle,
+      BuildContainer,
+      BuildProtector,
+      BuildExplorer
     };
     public Point location;
     public Actions action;
