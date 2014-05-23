@@ -72,11 +72,14 @@
     <Compile Include="BDI\BDIContainer.cs" />
     <Compile Include="BDI\BDINeedle.cs" />
     <Compile Include="BDI\BDIProtector.cs" />
+<<<<<<< HEAD
     <Compile Include="ComHybrid\ComHybridAI.cs" />
     <Compile Include="ComHybrid\ComHybridContainer.cs" />
     <Compile Include="ComHybrid\ComHybridProtector.cs" />
+=======
     <Compile Include="Hybrid\HybridExplorer.cs" />
     <Compile Include="Hybrid\HybridNeedle.cs" />
+>>>>>>> 13ad34c5a94d85f5605e7e098b9dc73b457193c0
     <Compile Include="Hybrid\HybridAI.cs" />
     <Compile Include="Hybrid\HybridProtector.cs" />
     <Compile Include="NanoBots\PlanCheckPoint.cs" />
@@ -140,6 +143,6 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetPath)" "E:\IST\AASMA\PH SDK e AASMA PH\proj hoshimi\PH2007SDK\players" /y</PostBuildEvent>
+    <PostBuildEvent>copy "$(TargetPath)" "C:\Users\rocky_000\Documents\Hoshimi-AASMA\PH SDK e AASMA PH\proj hoshimi\PH2007SDK\players" /y</PostBuildEvent>
   </PropertyGroup>
 </Project>

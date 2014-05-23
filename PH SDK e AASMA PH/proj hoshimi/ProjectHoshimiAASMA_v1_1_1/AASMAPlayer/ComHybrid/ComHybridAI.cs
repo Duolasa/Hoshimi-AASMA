@@ -135,17 +135,17 @@ namespace AASMAHoshimi.ComHybrid
 
       if (getAASMAFramework().protectorsAlive() < 10)
       {
-        this._nanoAI.Build(typeof(HybridProtector), "P" + this._protectorNumber++);
+        this._nanoAI.Build(typeof(ComHybridProtector), "P" + this._protectorNumber++);
         return true;
       }
       if (getAASMAFramework().containersAlive() < 10)
       {
-        this._nanoAI.Build(typeof(HybridContainer), "C" + this._containerNumber++);
+        this._nanoAI.Build(typeof(ComHybridContainer), "C" + this._containerNumber++);
         return true;
       }
       if (getAASMAFramework().explorersAlive() < 10)
       {
-        this._nanoAI.Build(typeof(BDIExplorer), "E" + this._explorerNumber++);
+        this._nanoAI.Build(typeof(HybridExplorer), "E" + this._explorerNumber++);
         return true;
       }
 
@@ -171,9 +171,6 @@ namespace AASMAHoshimi.ComHybrid
       previousInstructionIsFinished = true;
       switch (goal)
       {
-        case Desire.None:
-          PlanCheckPointList.Add(new PlanCheckPoint(getNanoBot().Location, PlanCheckPoint.Actions.MoveRandom));
-          break;
         case Desire.BuildNeedle:
           Point nearest = Utils.getNearestPoint(getNanoBot().Location, HoshimiPoints);
           PlanCheckPointList.Add(new PlanCheckPoint(nearest, PlanCheckPoint.Actions.Move));
@@ -290,8 +287,12 @@ namespace AASMAHoshimi.ComHybrid
           AZNpoints.Add(p);
 
           AASMAMessage broadcastmsg = new AASMAMessage(this.getNanoBot().InternalName, "AZNPoint");
-          msg.Tag = p;
-          getAASMAFramework().broadCastMessage(broadcastmsg);
+          broadcastmsg.Tag = p;
+          for (int i = 0; i < _containerNumber; i++)
+          {
+            getAASMAFramework().sendMessage(msg, "C" + i);
+          }
+          
         }
       }
 
@@ -302,7 +303,7 @@ namespace AASMAHoshimi.ComHybrid
           Navpoints.Add(p);
 
           AASMAMessage broadcastmsg = new AASMAMessage(this.getNanoBot().InternalName, "NavPoint");
-          msg.Tag = p;
+          broadcastmsg.Tag = p;
           getAASMAFramework().broadCastMessage(broadcastmsg);
         }
       }

@@ -38,6 +38,8 @@ namespace AASMAHoshimi.ComHybrid
         {
           Deliberate();
           Plan();
+          Execute();
+
         }
         else
         {
@@ -129,10 +131,6 @@ namespace AASMAHoshimi.ComHybrid
       previousInstructionIsFinished = true;
       switch (goal)
       {
-        case Desire.None:
-          PlanCheckPointList.Add(new PlanCheckPoint(Location, PlanCheckPoint.Actions.MoveRandom));
-          break;
-
         case Desire.Collect:
           Point closestAZN = Utils.getNearestPoint(Location, AZNLocations);
           PlanCheckPointList.Add(new PlanCheckPoint(closestAZN, PlanCheckPoint.Actions.Move));
@@ -243,7 +241,7 @@ namespace AASMAHoshimi.ComHybrid
 
     public override void receiveMessage(AASMAMessage msg)
     {
-     // getAASMAFramework().logData(this, "received message from " + msg.Sender + " : " + msg.Content);
+     getAASMAFramework().logData(this, "received message from " + msg.Sender + " : " + msg.Content);
 
       string content = msg.Content;
       Point p = (Point)msg.Tag;
