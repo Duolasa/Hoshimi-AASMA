@@ -83,6 +83,9 @@ namespace AASMAHoshimi.BDI
         PlanCheckPointList.Add(new PlanCheckPoint(enemy, PlanCheckPoint.Actions.Attack));
         planIsFinished = false;
         break;
+        case Desire.None:
+        PlanCheckPointList.Add(new PlanCheckPoint(Location, PlanCheckPoint.Actions.MoveRandom));
+        break;
       }
 
     }
@@ -123,9 +126,17 @@ namespace AASMAHoshimi.BDI
             }
           }
           break;
-
+        case PlanCheckPoint.Actions.MoveRandom:
+          if (previousInstructionIsFinished)
+          {
+            MoveRandomly();
+          }
+          else
+          {
+            previousInstructionIsFinished = true;
+          }
+          break;
       }
-
     }
 
     private void MoveRandomly()

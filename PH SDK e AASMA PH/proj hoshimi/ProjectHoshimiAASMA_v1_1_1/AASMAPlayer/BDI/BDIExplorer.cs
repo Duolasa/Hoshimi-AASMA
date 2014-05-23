@@ -76,8 +76,8 @@ namespace AASMAHoshimi.BDI
       switch (goal)
       {
         case Desire.None:
+          PlanCheckPointList.Add(new PlanCheckPoint(Location, PlanCheckPoint.Actions.MoveRandom));
           break;
-
         case Desire.Explore:
           Point nearest = Utils.getNearestPoint(Location, navigationObjectives);
           PlanCheckPointList.Add(new PlanCheckPoint(nearest, PlanCheckPoint.Actions.Move));
@@ -116,6 +116,16 @@ namespace AASMAHoshimi.BDI
               discoveredNavigationObjectives.Add(currentInstruction.location);
               previousInstructionIsFinished = true;
             }
+          }
+          break;
+        case PlanCheckPoint.Actions.MoveRandom:
+          if (previousInstructionIsFinished)
+          {
+            MoveRandomly();
+          }
+          else
+          {
+            previousInstructionIsFinished = true;
           }
           break;
       }

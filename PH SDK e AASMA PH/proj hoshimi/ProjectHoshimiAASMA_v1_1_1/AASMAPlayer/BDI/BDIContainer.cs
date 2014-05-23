@@ -96,6 +96,7 @@ namespace AASMAHoshimi.BDI
       switch (goal)
       {
         case Desire.None:
+          PlanCheckPointList.Add(new PlanCheckPoint(Location, PlanCheckPoint.Actions.MoveRandom));
           break;
 
         case Desire.Collect:
@@ -142,6 +143,17 @@ namespace AASMAHoshimi.BDI
             {
               previousInstructionIsFinished = true;
             }
+          }
+          break;
+
+        case PlanCheckPoint.Actions.MoveRandom:
+          if (previousInstructionIsFinished)
+          {
+            MoveRandomly();
+          }
+          else
+          {
+            previousInstructionIsFinished = true;
           }
           break;
 
@@ -199,13 +211,5 @@ namespace AASMAHoshimi.BDI
     {
       getAASMAFramework().logData(this, "received message from " + msg.Sender + " : " + msg.Content);
     }
-    ////check for perceptions
-    ///reve as suas crenças
-    ////// decide o que fazer (desejo, posiçao, aççao final?)
-    ///constroi o plano,
-    //while(!plan.finished?)
-    ////executa a instruçao head do plano, 
-    //retira-a do plano
-    /// obtem mais percepçoes e reve as crenças.
   }
 }

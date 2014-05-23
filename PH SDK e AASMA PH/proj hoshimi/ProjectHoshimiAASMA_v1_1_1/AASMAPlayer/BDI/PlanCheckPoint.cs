@@ -12,6 +12,7 @@ namespace AASMAHoshimi.BDI
    public enum Actions
     {
       Move,
+      MoveRandom,
       Collect,
       Unload,
       Attack, 

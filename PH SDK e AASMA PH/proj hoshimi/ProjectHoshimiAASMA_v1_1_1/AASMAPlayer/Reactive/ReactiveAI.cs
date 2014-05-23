@@ -43,7 +43,19 @@ namespace AASMAHoshimi.Reactive
         {
           getNanoBot().MoveTo(closest);
         }
+        else
+        {
+          MoveRandomly();
+        }
       }
+      else
+      {
+        MoveRandomly();
+      }
+    }
+
+    private void MoveRandomly()
+    {
       if (frontClear())
       {
         if (Utils.randomValue(100) < 80)

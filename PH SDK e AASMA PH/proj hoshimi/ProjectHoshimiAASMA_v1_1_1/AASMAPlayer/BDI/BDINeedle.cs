@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
+using AASMAHoshimi;
 using PH.Common;
 
 namespace AASMAHoshimi.BDI
 {
-  [Characteristics(ContainerCapacity = 0, CollectTransfertSpeed = 0, Scan = 5, MaxDamage = 5, DefenseDistance = 12, Constitution = 25)]
-  class BDINeedle : AASMANeedle
+  [Characteristics(ContainerCapacity = 100, CollectTransfertSpeed = 0, Scan = 10, MaxDamage = 5, DefenseDistance = 10, Constitution = 25)]
+  public class BDINeedle : AASMANeedle
   {
     List<PlanCheckPoint> PlanCheckPointList = new List<PlanCheckPoint>();
     PlanCheckPoint currentInstruction;
@@ -42,8 +43,7 @@ namespace AASMAHoshimi.BDI
 
     private void CheckPerceptions()
     {
-      AASMAPlayer framework = this.getAASMAFramework();
-      List<Point> visibleEnemies = framework.visiblePierres(this);
+      List<Point> visibleEnemies = this.getAASMAFramework().visiblePierres(this);
       enemies.Clear();
       foreach (Point n in visibleEnemies)
       {

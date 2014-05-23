@@ -50,16 +50,6 @@ namespace AASMAHoshimi.BDI
       {
         MoveRandomly();
       }
- /* 
-   if (getAASMAFramework().containersAlive() < 10)
-      {
-        this._nanoAI.Build(typeof(BDIContainer), "C" + this._containerNumber++);
-      }
-      if (getAASMAFramework().protectorsAlive() < 30)
-      {
-        this._nanoAI.Build(typeof(BDIProtector), "P" + this._protectorNumber++);
-      }
-   */
     }
 
     private void CheckPerceptions()
@@ -106,6 +96,7 @@ namespace AASMAHoshimi.BDI
       if (HoshimiPoints.Count > 0)
       {
         goal = Desire.BuildNeedle;
+        return;
       }
       goal = Desire.None;
     }
@@ -117,6 +108,7 @@ namespace AASMAHoshimi.BDI
       switch (goal)
       {
         case Desire.None:
+          PlanCheckPointList.Add(new PlanCheckPoint(getNanoBot().Location, PlanCheckPoint.Actions.MoveRandom));
           break;
         case Desire.BuildNeedle:
           Point nearest = Utils.getNearestPoint(getNanoBot().Location, HoshimiPoints);
@@ -169,14 +161,30 @@ namespace AASMAHoshimi.BDI
             }
           }
           break;
+        case PlanCheckPoint.Actions.MoveRandom:
+          if (previousInstructionIsFinished)
+          {
+            MoveRandomly();
+          }
+          else
+          {
+            previousInstructionIsFinished = true;
+          }
+          break;
         case PlanCheckPoint.Actions.BuildNeedle:
           if (previousInstructionIsFinished)
           {
             this._nanoAI.Build(typeof(BDINeedle), "N" + this._needleNumber++);
+            OccupiedHoshimiPoints.Add(currentInstruction.location);
+            HoshimiPoints.Remove(currentInstruction.location);
           }
           else
           {
             if (OccupiedHoshimiPoints.Contains(currentInstruction.location))
+            {
+              planIsFinished = true;
+            }
+            else
             {
               previousInstructionIsFinished = true;
             }
@@ -187,17 +195,29 @@ namespace AASMAHoshimi.BDI
           {
             this._nanoAI.Build(typeof(BDIContainer), "C" + this._containerNumber++);
           }
+          else
+          {
+            previousInstructionIsFinished = true;
+          }
           break;
         case PlanCheckPoint.Actions.BuildProtector:
           if (previousInstructionIsFinished)
           {
             this._nanoAI.Build(typeof(BDIProtector), "P" + this._protectorNumber++);
           }
+          else
+          {
+            previousInstructionIsFinished = true;
+          }
           break;
         case PlanCheckPoint.Actions.BuildExplorer:
           if (previousInstructionIsFinished)
           {
             this._nanoAI.Build(typeof(BDIExplorer), "E" + this._explorerNumber++);
+          }
+          else
+          {
+            previousInstructionIsFinished = true;
           }
           break;
       }
