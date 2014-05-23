@@ -72,13 +72,16 @@
     <Compile Include="BDI\BDIContainer.cs" />
     <Compile Include="BDI\BDINeedle.cs" />
     <Compile Include="BDI\BDIProtector.cs" />
-    <Compile Include="BDI\PlanCheckPoint.cs" />
+    <Compile Include="Hybrid\HybridAI.cs" />
+    <Compile Include="Hybrid\HybridProtector.cs" />
+    <Compile Include="NanoBots\PlanCheckPoint.cs" />
     <Compile Include="Examples\BuildingAI.cs" />
     <Compile Include="Examples\CommunicativeExplorer.cs" />
     <Compile Include="Examples\PassiveContainer.cs" />
     <Compile Include="Examples\ForwardExplorer.cs" />
     <Compile Include="Examples\PassiveNeedle.cs" />
     <Compile Include="Examples\ShootingProtector.cs" />
+    <Compile Include="Hybrid\HybridContainer.cs" />
     <Compile Include="IActionable.cs" />
     <Compile Include="ICommunicable.cs" />
     <Compile Include="NanoBots\AASMAAI.cs" />
@@ -122,9 +125,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Hybrid\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
