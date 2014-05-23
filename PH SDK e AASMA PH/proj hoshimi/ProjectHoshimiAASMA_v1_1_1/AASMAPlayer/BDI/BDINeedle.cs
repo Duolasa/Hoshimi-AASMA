@@ -33,7 +33,6 @@ namespace AASMAHoshimi.BDI
         Deliberate();
         Plan();
         Execute();
-
       }
       else
       {
@@ -47,10 +46,7 @@ namespace AASMAHoshimi.BDI
       enemies.Clear();
       foreach (Point n in visibleEnemies)
       {
-        if (!enemies.Contains(n))
-        {
-          enemies.Add(n);
-        }
+        enemies.Add(n);
       }
     }
 

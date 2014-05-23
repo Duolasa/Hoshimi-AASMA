@@ -33,6 +33,7 @@ namespace AASMAHoshimi.BDI
       {
         Deliberate();
         Plan();
+        Execute();
       }
       else
       {
