@@ -38,11 +38,6 @@ namespace AASMAHoshimi.BDI
       {
         Execute();
       }
-
-      if (goal == Desire.None)
-      {
-        MoveRandomly();
-      }
     }
 
     private void CheckPerceptions()
@@ -67,9 +62,7 @@ namespace AASMAHoshimi.BDI
         goal = Desire.Attack;
         return;
       }
-
       goal = Desire.None;
-
     }
 
     private void Plan()
@@ -79,13 +72,14 @@ namespace AASMAHoshimi.BDI
       switch (goal)
       {
         case Desire.Attack:
-        Point enemy = Utils.getNearestPoint(Location, enemies);
-        PlanCheckPointList.Add(new PlanCheckPoint(enemy, PlanCheckPoint.Actions.Attack));
-        planIsFinished = false;
-        break;
+          Point enemy = Utils.getNearestPoint(Location, enemies);
+          PlanCheckPointList.Add(new PlanCheckPoint(enemy, PlanCheckPoint.Actions.Attack));
+          planIsFinished = false;
+          break;
         case Desire.None:
-        PlanCheckPointList.Add(new PlanCheckPoint(Location, PlanCheckPoint.Actions.MoveRandom));
-        break;
+          PlanCheckPointList.Add(new PlanCheckPoint(Location, PlanCheckPoint.Actions.MoveRandom));
+          planIsFinished = false;
+          break;
       }
 
     }

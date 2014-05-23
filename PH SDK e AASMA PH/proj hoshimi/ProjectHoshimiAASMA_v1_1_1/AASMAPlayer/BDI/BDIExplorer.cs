@@ -37,11 +37,6 @@ namespace AASMAHoshimi.BDI
       {
         Execute();
       }
-
-      if (goal == Desire.None)
-      {
-        MoveRandomly();
-      }
     }
 
     private void CheckPerceptions()
@@ -75,12 +70,13 @@ namespace AASMAHoshimi.BDI
       previousInstructionIsFinished = true;
       switch (goal)
       {
-        case Desire.None:
-          PlanCheckPointList.Add(new PlanCheckPoint(Location, PlanCheckPoint.Actions.MoveRandom));
-          break;
         case Desire.Explore:
           Point nearest = Utils.getNearestPoint(Location, navigationObjectives);
           PlanCheckPointList.Add(new PlanCheckPoint(nearest, PlanCheckPoint.Actions.Move));
+          planIsFinished = false;
+          break;
+        case Desire.None:
+          PlanCheckPointList.Add(new PlanCheckPoint(Location, PlanCheckPoint.Actions.MoveRandom));
           planIsFinished = false;
           break;
       }

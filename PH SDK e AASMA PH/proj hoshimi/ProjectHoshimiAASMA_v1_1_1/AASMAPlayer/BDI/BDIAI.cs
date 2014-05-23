@@ -45,11 +45,6 @@ namespace AASMAHoshimi.BDI
       {
         Execute();
       }
-
-      if (goal == Desire.None)
-      {
-        MoveRandomly();
-      }
     }
 
     private void CheckPerceptions()
@@ -109,6 +104,7 @@ namespace AASMAHoshimi.BDI
       {
         case Desire.None:
           PlanCheckPointList.Add(new PlanCheckPoint(getNanoBot().Location, PlanCheckPoint.Actions.MoveRandom));
+          planIsFinished = false;
           break;
         case Desire.BuildNeedle:
           Point nearest = Utils.getNearestPoint(getNanoBot().Location, HoshimiPoints);

@@ -28,7 +28,6 @@ namespace AASMAHoshimi.BDI
     Desire goal = Desire.None;
     public override void DoActions()
     {
-
       CheckPerceptions();
       if (planIsFinished)
       {
@@ -38,11 +37,6 @@ namespace AASMAHoshimi.BDI
       else
       {
         Execute();
-      }
-
-      if (goal == Desire.None)
-      {
-        MoveRandomly();
       }
     }
 
@@ -83,10 +77,7 @@ namespace AASMAHoshimi.BDI
         goal = Desire.Unload;
         return;
       }
-
       goal = Desire.None;
-
-
     }
 
     private void Plan()
@@ -95,10 +86,6 @@ namespace AASMAHoshimi.BDI
       previousInstructionIsFinished = true;
       switch (goal)
       {
-        case Desire.None:
-          PlanCheckPointList.Add(new PlanCheckPoint(Location, PlanCheckPoint.Actions.MoveRandom));
-          break;
-
         case Desire.Collect:
           Point closestAZN = Utils.getNearestPoint(Location, AZNLocations);
           PlanCheckPointList.Add(new PlanCheckPoint(closestAZN, PlanCheckPoint.Actions.Move));
@@ -111,8 +98,11 @@ namespace AASMAHoshimi.BDI
           PlanCheckPointList.Add(new PlanCheckPoint(closestNeedle, PlanCheckPoint.Actions.Unload));
           planIsFinished = false;
           break;
+        case Desire.None:
+          PlanCheckPointList.Add(new PlanCheckPoint(Location, PlanCheckPoint.Actions.MoveRandom));
+          planIsFinished = false;
+          break;
       }
-
     }
 
     private void Execute()
