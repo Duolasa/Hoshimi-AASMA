@@ -72,6 +72,9 @@
     <Compile Include="BDI\BDIContainer.cs" />
     <Compile Include="BDI\BDINeedle.cs" />
     <Compile Include="BDI\BDIProtector.cs" />
+    <Compile Include="ComHybrid\ComHybridAI.cs" />
+    <Compile Include="ComHybrid\ComHybridContainer.cs" />
+    <Compile Include="ComHybrid\ComHybridProtector.cs" />
     <Compile Include="Hybrid\HybridAI.cs" />
     <Compile Include="Hybrid\HybridProtector.cs" />
     <Compile Include="NanoBots\PlanCheckPoint.cs" />
