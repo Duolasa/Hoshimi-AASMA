@@ -70,6 +70,7 @@
     <Compile Include="AASMAPlayer.cs" />
     <Compile Include="BDI\BDIAI.cs" />
     <Compile Include="BDI\BDIContainer.cs" />
+    <Compile Include="BDI\BDINeedle.cs" />
     <Compile Include="BDI\BDIProtector.cs" />
     <Compile Include="BDI\PlanCheckPoint.cs" />
     <Compile Include="Examples\BuildingAI.cs" />
@@ -131,6 +132,6 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetPath)" "E:\IST\AASMA\PH SDK e AASMA PH\proj hoshimi\PH2007SDK\players" /y</PostBuildEvent>
+    <PostBuildEvent>copy "$(TargetPath)" "C:\Users\rocky_000\Documents\Hoshimi-AASMA\PH SDK e AASMA PH\proj hoshimi\PH2007SDK\players" /y</PostBuildEvent>
   </PropertyGroup>
 </Project>
