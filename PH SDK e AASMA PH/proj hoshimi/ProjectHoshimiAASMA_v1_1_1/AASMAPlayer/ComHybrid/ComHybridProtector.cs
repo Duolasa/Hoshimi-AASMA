@@ -52,6 +52,7 @@ namespace AASMAHoshimi.ComHybrid
       List<Point> visibleEnemies = framework.visiblePierres(this);
       List<Point> visibleAzn = framework.visibleAznPoints(this);
       List<Point> visibleHoshimi = framework.visibleHoshimies(this);
+      List<Point> visibleNav = framework.visibleNavigationPoints(this);
 
       enemies.Clear();
       foreach (Point n in visibleEnemies)
@@ -71,6 +72,13 @@ namespace AASMAHoshimi.ComHybrid
       foreach (Point n in visibleHoshimi)
       {
         AASMAMessage msg = new AASMAMessage(this.InternalName, "HoshimiPoint");
+        msg.Tag = n;
+        getAASMAFramework().sendMessage(msg, "AI");
+      }
+
+      foreach (Point n in visibleNav)
+      {
+        AASMAMessage msg = new AASMAMessage(this.InternalName, "NavPoint");
         msg.Tag = n;
         getAASMAFramework().sendMessage(msg, "AI");
       }

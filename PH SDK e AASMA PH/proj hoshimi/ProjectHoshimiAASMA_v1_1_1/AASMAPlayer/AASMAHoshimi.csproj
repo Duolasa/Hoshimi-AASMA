@@ -74,6 +74,7 @@
     <Compile Include="BDI\BDIProtector.cs" />
     <Compile Include="ComHybrid\ComHybridAI.cs" />
     <Compile Include="ComHybrid\ComHybridContainer.cs" />
+    <Compile Include="ComHybrid\ComHybridExplorer.cs" />
     <Compile Include="ComHybrid\ComHybridProtector.cs" />
     <Compile Include="Hybrid\HybridExplorer.cs" />
     <Compile Include="Hybrid\HybridNeedle.cs" />

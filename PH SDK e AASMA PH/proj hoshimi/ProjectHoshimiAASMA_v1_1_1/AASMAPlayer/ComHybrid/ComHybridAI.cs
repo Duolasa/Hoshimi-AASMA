@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Diagnostics;
 using System.Drawing;
 using AASMAHoshimi;
 using AASMAHoshimi.Examples;
@@ -95,9 +96,13 @@ namespace AASMAHoshimi.ComHybrid
         {
           AZNpoints.Add(p);
 
-          AASMAMessage msg = new AASMAMessage(this.getNanoBot().InternalName, "AZNPoint");
-          msg.Tag = p;
-          getAASMAFramework().broadCastMessage(msg);
+          for (int i = 1; i <= _containerNumber; i++)
+          {
+            AASMAMessage msg = new AASMAMessage(this.getNanoBot().InternalName, "AZNPoint");
+            msg.Tag = p;
+            getAASMAFramework().sendMessage(msg, "C" + i);
+          }
+
         }
       }
 
@@ -138,14 +143,14 @@ namespace AASMAHoshimi.ComHybrid
         this._nanoAI.Build(typeof(ComHybridProtector), "P" + this._protectorNumber++);
         return true;
       }
-      if (getAASMAFramework().containersAlive() < 10)
+      if (getAASMAFramework().containersAlive() < 5)
       {
         this._nanoAI.Build(typeof(ComHybridContainer), "C" + this._containerNumber++);
         return true;
       }
-      if (getAASMAFramework().explorersAlive() < 10)
+      if (getAASMAFramework().explorersAlive() < 5)
       {
-        this._nanoAI.Build(typeof(HybridExplorer), "E" + this._explorerNumber++);
+        this._nanoAI.Build(typeof(ComHybridExplorer), "E" + this._explorerNumber++);
         return true;
       }
 
@@ -228,10 +233,12 @@ namespace AASMAHoshimi.ComHybrid
             this._nanoAI.Build(typeof(BDINeedle), "N" + this._needleNumber++);
             OccupiedHoshimiPoints.Add(currentInstruction.location);
             HoshimiPoints.Remove(currentInstruction.location);
-
-            AASMAMessage msg = new AASMAMessage(this.getNanoBot().InternalName, "EmptyNeedle");
-            msg.Tag = currentInstruction.location;
-            getAASMAFramework().broadCastMessage(msg);
+            for (int i = 1; i <= _containerNumber; i++)
+            {
+              AASMAMessage msg = new AASMAMessage(this.getNanoBot().InternalName, "EmptyNeedle");
+              msg.Tag = currentInstruction.location;
+              getAASMAFramework().sendMessage(msg, "C" + i);
+            }
           }
           else
           {
@@ -269,6 +276,7 @@ namespace AASMAHoshimi.ComHybrid
 
     public override void receiveMessage(AASMAMessage msg)
     {
+
       string content = msg.Content;
       Point p = (Point) msg.Tag;
 
@@ -282,17 +290,19 @@ namespace AASMAHoshimi.ComHybrid
 
       if (content.Equals("AZNPoint"))
       {
+
         if (!AZNpoints.Contains(p))
         {
+
           AZNpoints.Add(p);
 
-          AASMAMessage broadcastmsg = new AASMAMessage(this.getNanoBot().InternalName, "AZNPoint");
-          broadcastmsg.Tag = p;
-          for (int i = 0; i < _containerNumber; i++)
+          for (int i = 1; i <= _containerNumber; i++)
           {
-            getAASMAFramework().sendMessage(msg, "C" + i);
+
+            AASMAMessage broadcastmsg = new AASMAMessage(this.getNanoBot().InternalName, "AZNPoint");
+            broadcastmsg.Tag = p;
+            getAASMAFramework().sendMessage(broadcastmsg, "C" + i);
           }
-          
         }
       }
 
@@ -302,9 +312,14 @@ namespace AASMAHoshimi.ComHybrid
         {
           Navpoints.Add(p);
 
-          AASMAMessage broadcastmsg = new AASMAMessage(this.getNanoBot().InternalName, "NavPoint");
-          broadcastmsg.Tag = p;
-          getAASMAFramework().broadCastMessage(broadcastmsg);
+
+          for (int i = 1; i <= _explorerNumber; i++)
+          {
+            AASMAMessage broadcastmsg = new AASMAMessage(this.getNanoBot().InternalName, "NavPoint");
+            broadcastmsg.Tag = p;
+            getAASMAFramework().sendMessage(broadcastmsg, "E" + i);
+          }
+
         }
       }
     }

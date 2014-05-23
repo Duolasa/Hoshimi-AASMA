@@ -59,6 +59,7 @@ namespace AASMAHoshimi.ComHybrid
       List<Point> visibleAzn = framework.visibleAznPoints(this);
       List<Point> visiblePierres = framework.visiblePierres(this);
       List<Point> visibleHoshimi = framework.visibleHoshimies(this);
+      List<Point> visibleNav = framework.visibleNavigationPoints(this);
 
       closePierres.Clear();
 
@@ -87,6 +88,14 @@ namespace AASMAHoshimi.ComHybrid
         getAASMAFramework().sendMessage(msg, "AI");
       }
 
+
+      foreach (Point n in visibleNav)
+      {
+        AASMAMessage msg = new AASMAMessage(this.InternalName, "NavPoint");
+        msg.Tag = n;
+        getAASMAFramework().sendMessage(msg, "AI");
+      }
+
     }
 
     private bool ReactiveLayer()
@@ -100,6 +109,17 @@ namespace AASMAHoshimi.ComHybrid
         Point awayFromPierre = new Point(Location.X + awayVectorX / 2, Location.Y + awayVectorY / 2);
         this.MoveTo(awayFromPierre);
 
+        return true;
+      }
+
+      if (Stock < ContainerCapacity && getAASMAFramework().overAZN(this))
+      {
+        collectAZN();
+        return true;
+      }
+      if (Stock > 0 && getAASMAFramework().overEmptyNeedle(this))
+      {
+        transferAZN();
         return true;
       }
 
@@ -178,43 +198,27 @@ namespace AASMAHoshimi.ComHybrid
           }
           break;
 
-        case PlanCheckPoint.Actions.MoveRandom:
-          if (previousInstructionIsFinished)
-          {
-            MoveRandomly();
-          }
-          else
-          {
-            previousInstructionIsFinished = true;
-          }
-          break;
-
         case PlanCheckPoint.Actions.Collect:
           if (previousInstructionIsFinished)
           {
             CollectFrom(currentInstruction.location, 1);
-          }
-          else
-          {
-            if (Stock == ContainerCapacity)
-            {
-              previousInstructionIsFinished = true;
-            }
-          }
+            previousInstructionIsFinished = true;
+
+          }        
           break;
 
         case PlanCheckPoint.Actions.Unload:
           if (previousInstructionIsFinished)
           {
-            TransferTo(currentInstruction.location, 1);
-          }
-          else
-          {
-            if (this.Location == currentInstruction.location)
+            if (this.getAASMAFramework().visibleFullNeedles(this).Contains(currentInstruction.location))
             {
+              EmptyNeedleLocations.Remove(currentInstruction.location);
               previousInstructionIsFinished = true;
             }
+            TransferTo(currentInstruction.location, 1);
+            previousInstructionIsFinished = true;
           }
+        
           break;
       }
 
@@ -242,7 +246,6 @@ namespace AASMAHoshimi.ComHybrid
     public override void receiveMessage(AASMAMessage msg)
     {
      getAASMAFramework().logData(this, "received message from " + msg.Sender + " : " + msg.Content);
-
       string content = msg.Content;
       Point p = (Point)msg.Tag;
 
