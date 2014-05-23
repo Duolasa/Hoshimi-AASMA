@@ -40,6 +40,7 @@ namespace AASMAHoshimi.BDI
       {
         Deliberate();
         Plan();
+        Execute();
       }
       else
       {
@@ -58,7 +59,10 @@ namespace AASMAHoshimi.BDI
       {
         if (visibleFullNeedles.Contains(p) || visibleEmptyNeedles.Contains(p))
         {
-          OccupiedHoshimiPoints.Add(p);
+          if (!OccupiedHoshimiPoints.Contains(p))
+          {
+            OccupiedHoshimiPoints.Add(p);
+          }
           if (HoshimiPoints.Contains(p))
           {
             HoshimiPoints.Remove(p);

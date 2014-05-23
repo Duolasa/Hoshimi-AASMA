@@ -37,6 +37,7 @@ namespace AASMAHoshimi.Hybrid
         {
           Deliberate();
           Plan();
+          Execute();
         }
         else
         {
@@ -124,10 +125,6 @@ namespace AASMAHoshimi.Hybrid
       previousInstructionIsFinished = true;
       switch (goal)
       {
-        case Desire.None:
-          PlanCheckPointList.Add(new PlanCheckPoint(Location, PlanCheckPoint.Actions.MoveRandom));
-          break;
-
         case Desire.Collect:
           Point closestAZN = Utils.getNearestPoint(Location, AZNLocations);
           PlanCheckPointList.Add(new PlanCheckPoint(closestAZN, PlanCheckPoint.Actions.Move));
@@ -172,17 +169,6 @@ namespace AASMAHoshimi.Hybrid
             {
               previousInstructionIsFinished = true;
             }
-          }
-          break;
-
-        case PlanCheckPoint.Actions.MoveRandom:
-          if (previousInstructionIsFinished)
-          {
-            MoveRandomly();
-          }
-          else
-          {
-            previousInstructionIsFinished = true;
           }
           break;
 

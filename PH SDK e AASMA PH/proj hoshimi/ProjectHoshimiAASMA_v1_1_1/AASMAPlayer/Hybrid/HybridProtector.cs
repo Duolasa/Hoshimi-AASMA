@@ -61,7 +61,6 @@ namespace AASMAHoshimi.Hybrid
 
     private bool ReactiveLayer()
     {
-
       if (enemies.Count > 0)
       {
         Point closestEnemy = Utils.getNearestPoint(Location, enemies);

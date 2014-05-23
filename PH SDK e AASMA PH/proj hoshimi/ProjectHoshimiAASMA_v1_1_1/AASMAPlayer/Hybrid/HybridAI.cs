@@ -44,6 +44,7 @@ namespace AASMAHoshimi.Hybrid
         {
           Deliberate();
           Plan();
+          Execute();
         }
         else
         {
@@ -68,7 +69,10 @@ namespace AASMAHoshimi.Hybrid
       {
         if (visibleFullNeedles.Contains(p) || visibleEmptyNeedles.Contains(p))
         {
-          OccupiedHoshimiPoints.Add(p);
+          if (!OccupiedHoshimiPoints.Contains(p))
+          {
+            OccupiedHoshimiPoints.Add(p);
+          }
           if (HoshimiPoints.Contains(p))
           {
             HoshimiPoints.Remove(p);
@@ -82,12 +86,15 @@ namespace AASMAHoshimi.Hybrid
 
       List<Point> visiblePierres = framework.visiblePierres(getNanoBot());
       closePierres.Clear();
+      foreach (Point p in visiblePierres)
+      {
+        closePierres.Add(p);
+      }
     }
 
     private bool ReactiveLayer()
     {
-
-       if (closePierres.Count > 0)
+      if (closePierres.Count > 0)
       {
         Point closestEnemy = Utils.getNearestPoint(getNanoBot().Location, closePierres);
         int awayVectorX = getNanoBot().Location.X - closestEnemy.X;
@@ -98,8 +105,6 @@ namespace AASMAHoshimi.Hybrid
 
         return true;
       }
-
-    
 
       if (getAASMAFramework().protectorsAlive() < 10)
       {
@@ -113,10 +118,9 @@ namespace AASMAHoshimi.Hybrid
       }
       if (getAASMAFramework().explorersAlive() < 10)
       {
-        this._nanoAI.Build(typeof(BDIExplorer), "E" + this._explorerNumber++);
+        this._nanoAI.Build(typeof(HybridExplorer), "E" + this._explorerNumber++);
         return true;
       }
-
 
       return false;
 
@@ -139,9 +143,6 @@ namespace AASMAHoshimi.Hybrid
       previousInstructionIsFinished = true;
       switch (goal)
       {
-        case Desire.None:
-          PlanCheckPointList.Add(new PlanCheckPoint(getNanoBot().Location, PlanCheckPoint.Actions.MoveRandom));
-          break;
         case Desire.BuildNeedle:
           Point nearest = Utils.getNearestPoint(getNanoBot().Location, HoshimiPoints);
           PlanCheckPointList.Add(new PlanCheckPoint(nearest, PlanCheckPoint.Actions.Move));
@@ -182,21 +183,10 @@ namespace AASMAHoshimi.Hybrid
           }
           break;
 
-        case PlanCheckPoint.Actions.MoveRandom:
-          if (previousInstructionIsFinished)
-          {
-            MoveRandomly();
-          }
-          else
-          {
-            previousInstructionIsFinished = true;
-          }
-          break;
-
         case PlanCheckPoint.Actions.BuildNeedle:
           if (previousInstructionIsFinished)
           {
-            this._nanoAI.Build(typeof(BDINeedle), "N" + this._needleNumber++);
+            this._nanoAI.Build(typeof(HybridNeedle), "N" + this._needleNumber++);
             OccupiedHoshimiPoints.Add(currentInstruction.location);
             HoshimiPoints.Remove(currentInstruction.location);
           }

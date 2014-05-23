@@ -4,14 +4,15 @@ using System.Text;
 using System.Drawing;
 using PH.Common;
 
-namespace AASMAHoshimi.BDI
+namespace AASMAHoshimi.Hybrid
 {
   [Characteristics(ContainerCapacity = 0, CollectTransfertSpeed = 0, Scan = 30, MaxDamage = 0, DefenseDistance = 0, Constitution = 10)]
-  public class BDIExplorer : AASMAExplorer
+  public class HybridExplorer : AASMAExplorer
   {
 
     private List<Point> navigationObjectives = new List<Point>();
     private List<Point> discoveredNavigationObjectives = new List<Point>();
+    private List<Point> closePierres = new List<Point>();
 
     List<PlanCheckPoint> PlanCheckPointList = new List<PlanCheckPoint>();
     PlanCheckPoint currentInstruction;
@@ -28,21 +29,59 @@ namespace AASMAHoshimi.BDI
     public override void DoActions()
     {
       CheckPerceptions();
-      if (planIsFinished)
+      if (!ReactiveLayer())
       {
-        Deliberate();
-        Plan();
-        Execute();
+        if (planIsFinished)
+        {
+          Deliberate();
+          Plan();
+          Execute();
+        }
+        else
+        {
+          Execute();
+        }
+
+        if (goal == Desire.None)
+        {
+          MoveRandomly();
+        }
       }
-      else
+    }
+
+    private bool ReactiveLayer()
+    {
+      if (closePierres.Count > 0)
       {
-        Execute();
+        Point closestEnemy = Utils.getNearestPoint(Location, closePierres);
+        int awayVectorX = Location.X - closestEnemy.X;
+        int awayVectorY = Location.Y - closestEnemy.Y;
+
+        Point awayFromPierre = new Point(Location.X + awayVectorX / 2, Location.Y + awayVectorY / 2);
+        this.MoveTo(awayFromPierre);
+
+        return true;
       }
+      if (goal == Desire.Explore)
+      {
+        Point navPoint = Utils.getNearestPoint(Location, navigationObjectives);
+        int currentInstDistance = Utils.SquareDistance(this.Location, currentInstruction.location);
+        int closestDistance = Utils.SquareDistance(this.Location, navPoint);
+        if (closestDistance < currentInstDistance)
+        {
+          this.MoveTo(navPoint);
+          currentInstruction.location = navPoint;
+        }
+      }
+      return false;
     }
 
     private void CheckPerceptions()
     {
       List<Point> objectives = getAASMAFramework().visibleNavigationPoints(this);
+      List<Point> visiblePierres = getAASMAFramework().visiblePierres(this);
+      closePierres.Clear();
+
       if (objectives.Count > 0)
       {
         foreach (Point p in objectives)
@@ -52,6 +91,11 @@ namespace AASMAHoshimi.BDI
             navigationObjectives.Add(p);
           }
         }
+      }
+
+      foreach (Point n in visiblePierres)
+      {
+        closePierres.Add(n);
       }
     }
 
@@ -74,10 +118,6 @@ namespace AASMAHoshimi.BDI
         case Desire.Explore:
           Point nearest = Utils.getNearestPoint(Location, navigationObjectives);
           PlanCheckPointList.Add(new PlanCheckPoint(nearest, PlanCheckPoint.Actions.Move));
-          planIsFinished = false;
-          break;
-        case Desire.None:
-          PlanCheckPointList.Add(new PlanCheckPoint(Location, PlanCheckPoint.Actions.MoveRandom));
           planIsFinished = false;
           break;
       }
@@ -116,16 +156,6 @@ namespace AASMAHoshimi.BDI
               }
               previousInstructionIsFinished = true;
             }
-          }
-          break;
-        case PlanCheckPoint.Actions.MoveRandom:
-          if (previousInstructionIsFinished)
-          {
-            MoveRandomly();
-          }
-          else
-          {
-            previousInstructionIsFinished = true;
           }
           break;
       }
