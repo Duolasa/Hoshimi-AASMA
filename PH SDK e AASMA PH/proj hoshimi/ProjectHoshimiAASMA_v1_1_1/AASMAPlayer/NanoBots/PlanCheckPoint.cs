@@ -5,7 +5,7 @@ using System.Drawing;
 using PH.Common;
 
 
-namespace AASMAHoshimi.BDI
+namespace AASMAHoshimi
 {
   class PlanCheckPoint
   {
