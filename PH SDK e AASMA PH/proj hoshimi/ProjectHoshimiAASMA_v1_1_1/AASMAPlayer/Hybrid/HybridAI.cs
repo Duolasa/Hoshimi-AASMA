@@ -18,6 +18,7 @@ namespace AASMAHoshimi.Hybrid
 
     List<Point> HoshimiPoints = new List<Point>();
     List<Point> OccupiedHoshimiPoints = new List<Point>();
+    List<Point> closePierres = new List<Point>();
 
     List<PlanCheckPoint> PlanCheckPointList = new List<PlanCheckPoint>();
     PlanCheckPoint currentInstruction;
@@ -78,10 +79,28 @@ namespace AASMAHoshimi.Hybrid
           HoshimiPoints.Add(p);
         }
       }
+
+      List<Point> visiblePierres = framework.visiblePierres(getNanoBot());
+      closePierres.Clear();
     }
 
     private bool ReactiveLayer()
     {
+
+       if (closePierres.Count > 0)
+      {
+        Point closestEnemy = Utils.getNearestPoint(getNanoBot().Location, closePierres);
+        int awayVectorX = getNanoBot().Location.X - closestEnemy.X;
+        int awayVectorY = getNanoBot().Location.Y - closestEnemy.Y;
+
+        Point awayFromPierre = new Point(getNanoBot().Location.X + awayVectorX / 2, getNanoBot().Location.Y + awayVectorY / 2);
+        getNanoBot().MoveTo(awayFromPierre);
+
+        return true;
+      }
+
+    
+
       if (getAASMAFramework().protectorsAlive() < 10)
       {
         this._nanoAI.Build(typeof(HybridProtector), "P" + this._protectorNumber++);
