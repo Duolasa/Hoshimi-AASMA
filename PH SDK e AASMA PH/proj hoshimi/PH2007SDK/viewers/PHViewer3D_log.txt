@@ -30,7 +30,7 @@ net> set socket to nonblocking mode
 game> Init step: Requesting game desc...
 net> Connection protocol test
 net> Fetch game description
-game> Game map name: L3.tsu
+game> Game map name: A1.tsu
 game> Init step: Calculating level mesh...
 resource> mesh loaded 'billboard'
 resource> loading fx 'minimapLev'
@@ -63,19 +63,21 @@ resource> loading fx 'Point'
 resource> fx loaded, generating state restore pass
 resource> mesh loaded 'PointHoshimi'
 resource> model desc loaded 'normal/PointHoshimi'
-resource> mesh loaded 'Decor1'
-resource> model desc loaded 'normal/Decor1'
+resource> mesh loaded 'Decor2'
+resource> model desc loaded 'normal/Decor2'
 resource> loading fx 'PointDecor'
 resource> fx loaded, generating state restore pass
+resource> texture loaded 'Decor2'
+resource> mesh loaded 'Decor1'
+resource> model desc loaded 'normal/Decor1'
 resource> texture loaded 'Decor1'
 resource> mesh loaded 'Decor7'
 resource> model desc loaded 'normal/Decor7'
 resource> loading fx 'PointDecorCell'
 resource> fx loaded, generating state restore pass
 resource> texture loaded 'DecorEnv'
-resource> mesh loaded 'Decor2'
-resource> model desc loaded 'normal/Decor2'
-resource> texture loaded 'Decor2'
+resource> mesh loaded 'PointMission'
+resource> model desc loaded 'normal/PointMission'
 resource> mesh loaded 'StreamWhite'
 resource> model desc loaded 'normal/StreamWhite'
 resource> loading fx 'StreamEntity'
@@ -83,15 +85,13 @@ resource> fx loaded, generating state restore pass
 resource> mesh loaded 'StreamRed'
 resource> model desc loaded 'normal/StreamRed'
 game> Init step: Initializing GUI...
-time> initialization 0.325
-net> Query server state
-net> Query server state
-app> passivate d3d resources
-app> activate d3d resources
+time> initialization 0.384
 net> Query server state
 net> Query server state
 net> Start game
 net> Query server state
+app> passivate d3d resources
+app> activate d3d resources
 net> Query server state
 net> Query server state
 net> Query server state
@@ -126,12 +126,45 @@ resource> texture loaded 'PNeuroCtrl'
 resource> mesh loaded 'PNeuroCtrl_1'
 resource> mesh loaded 'PNeuroCtrl_2'
 resource> mesh loaded 'PNeuroCtrl_3'
+resource> mesh loaded 'Collector_0'
+resource> model desc loaded 'normal/Collector'
+resource> texture loaded 'NanoCollector'
+resource> mesh loaded 'Collector_1'
+resource> mesh loaded 'Collector_2'
+resource> mesh loaded 'Collector_3'
+resource> mesh loaded 'PCollector_0'
+resource> model desc loaded 'normal/PCollector'
+resource> texture loaded 'PCollector'
+resource> mesh loaded 'PCollector_1'
+resource> mesh loaded 'PCollector_2'
+resource> mesh loaded 'PCollector_3'
 resource> mesh loaded 'Container_0'
 resource> model desc loaded 'normal/Container'
 resource> texture loaded 'NanoContainer'
 resource> mesh loaded 'Container_1'
 resource> mesh loaded 'Container_2'
 resource> mesh loaded 'Container_3'
+resource> mesh loaded 'Explorer_0'
+resource> model desc loaded 'normal/Explorer'
+resource> texture loaded 'NanoExplorer'
+resource> mesh loaded 'Explorer_1'
+resource> mesh loaded 'Explorer_2'
+resource> mesh loaded 'Explorer_3'
+resource> loading fx 'attackBeam'
+resource> fx loaded, generating state restore pass
+resource> texture loaded 'SmokeParticle'
+resource> mesh loaded 'Attack'
+resource> loading fx 'attackWave'
+resource> fx loaded, generating state restore pass
+resource> loading fx 'explosion'
+resource> fx loaded, generating state restore pass
+resource> texture loaded 'Explosion'
+resource> mesh loaded 'Needle_0'
+resource> model desc loaded 'normal/Needle'
+resource> texture loaded 'NanoNeedle'
+resource> mesh loaded 'Needle_1'
+resource> mesh loaded 'Needle_2'
+resource> mesh loaded 'Needle_3'
 resource> mesh loaded 'Nimbus'
 resource> loading fx 'nimbus'
 resource> fx loaded, generating state restore pass

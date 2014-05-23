@@ -4,6 +4,7 @@ using System.Text;
 using System.Drawing;
 using AASMAHoshimi;
 using PH.Common;
+using System.Diagnostics;
 
 namespace AASMAHoshimi.Hybrid
 {
@@ -48,12 +49,9 @@ namespace AASMAHoshimi.Hybrid
       if (enemies.Count > 0)
       {
         Point enemy = Utils.getNearestPoint(Location, enemies);
-        int sqrDefenceDistance = this.DefenseDistance * this.DefenseDistance;
-        int sqrDistanceToEnemy = Utils.SquareDistance(this.Location, enemy);
-        if (sqrDistanceToEnemy <= sqrDefenceDistance)
-        {
+
           this.DefendTo(enemy, 1);
-        }
+        
         return true;
       }
       return false;

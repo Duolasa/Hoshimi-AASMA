@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
 using PH.Common;
+using AASMAHoshimi.ComHybrid;
+using System.Diagnostics;
 
 namespace AASMAHoshimi.ComHybrid
 {
   [Characteristics(ContainerCapacity = 0, CollectTransfertSpeed = 0, Scan = 5, MaxDamage = 5, DefenseDistance = 12, Constitution = 25)]
-  class ComHybridProtector : AASMAProtector
+  public class ComHybridProtector : AASMAProtector
   {
     List<PlanCheckPoint> PlanCheckPointList = new List<PlanCheckPoint>();
     PlanCheckPoint currentInstruction;
@@ -15,6 +17,7 @@ namespace AASMAHoshimi.ComHybrid
     bool previousInstructionIsFinished = true;
     List<Point> enemies = new List<Point>();
     Desire goal = Desire.None;
+    Point toGuard = new Point(0,0);
 
     enum Desire
     {
@@ -31,12 +34,12 @@ namespace AASMAHoshimi.ComHybrid
       {
         if (planIsFinished)
         {
-          // Deliberate();
-          //  Plan();
+           Deliberate();
+            Plan();
         }
         else
         {
-          //  Execute();
+            Execute();
         }
 
         if (goal == Desire.None)
@@ -89,6 +92,7 @@ namespace AASMAHoshimi.ComHybrid
     {
       if (enemies.Count > 0)
       {
+        StopMoving();
         Point closestEnemy = Utils.getNearestPoint(Location, enemies);
         if (Utils.MDistance(Location, closestEnemy) > DefenseDistance)
         {
@@ -112,6 +116,14 @@ namespace AASMAHoshimi.ComHybrid
     }
     private void Deliberate()
     {
+
+      if (toGuard != new Point(0,0))
+      {
+
+        goal = Desire.Defend;
+        return;
+      }
+
       goal = Desire.None;
 
     }
@@ -120,10 +132,11 @@ namespace AASMAHoshimi.ComHybrid
     {
       PlanCheckPointList.Clear();
       previousInstructionIsFinished = true;
+      planIsFinished = false;
       switch (goal)
       {
-        case Desire.None:
-          PlanCheckPointList.Add(new PlanCheckPoint(Location, PlanCheckPoint.Actions.MoveRandom));
+        case Desire.Defend:
+          PlanCheckPointList.Add(new PlanCheckPoint(toGuard, PlanCheckPoint.Actions.Defend));
           break;
       }
 
@@ -146,15 +159,21 @@ namespace AASMAHoshimi.ComHybrid
       switch (currentInstruction.action)
       {
 
-        case PlanCheckPoint.Actions.MoveRandom:
+        case PlanCheckPoint.Actions.Defend:
           if (previousInstructionIsFinished)
           {
-            MoveRandomly();
+
+            MoveTo(currentInstruction.location);
           }
           else
           {
-            previousInstructionIsFinished = true;
+            if (currentInstruction.location == this.Location)
+            {
+              previousInstructionIsFinished = true;
+            }
+
           }
+
           break;
       }
     }
@@ -181,6 +200,13 @@ namespace AASMAHoshimi.ComHybrid
 
     public override void receiveMessage(AASMAMessage msg)
     {
+      string content = msg.Content;
+
+
+      if (content.Equals("GuardMe"))
+      {
+        toGuard = (Point)msg.Tag;
+      }
     }
   }
 }

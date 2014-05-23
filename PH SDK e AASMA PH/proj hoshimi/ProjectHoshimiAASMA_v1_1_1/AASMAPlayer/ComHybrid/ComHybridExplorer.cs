@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
+using System.Diagnostics;
 using PH.Common;
 
 namespace AASMAHoshimi.ComHybrid
@@ -58,8 +59,13 @@ namespace AASMAHoshimi.ComHybrid
         int awayVectorY = Location.Y - closestEnemy.Y;
 
         Point awayFromPierre = new Point(Location.X + awayVectorX / 2, Location.Y + awayVectorY / 2);
-        this.MoveTo(awayFromPierre);
-
+        StopMoving();
+        planIsFinished = true;
+        goal = Desire.None;
+        if (!MoveTo(awayFromPierre))
+        {
+          MoveRandomly();
+        }
         return true;
       }
       if (goal == Desire.Explore)
@@ -211,6 +217,7 @@ namespace AASMAHoshimi.ComHybrid
       {
         if (!navigationObjectives.Contains(p))
         {
+
           navigationObjectives.Add(p);
         }
       }

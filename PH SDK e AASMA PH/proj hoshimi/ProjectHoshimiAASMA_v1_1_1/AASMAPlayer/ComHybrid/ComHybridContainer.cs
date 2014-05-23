@@ -4,13 +4,15 @@ using System.Text;
 using System.Drawing;
 using PH.Common;
 using AASMAHoshimi;
+using System.Diagnostics;
+
 
 namespace AASMAHoshimi.ComHybrid
 {
 
   [Characteristics(ContainerCapacity = 50, CollectTransfertSpeed = 5, Scan = 0, MaxDamage = 0, DefenseDistance = 0, Constitution = 15)]
 
-  class ComHybridContainer : AASMAContainer
+  public class ComHybridContainer : AASMAContainer
   {
     List<Point> EmptyNeedleLocations = new List<Point>();
     List<Point> AZNLocations = new List<Point>();
@@ -20,6 +22,7 @@ namespace AASMAHoshimi.ComHybrid
     PlanCheckPoint currentInstruction;
     bool planIsFinished = true;
     bool previousInstructionIsFinished = true;
+
     enum Desire
     {
       None,
@@ -31,6 +34,8 @@ namespace AASMAHoshimi.ComHybrid
 
     public override void DoActions()
     {
+      
+
       CheckPerceptions();
       if (!ReactiveLayer())
       {
@@ -51,6 +56,10 @@ namespace AASMAHoshimi.ComHybrid
           MoveRandomly();
         }
       }
+
+      AASMAMessage msg = new AASMAMessage(this.InternalName, "GuardMe");
+      msg.Tag = this.Location;
+      getAASMAFramework().sendMessage(msg, "P" + (Convert.ToInt32(this.InternalName[1]) - 48 + 5));
     }
 
     private void CheckPerceptions()
@@ -107,8 +116,13 @@ namespace AASMAHoshimi.ComHybrid
         int awayVectorY = Location.Y - closestEnemy.Y;
 
         Point awayFromPierre = new Point(Location.X + awayVectorX / 2, Location.Y + awayVectorY / 2);
-        this.MoveTo(awayFromPierre);
-
+        StopMoving();
+        planIsFinished = true;
+        goal = Desire.None;
+        if (!MoveTo(awayFromPierre))
+        {
+          MoveRandomly();
+        }
         return true;
       }
 
@@ -245,7 +259,6 @@ namespace AASMAHoshimi.ComHybrid
 
     public override void receiveMessage(AASMAMessage msg)
     {
-     getAASMAFramework().logData(this, "received message from " + msg.Sender + " : " + msg.Content);
       string content = msg.Content;
       Point p = (Point)msg.Tag;
 

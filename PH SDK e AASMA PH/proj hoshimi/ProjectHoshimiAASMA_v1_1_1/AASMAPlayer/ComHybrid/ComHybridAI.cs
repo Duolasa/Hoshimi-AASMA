@@ -60,6 +60,13 @@ namespace AASMAHoshimi.ComHybrid
           MoveRandomly();
         }
       }
+
+      for (int i = 1; i <= 5; i++)
+      {
+        AASMAMessage msg = new AASMAMessage(this.getNanoBot().InternalName, "GuardMe");
+        msg.Tag = this.getNanoBot().Location;
+        getAASMAFramework().sendMessage(msg, "P" + i);
+      }
     }
 
     private void CheckPerceptions()
@@ -119,6 +126,11 @@ namespace AASMAHoshimi.ComHybrid
 
       List<Point> visiblePierres = framework.visiblePierres(getNanoBot());
       closePierres.Clear();
+
+      foreach (Point p in visiblePierres)
+      {
+        closePierres.Add(p);
+      }
     }
 
     private bool ReactiveLayer()
@@ -131,8 +143,13 @@ namespace AASMAHoshimi.ComHybrid
         int awayVectorY = getNanoBot().Location.Y - closestEnemy.Y;
 
         Point awayFromPierre = new Point(getNanoBot().Location.X + awayVectorX / 2, getNanoBot().Location.Y + awayVectorY / 2);
-        getNanoBot().MoveTo(awayFromPierre);
-
+        getNanoBot().StopMoving();
+        planIsFinished = true;
+        goal = Desire.None;
+        if (!getNanoBot().MoveTo(awayFromPierre))
+        {
+          MoveRandomly();
+        }
         return true;
       }
 
