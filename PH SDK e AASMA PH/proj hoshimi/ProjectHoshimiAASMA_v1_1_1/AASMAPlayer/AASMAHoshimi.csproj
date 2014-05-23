@@ -122,7 +122,9 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Hybrid\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -132,6 +134,6 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetPath)" "C:\Users\rocky_000\Documents\Hoshimi-AASMA\PH SDK e AASMA PH\proj hoshimi\PH2007SDK\players" /y</PostBuildEvent>
+    <PostBuildEvent>copy "$(TargetPath)" "E:\IST\AASMA\PH SDK e AASMA PH\proj hoshimi\PH2007SDK\players" /y</PostBuildEvent>
   </PropertyGroup>
 </Project>
